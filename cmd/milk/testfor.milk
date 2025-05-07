@@ -1,0 +1,27 @@
+::start:: // start of the program
+local 行数 = ToNumber(Input("请输入行数: ")) // get input from user
+local 列数 = 行数 // set 列数 = 行数
+local 矩阵 = {} // create a table
+
+for i = 1, 行数*列数 {
+    矩阵[i] = i // fill the matrix with numbers
+}
+
+for i = 1, 行数 {
+    for j = 1, 列数 {
+        Print(矩阵[(i-1)*列数+j].." ") // print the matrix
+    }
+    PrintLn() // print the newline
+}
+
+::ask_again:: // ask user if they want to continue
+local 回答 = Input("是否继续? (y/n): ") // ask user if they want to continue
+
+if 回答 == "y" {
+    goto start // go to the start of the program
+} elseif 回答 == "n" {
+    PrintLn("程序结束") // print the end of the program
+} else {
+    PrintLn("无效输入") // print invalid input
+    goto ask_again // go to the ask_again label
+}

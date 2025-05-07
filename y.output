@@ -1,0 +1,4390 @@
+
+state 0
+	$accept: .chunk $end 
+	chunk1: .    (4)
+
+	.  reduce 4 (src line 101)
+
+	chunk  goto 1
+	chunk1  goto 2
+
+state 1
+	$accept:  chunk.$end 
+
+	$end  accept
+	.  error
+
+
+state 2
+	chunk:  chunk1.    (1)
+	chunk:  chunk1.laststat 
+	chunk:  chunk1.laststat TSemi 
+	chunk1:  chunk1.stat 
+	chunk1:  chunk1.TSemi 
+
+	TBreak  shift 7
+	TFor  shift 15
+	TFunction  shift 16
+	TIf  shift 14
+	TLocal  shift 17
+	TReturn  shift 6
+	TRepeat  shift 13
+	TWhile  shift 12
+	TGoto  shift 19
+	T2Colon  shift 18
+	TIdent  shift 20
+	TLBrace  shift 11
+	TLParen  shift 24
+	TSemi  shift 5
+	.  reduce 1 (src line 81)
+
+	stat  goto 4
+	laststat  goto 3
+	varlist  goto 9
+	var  goto 8
+	prefixexp  goto 10
+	functioncall  goto 23
+	afunctioncall  goto 21
+	function  goto 22
+
+state 3
+	chunk:  chunk1 laststat.    (2)
+	chunk:  chunk1 laststat.TSemi 
+
+	TSemi  shift 25
+	.  reduce 2 (src line 87)
+
+
+state 4
+	chunk1:  chunk1 stat.    (5)
+
+	.  reduce 5 (src line 104)
+
+
+state 5
+	chunk1:  chunk1 TSemi.    (6)
+
+	.  reduce 6 (src line 107)
+
+
+state 6
+	laststat:  TReturn.    (37)
+	laststat:  TReturn.exprlist 
+
+	TFalse  shift 29
+	TFunction  shift 40
+	TNil  shift 28
+	TNot  shift 38
+	TTrue  shift 30
+	T3Dot  shift 32
+	TIdent  shift 20
+	TNumber  shift 31
+	TString  shift 42
+	TLBrace  shift 43
+	TLParen  shift 24
+	TSub  shift 37
+	THash  shift 39
+	.  reduce 37 (src line 267)
+
+	var  goto 41
+	exprlist  goto 26
+	expr  goto 27
+	string  goto 35
+	prefixexp  goto 34
+	functioncall  goto 23
+	afunctioncall  goto 21
+	function  goto 33
+	tableconstructor  goto 36
+
+state 7
+	laststat:  TBreak.    (39)
+
+	.  reduce 39 (src line 275)
+
+
+state 8
+	stat:  var.TAddAssign expr 
+	stat:  var.TSubAssign expr 
+	stat:  var.TMulAssign expr 
+	stat:  var.TDivAssign expr 
+	stat:  var.TModAssign expr 
+	stat:  var.TPowAssign expr 
+	varlist:  var.    (44)
+	prefixexp:  var.    (94)
+
+	TComma  reduce 44 (src line 302)
+	TAssign  reduce 44 (src line 302)
+	TAddAssign  shift 44
+	TSubAssign  shift 45
+	TMulAssign  shift 46
+	TDivAssign  shift 47
+	TModAssign  shift 48
+	TPowAssign  shift 49
+	.  reduce 94 (src line 504)
+
+
+state 9
+	stat:  varlist.TAssign exprlist 
+	varlist:  varlist.TComma var 
+
+	TComma  shift 51
+	TAssign  shift 50
+	.  error
+
+
+10: shift/reduce conflict (shift 56(0), red'n 15(0)) on TLParen
+state 10
+	stat:  prefixexp.    (15)
+	var:  prefixexp.TLBracket expr TRBracket 
+	var:  prefixexp.TDot TIdent 
+	functioncall:  prefixexp.args 
+	functioncall:  prefixexp.TColon TIdent args 
+
+	TDot  shift 53
+	TLParen  shift 56
+	TLBracket  shift 52
+	TColon  shift 55
+	.  reduce 15 (src line 145)
+
+	args  goto 54
+
+state 11
+	stat:  TLBrace.block TRBrace 
+	chunk1: .    (4)
+
+	.  reduce 4 (src line 101)
+
+	chunk  goto 58
+	chunk1  goto 2
+	block  goto 57
+
+state 12
+	stat:  TWhile.expr TLBrace block TRBrace 
+
+	TFalse  shift 29
+	TFunction  shift 40
+	TNil  shift 28
+	TNot  shift 38
+	TTrue  shift 30
+	T3Dot  shift 32
+	TIdent  shift 20
+	TNumber  shift 31
+	TString  shift 42
+	TLBrace  shift 43
+	TLParen  shift 24
+	TSub  shift 37
+	THash  shift 39
+	.  error
+
+	var  goto 41
+	expr  goto 59
+	string  goto 35
+	prefixexp  goto 34
+	functioncall  goto 23
+	afunctioncall  goto 21
+	function  goto 33
+	tableconstructor  goto 36
+
+state 13
+	stat:  TRepeat.TLBrace block TRBrace TUntil expr 
+
+	TLBrace  shift 60
+	.  error
+
+
+state 14
+	stat:  TIf.expr TLBrace block TRBrace 
+	stat:  TIf.expr stat 
+	stat:  TIf.expr TLBrace block TRBrace elseifs 
+	stat:  TIf.expr TLBrace block TRBrace elseifs TElse TLBrace block TRBrace 
+
+	TFalse  shift 29
+	TFunction  shift 40
+	TNil  shift 28
+	TNot  shift 38
+	TTrue  shift 30
+	T3Dot  shift 32
+	TIdent  shift 20
+	TNumber  shift 31
+	TString  shift 42
+	TLBrace  shift 43
+	TLParen  shift 24
+	TSub  shift 37
+	THash  shift 39
+	.  error
+
+	var  goto 41
+	expr  goto 61
+	string  goto 35
+	prefixexp  goto 34
+	functioncall  goto 23
+	afunctioncall  goto 21
+	function  goto 33
+	tableconstructor  goto 36
+
+state 15
+	stat:  TFor.TIdent TAssign expr TComma expr TLBrace block TRBrace TIfThru TLBrace block TRBrace 
+	stat:  TFor.TIdent TAssign expr TComma expr TLBrace block TRBrace 
+	stat:  TFor.TIdent TAssign expr TComma expr TComma expr TLBrace block TRBrace TIfThru TLBrace block TRBrace 
+	stat:  TFor.TIdent TAssign expr TComma expr TComma expr TLBrace block TRBrace 
+	stat:  TFor.namelist TIn exprlist TLBrace block TRBrace TIfThru TLBrace block TRBrace 
+	stat:  TFor.namelist TIn exprlist TLBrace block TRBrace 
+
+	TIdent  shift 62
+	.  error
+
+	namelist  goto 63
+
+state 16
+	stat:  TFunction.funcname funcbody 
+	function:  TFunction.funcbody 
+
+	TIdent  shift 68
+	TLParen  shift 67
+	.  error
+
+	funcname  goto 64
+	funcname1  goto 66
+	funcbody  goto 65
+
+state 17
+	stat:  TLocal.TFunction TIdent funcbody 
+	stat:  TLocal.namelist TAssign exprlist 
+	stat:  TLocal.namelist 
+
+	TFunction  shift 69
+	TIdent  shift 71
+	.  error
+
+	namelist  goto 70
+
+state 18
+	stat:  T2Colon.TIdent T2Colon 
+
+	TIdent  shift 72
+	.  error
+
+
+state 19
+	stat:  TGoto.TIdent 
+
+	TIdent  shift 73
+	.  error
+
+
+state 20
+	var:  TIdent.    (46)
+
+	.  reduce 46 (src line 310)
+
+
+state 21
+	prefixexp:  afunctioncall.    (95)
+
+	.  reduce 95 (src line 507)
+
+
+state 22
+	prefixexp:  function.    (96)
+
+	.  reduce 96 (src line 510)
+
+
+state 23
+	prefixexp:  functioncall.    (97)
+
+	.  reduce 97 (src line 513)
+
+
+state 24
+	prefixexp:  TLParen.expr TRParen 
+	afunctioncall:  TLParen.functioncall TRParen 
+
+	TFalse  shift 29
+	TFunction  shift 40
+	TNil  shift 28
+	TNot  shift 38
+	TTrue  shift 30
+	T3Dot  shift 32
+	TIdent  shift 20
+	TNumber  shift 31
+	TString  shift 42
+	TLBrace  shift 43
+	TLParen  shift 24
+	TSub  shift 37
+	THash  shift 39
+	.  error
+
+	var  goto 41
+	expr  goto 74
+	string  goto 35
+	prefixexp  goto 34
+	functioncall  goto 75
+	afunctioncall  goto 21
+	function  goto 33
+	tableconstructor  goto 36
+
+state 25
+	chunk:  chunk1 laststat TSemi.    (3)
+
+	.  reduce 3 (src line 93)
+
+
+state 26
+	laststat:  TReturn exprlist.    (38)
+	exprlist:  exprlist.TComma expr 
+
+	TComma  shift 76
+	.  reduce 38 (src line 271)
+
+
+state 27
+	exprlist:  expr.    (51)
+	expr:  expr.TOr expr 
+	expr:  expr.TAnd expr 
+	expr:  expr.TBitOr expr 
+	expr:  expr.TBitAnd expr 
+	expr:  expr.TLeftShift expr 
+	expr:  expr.TRightShift expr 
+	expr:  expr.TGt expr 
+	expr:  expr.TLt expr 
+	expr:  expr.TGte expr 
+	expr:  expr.TLte expr 
+	expr:  expr.TEqeq expr 
+	expr:  expr.TNeq expr 
+	expr:  expr.T2Dot expr 
+	expr:  expr.TAdd expr 
+	expr:  expr.TSub expr 
+	expr:  expr.TMul expr 
+	expr:  expr.TDiv expr 
+	expr:  expr.TMod expr 
+	expr:  expr.TPow expr 
+	expr:  expr.TDotLParen type_expr TRParen 
+
+	TAnd  shift 78
+	TOr  shift 77
+	TEqeq  shift 87
+	TNeq  shift 88
+	TLte  shift 86
+	TGte  shift 85
+	T2Dot  shift 89
+	TAdd  shift 90
+	TSub  shift 91
+	TMul  shift 92
+	TDiv  shift 93
+	TMod  shift 94
+	TPow  shift 95
+	TLeftShift  shift 81
+	TRightShift  shift 82
+	TBitAnd  shift 80
+	TBitOr  shift 79
+	TDotLParen  shift 96
+	TGt  shift 83
+	TLt  shift 84
+	.  reduce 51 (src line 334)
+
+
+state 28
+	expr:  TNil.    (61)
+
+	.  reduce 61 (src line 369)
+
+
+state 29
+	expr:  TFalse.    (62)
+
+	.  reduce 62 (src line 373)
+
+
+state 30
+	expr:  TTrue.    (63)
+
+	.  reduce 63 (src line 377)
+
+
+state 31
+	expr:  TNumber.    (64)
+
+	.  reduce 64 (src line 381)
+
+
+state 32
+	expr:  T3Dot.    (65)
+
+	.  reduce 65 (src line 385)
+
+
+ 33: reduce/reduce conflict  (red'ns 66 and 96) on $end
+ 33: reduce/reduce conflict  (red'ns 66 and 96) on TAnd
+ 33: reduce/reduce conflict  (red'ns 66 and 96) on TBreak
+ 33: reduce/reduce conflict  (red'ns 66 and 96) on TFor
+ 33: reduce/reduce conflict  (red'ns 66 and 96) on TFunction
+ 33: reduce/reduce conflict  (red'ns 66 and 96) on TIf
+ 33: reduce/reduce conflict  (red'ns 66 and 96) on TLocal
+ 33: reduce/reduce conflict  (red'ns 66 and 96) on TOr
+ 33: reduce/reduce conflict  (red'ns 66 and 96) on TReturn
+ 33: reduce/reduce conflict  (red'ns 66 and 96) on TRepeat
+ 33: reduce/reduce conflict  (red'ns 66 and 96) on TWhile
+ 33: reduce/reduce conflict  (red'ns 66 and 96) on TGoto
+ 33: reduce/reduce conflict  (red'ns 66 and 96) on TEqeq
+ 33: reduce/reduce conflict  (red'ns 66 and 96) on TNeq
+ 33: reduce/reduce conflict  (red'ns 66 and 96) on TLte
+ 33: reduce/reduce conflict  (red'ns 66 and 96) on TGte
+ 33: reduce/reduce conflict  (red'ns 66 and 96) on T2Dot
+ 33: reduce/reduce conflict  (red'ns 66 and 96) on T2Colon
+ 33: reduce/reduce conflict  (red'ns 66 and 96) on TIdent
+ 33: reduce/reduce conflict  (red'ns 66 and 96) on TLBrace
+ 33: reduce/reduce conflict  (red'ns 66 and 96) on TRBrace
+ 33: reduce/reduce conflict  (red'ns 66 and 96) on TLParen
+ 33: reduce/reduce conflict  (red'ns 66 and 96) on TRParen
+ 33: reduce/reduce conflict  (red'ns 66 and 96) on TRBracket
+ 33: reduce/reduce conflict  (red'ns 66 and 96) on TComma
+ 33: reduce/reduce conflict  (red'ns 66 and 96) on TSemi
+ 33: reduce/reduce conflict  (red'ns 66 and 96) on TAdd
+ 33: reduce/reduce conflict  (red'ns 66 and 96) on TSub
+ 33: reduce/reduce conflict  (red'ns 66 and 96) on TMul
+ 33: reduce/reduce conflict  (red'ns 66 and 96) on TDiv
+ 33: reduce/reduce conflict  (red'ns 66 and 96) on TMod
+ 33: reduce/reduce conflict  (red'ns 66 and 96) on TPow
+ 33: reduce/reduce conflict  (red'ns 66 and 96) on TLeftShift
+ 33: reduce/reduce conflict  (red'ns 66 and 96) on TRightShift
+ 33: reduce/reduce conflict  (red'ns 66 and 96) on TBitAnd
+ 33: reduce/reduce conflict  (red'ns 66 and 96) on TBitOr
+ 33: reduce/reduce conflict  (red'ns 66 and 96) on TDotLParen
+ 33: reduce/reduce conflict  (red'ns 66 and 96) on TGt
+ 33: reduce/reduce conflict  (red'ns 66 and 96) on TLt
+state 33
+	expr:  function.    (66)
+	prefixexp:  function.    (96)
+
+	TDot  reduce 96 (src line 510)
+	TLBracket  reduce 96 (src line 510)
+	TColon  reduce 96 (src line 510)
+	.  reduce 66 (src line 389)
+
+
+34: shift/reduce conflict (shift 56(0), red'n 67(0)) on TLParen
+state 34
+	var:  prefixexp.TLBracket expr TRBracket 
+	var:  prefixexp.TDot TIdent 
+	expr:  prefixexp.    (67)
+	functioncall:  prefixexp.args 
+	functioncall:  prefixexp.TColon TIdent args 
+
+	TDot  shift 53
+	TLParen  shift 56
+	TLBracket  shift 52
+	TColon  shift 55
+	.  reduce 67 (src line 392)
+
+	args  goto 54
+
+state 35
+	expr:  string.    (68)
+
+	.  reduce 68 (src line 395)
+
+
+state 36
+	expr:  tableconstructor.    (69)
+
+	.  reduce 69 (src line 398)
+
+
+state 37
+	expr:  TSub.expr 
+
+	TFalse  shift 29
+	TFunction  shift 40
+	TNil  shift 28
+	TNot  shift 38
+	TTrue  shift 30
+	T3Dot  shift 32
+	TIdent  shift 20
+	TNumber  shift 31
+	TString  shift 42
+	TLBrace  shift 43
+	TLParen  shift 24
+	TSub  shift 37
+	THash  shift 39
+	.  error
+
+	var  goto 41
+	expr  goto 97
+	string  goto 35
+	prefixexp  goto 34
+	functioncall  goto 23
+	afunctioncall  goto 21
+	function  goto 33
+	tableconstructor  goto 36
+
+state 38
+	expr:  TNot.expr 
+
+	TFalse  shift 29
+	TFunction  shift 40
+	TNil  shift 28
+	TNot  shift 38
+	TTrue  shift 30
+	T3Dot  shift 32
+	TIdent  shift 20
+	TNumber  shift 31
+	TString  shift 42
+	TLBrace  shift 43
+	TLParen  shift 24
+	TSub  shift 37
+	THash  shift 39
+	.  error
+
+	var  goto 41
+	expr  goto 98
+	string  goto 35
+	prefixexp  goto 34
+	functioncall  goto 23
+	afunctioncall  goto 21
+	function  goto 33
+	tableconstructor  goto 36
+
+state 39
+	expr:  THash.expr 
+
+	TFalse  shift 29
+	TFunction  shift 40
+	TNil  shift 28
+	TNot  shift 38
+	TTrue  shift 30
+	T3Dot  shift 32
+	TIdent  shift 20
+	TNumber  shift 31
+	TString  shift 42
+	TLBrace  shift 43
+	TLParen  shift 24
+	TSub  shift 37
+	THash  shift 39
+	.  error
+
+	var  goto 41
+	expr  goto 99
+	string  goto 35
+	prefixexp  goto 34
+	functioncall  goto 23
+	afunctioncall  goto 21
+	function  goto 33
+	tableconstructor  goto 36
+
+state 40
+	function:  TFunction.funcbody 
+
+	TLParen  shift 67
+	.  error
+
+	funcbody  goto 65
+
+state 41
+	prefixexp:  var.    (94)
+
+	.  reduce 94 (src line 504)
+
+
+state 42
+	string:  TString.    (93)
+
+	.  reduce 93 (src line 498)
+
+
+state 43
+	tableconstructor:  TLBrace.TRBrace 
+	tableconstructor:  TLBrace.fieldlist TRBrace 
+
+	TFalse  shift 29
+	TFunction  shift 40
+	TNil  shift 28
+	TNot  shift 38
+	TTrue  shift 30
+	T3Dot  shift 32
+	TIdent  shift 103
+	TNumber  shift 31
+	TString  shift 42
+	TLBrace  shift 43
+	TRBrace  shift 100
+	TLParen  shift 24
+	TLBracket  shift 104
+	TSub  shift 37
+	THash  shift 39
+	.  error
+
+	var  goto 41
+	expr  goto 105
+	string  goto 35
+	prefixexp  goto 34
+	functioncall  goto 23
+	afunctioncall  goto 21
+	function  goto 33
+	tableconstructor  goto 36
+	fieldlist  goto 101
+	field  goto 102
+
+state 44
+	stat:  var TAddAssign.expr 
+
+	TFalse  shift 29
+	TFunction  shift 40
+	TNil  shift 28
+	TNot  shift 38
+	TTrue  shift 30
+	T3Dot  shift 32
+	TIdent  shift 20
+	TNumber  shift 31
+	TString  shift 42
+	TLBrace  shift 43
+	TLParen  shift 24
+	TSub  shift 37
+	THash  shift 39
+	.  error
+
+	var  goto 41
+	expr  goto 106
+	string  goto 35
+	prefixexp  goto 34
+	functioncall  goto 23
+	afunctioncall  goto 21
+	function  goto 33
+	tableconstructor  goto 36
+
+state 45
+	stat:  var TSubAssign.expr 
+
+	TFalse  shift 29
+	TFunction  shift 40
+	TNil  shift 28
+	TNot  shift 38
+	TTrue  shift 30
+	T3Dot  shift 32
+	TIdent  shift 20
+	TNumber  shift 31
+	TString  shift 42
+	TLBrace  shift 43
+	TLParen  shift 24
+	TSub  shift 37
+	THash  shift 39
+	.  error
+
+	var  goto 41
+	expr  goto 107
+	string  goto 35
+	prefixexp  goto 34
+	functioncall  goto 23
+	afunctioncall  goto 21
+	function  goto 33
+	tableconstructor  goto 36
+
+state 46
+	stat:  var TMulAssign.expr 
+
+	TFalse  shift 29
+	TFunction  shift 40
+	TNil  shift 28
+	TNot  shift 38
+	TTrue  shift 30
+	T3Dot  shift 32
+	TIdent  shift 20
+	TNumber  shift 31
+	TString  shift 42
+	TLBrace  shift 43
+	TLParen  shift 24
+	TSub  shift 37
+	THash  shift 39
+	.  error
+
+	var  goto 41
+	expr  goto 108
+	string  goto 35
+	prefixexp  goto 34
+	functioncall  goto 23
+	afunctioncall  goto 21
+	function  goto 33
+	tableconstructor  goto 36
+
+state 47
+	stat:  var TDivAssign.expr 
+
+	TFalse  shift 29
+	TFunction  shift 40
+	TNil  shift 28
+	TNot  shift 38
+	TTrue  shift 30
+	T3Dot  shift 32
+	TIdent  shift 20
+	TNumber  shift 31
+	TString  shift 42
+	TLBrace  shift 43
+	TLParen  shift 24
+	TSub  shift 37
+	THash  shift 39
+	.  error
+
+	var  goto 41
+	expr  goto 109
+	string  goto 35
+	prefixexp  goto 34
+	functioncall  goto 23
+	afunctioncall  goto 21
+	function  goto 33
+	tableconstructor  goto 36
+
+state 48
+	stat:  var TModAssign.expr 
+
+	TFalse  shift 29
+	TFunction  shift 40
+	TNil  shift 28
+	TNot  shift 38
+	TTrue  shift 30
+	T3Dot  shift 32
+	TIdent  shift 20
+	TNumber  shift 31
+	TString  shift 42
+	TLBrace  shift 43
+	TLParen  shift 24
+	TSub  shift 37
+	THash  shift 39
+	.  error
+
+	var  goto 41
+	expr  goto 110
+	string  goto 35
+	prefixexp  goto 34
+	functioncall  goto 23
+	afunctioncall  goto 21
+	function  goto 33
+	tableconstructor  goto 36
+
+state 49
+	stat:  var TPowAssign.expr 
+
+	TFalse  shift 29
+	TFunction  shift 40
+	TNil  shift 28
+	TNot  shift 38
+	TTrue  shift 30
+	T3Dot  shift 32
+	TIdent  shift 20
+	TNumber  shift 31
+	TString  shift 42
+	TLBrace  shift 43
+	TLParen  shift 24
+	TSub  shift 37
+	THash  shift 39
+	.  error
+
+	var  goto 41
+	expr  goto 111
+	string  goto 35
+	prefixexp  goto 34
+	functioncall  goto 23
+	afunctioncall  goto 21
+	function  goto 33
+	tableconstructor  goto 36
+
+state 50
+	stat:  varlist TAssign.exprlist 
+
+	TFalse  shift 29
+	TFunction  shift 40
+	TNil  shift 28
+	TNot  shift 38
+	TTrue  shift 30
+	T3Dot  shift 32
+	TIdent  shift 20
+	TNumber  shift 31
+	TString  shift 42
+	TLBrace  shift 43
+	TLParen  shift 24
+	TSub  shift 37
+	THash  shift 39
+	.  error
+
+	var  goto 41
+	exprlist  goto 112
+	expr  goto 27
+	string  goto 35
+	prefixexp  goto 34
+	functioncall  goto 23
+	afunctioncall  goto 21
+	function  goto 33
+	tableconstructor  goto 36
+
+state 51
+	varlist:  varlist TComma.var 
+
+	TFunction  shift 40
+	TIdent  shift 20
+	TLParen  shift 24
+	.  error
+
+	var  goto 113
+	prefixexp  goto 114
+	functioncall  goto 23
+	afunctioncall  goto 21
+	function  goto 22
+
+state 52
+	var:  prefixexp TLBracket.expr TRBracket 
+
+	TFalse  shift 29
+	TFunction  shift 40
+	TNil  shift 28
+	TNot  shift 38
+	TTrue  shift 30
+	T3Dot  shift 32
+	TIdent  shift 20
+	TNumber  shift 31
+	TString  shift 42
+	TLBrace  shift 43
+	TLParen  shift 24
+	TSub  shift 37
+	THash  shift 39
+	.  error
+
+	var  goto 41
+	expr  goto 115
+	string  goto 35
+	prefixexp  goto 34
+	functioncall  goto 23
+	afunctioncall  goto 21
+	function  goto 33
+	tableconstructor  goto 36
+
+state 53
+	var:  prefixexp TDot.TIdent 
+
+	TIdent  shift 116
+	.  error
+
+
+state 54
+	functioncall:  prefixexp args.    (100)
+
+	.  reduce 100 (src line 531)
+
+
+state 55
+	functioncall:  prefixexp TColon.TIdent args 
+
+	TIdent  shift 117
+	.  error
+
+
+state 56
+	args:  TLParen.TRParen 
+	args:  TLParen.exprlist TRParen 
+
+	TFalse  shift 29
+	TFunction  shift 40
+	TNil  shift 28
+	TNot  shift 38
+	TTrue  shift 30
+	T3Dot  shift 32
+	TIdent  shift 20
+	TNumber  shift 31
+	TString  shift 42
+	TLBrace  shift 43
+	TLParen  shift 24
+	TRParen  shift 118
+	TSub  shift 37
+	THash  shift 39
+	.  error
+
+	var  goto 41
+	exprlist  goto 119
+	expr  goto 27
+	string  goto 35
+	prefixexp  goto 34
+	functioncall  goto 23
+	afunctioncall  goto 21
+	function  goto 33
+	tableconstructor  goto 36
+
+state 57
+	stat:  TLBrace block.TRBrace 
+
+	TRBrace  shift 120
+	.  error
+
+
+state 58
+	block:  chunk.    (7)
+
+	.  reduce 7 (src line 112)
+
+
+state 59
+	stat:  TWhile expr.TLBrace block TRBrace 
+	expr:  expr.TOr expr 
+	expr:  expr.TAnd expr 
+	expr:  expr.TBitOr expr 
+	expr:  expr.TBitAnd expr 
+	expr:  expr.TLeftShift expr 
+	expr:  expr.TRightShift expr 
+	expr:  expr.TGt expr 
+	expr:  expr.TLt expr 
+	expr:  expr.TGte expr 
+	expr:  expr.TLte expr 
+	expr:  expr.TEqeq expr 
+	expr:  expr.TNeq expr 
+	expr:  expr.T2Dot expr 
+	expr:  expr.TAdd expr 
+	expr:  expr.TSub expr 
+	expr:  expr.TMul expr 
+	expr:  expr.TDiv expr 
+	expr:  expr.TMod expr 
+	expr:  expr.TPow expr 
+	expr:  expr.TDotLParen type_expr TRParen 
+
+	TAnd  shift 78
+	TOr  shift 77
+	TEqeq  shift 87
+	TNeq  shift 88
+	TLte  shift 86
+	TGte  shift 85
+	T2Dot  shift 89
+	TLBrace  shift 121
+	TAdd  shift 90
+	TSub  shift 91
+	TMul  shift 92
+	TDiv  shift 93
+	TMod  shift 94
+	TPow  shift 95
+	TLeftShift  shift 81
+	TRightShift  shift 82
+	TBitAnd  shift 80
+	TBitOr  shift 79
+	TDotLParen  shift 96
+	TGt  shift 83
+	TLt  shift 84
+	.  error
+
+
+state 60
+	stat:  TRepeat TLBrace.block TRBrace TUntil expr 
+	chunk1: .    (4)
+
+	.  reduce 4 (src line 101)
+
+	chunk  goto 58
+	chunk1  goto 2
+	block  goto 122
+
+state 61
+	stat:  TIf expr.TLBrace block TRBrace 
+	stat:  TIf expr.stat 
+	stat:  TIf expr.TLBrace block TRBrace elseifs 
+	stat:  TIf expr.TLBrace block TRBrace elseifs TElse TLBrace block TRBrace 
+	expr:  expr.TOr expr 
+	expr:  expr.TAnd expr 
+	expr:  expr.TBitOr expr 
+	expr:  expr.TBitAnd expr 
+	expr:  expr.TLeftShift expr 
+	expr:  expr.TRightShift expr 
+	expr:  expr.TGt expr 
+	expr:  expr.TLt expr 
+	expr:  expr.TGte expr 
+	expr:  expr.TLte expr 
+	expr:  expr.TEqeq expr 
+	expr:  expr.TNeq expr 
+	expr:  expr.T2Dot expr 
+	expr:  expr.TAdd expr 
+	expr:  expr.TSub expr 
+	expr:  expr.TMul expr 
+	expr:  expr.TDiv expr 
+	expr:  expr.TMod expr 
+	expr:  expr.TPow expr 
+	expr:  expr.TDotLParen type_expr TRParen 
+
+	TAnd  shift 78
+	TFor  shift 15
+	TFunction  shift 16
+	TIf  shift 14
+	TLocal  shift 17
+	TOr  shift 77
+	TRepeat  shift 13
+	TWhile  shift 12
+	TGoto  shift 19
+	TEqeq  shift 87
+	TNeq  shift 88
+	TLte  shift 86
+	TGte  shift 85
+	T2Dot  shift 89
+	T2Colon  shift 18
+	TIdent  shift 20
+	TLBrace  shift 123
+	TLParen  shift 24
+	TAdd  shift 90
+	TSub  shift 91
+	TMul  shift 92
+	TDiv  shift 93
+	TMod  shift 94
+	TPow  shift 95
+	TLeftShift  shift 81
+	TRightShift  shift 82
+	TBitAnd  shift 80
+	TBitOr  shift 79
+	TDotLParen  shift 96
+	TGt  shift 83
+	TLt  shift 84
+	.  error
+
+	stat  goto 124
+	varlist  goto 9
+	var  goto 8
+	prefixexp  goto 10
+	functioncall  goto 23
+	afunctioncall  goto 21
+	function  goto 22
+
+state 62
+	stat:  TFor TIdent.TAssign expr TComma expr TLBrace block TRBrace TIfThru TLBrace block TRBrace 
+	stat:  TFor TIdent.TAssign expr TComma expr TLBrace block TRBrace 
+	stat:  TFor TIdent.TAssign expr TComma expr TComma expr TLBrace block TRBrace TIfThru TLBrace block TRBrace 
+	stat:  TFor TIdent.TAssign expr TComma expr TComma expr TLBrace block TRBrace 
+	namelist:  TIdent.    (49)
+
+	TAssign  shift 125
+	.  reduce 49 (src line 326)
+
+
+state 63
+	stat:  TFor namelist.TIn exprlist TLBrace block TRBrace TIfThru TLBrace block TRBrace 
+	stat:  TFor namelist.TIn exprlist TLBrace block TRBrace 
+	namelist:  namelist.TComma TIdent 
+
+	TIn  shift 126
+	TComma  shift 127
+	.  error
+
+
+state 64
+	stat:  TFunction funcname.funcbody 
+
+	TLParen  shift 67
+	.  error
+
+	funcbody  goto 128
+
+state 65
+	function:  TFunction funcbody.    (104)
+
+	.  reduce 104 (src line 555)
+
+
+state 66
+	funcname:  funcname1.    (40)
+	funcname:  funcname1.TColon TIdent 
+	funcname1:  funcname1.TDot TIdent 
+
+	TDot  shift 130
+	TColon  shift 129
+	.  reduce 40 (src line 281)
+
+
+state 67
+	funcbody:  TLParen.parlist TRParen TLBrace block TRBrace 
+	funcbody:  TLParen.TRParen TLBrace block TRBrace 
+
+	T3Dot  shift 133
+	TIdent  shift 71
+	TRParen  shift 132
+	.  error
+
+	namelist  goto 134
+	parlist  goto 131
+
+state 68
+	funcname1:  TIdent.    (42)
+
+	.  reduce 42 (src line 289)
+
+
+state 69
+	stat:  TLocal TFunction.TIdent funcbody 
+
+	TIdent  shift 135
+	.  error
+
+
+state 70
+	stat:  TLocal namelist.TAssign exprlist 
+	stat:  TLocal namelist.    (32)
+	namelist:  namelist.TComma TIdent 
+
+	TComma  shift 127
+	TAssign  shift 136
+	.  reduce 32 (src line 244)
+
+
+state 71
+	namelist:  TIdent.    (49)
+
+	.  reduce 49 (src line 326)
+
+
+state 72
+	stat:  T2Colon TIdent.T2Colon 
+
+	T2Colon  shift 137
+	.  error
+
+
+state 73
+	stat:  TGoto TIdent.    (34)
+
+	.  reduce 34 (src line 252)
+
+
+state 74
+	expr:  expr.TOr expr 
+	expr:  expr.TAnd expr 
+	expr:  expr.TBitOr expr 
+	expr:  expr.TBitAnd expr 
+	expr:  expr.TLeftShift expr 
+	expr:  expr.TRightShift expr 
+	expr:  expr.TGt expr 
+	expr:  expr.TLt expr 
+	expr:  expr.TGte expr 
+	expr:  expr.TLte expr 
+	expr:  expr.TEqeq expr 
+	expr:  expr.TNeq expr 
+	expr:  expr.T2Dot expr 
+	expr:  expr.TAdd expr 
+	expr:  expr.TSub expr 
+	expr:  expr.TMul expr 
+	expr:  expr.TDiv expr 
+	expr:  expr.TMod expr 
+	expr:  expr.TPow expr 
+	expr:  expr.TDotLParen type_expr TRParen 
+	prefixexp:  TLParen expr.TRParen 
+
+	TAnd  shift 78
+	TOr  shift 77
+	TEqeq  shift 87
+	TNeq  shift 88
+	TLte  shift 86
+	TGte  shift 85
+	T2Dot  shift 89
+	TRParen  shift 138
+	TAdd  shift 90
+	TSub  shift 91
+	TMul  shift 92
+	TDiv  shift 93
+	TMod  shift 94
+	TPow  shift 95
+	TLeftShift  shift 81
+	TRightShift  shift 82
+	TBitAnd  shift 80
+	TBitOr  shift 79
+	TDotLParen  shift 96
+	TGt  shift 83
+	TLt  shift 84
+	.  error
+
+
+75: shift/reduce conflict (shift 139(0), red'n 97(0)) on TRParen
+state 75
+	prefixexp:  functioncall.    (97)
+	afunctioncall:  TLParen functioncall.TRParen 
+
+	TRParen  shift 139
+	.  reduce 97 (src line 513)
+
+
+state 76
+	exprlist:  exprlist TComma.expr 
+
+	TFalse  shift 29
+	TFunction  shift 40
+	TNil  shift 28
+	TNot  shift 38
+	TTrue  shift 30
+	T3Dot  shift 32
+	TIdent  shift 20
+	TNumber  shift 31
+	TString  shift 42
+	TLBrace  shift 43
+	TLParen  shift 24
+	TSub  shift 37
+	THash  shift 39
+	.  error
+
+	var  goto 41
+	expr  goto 140
+	string  goto 35
+	prefixexp  goto 34
+	functioncall  goto 23
+	afunctioncall  goto 21
+	function  goto 33
+	tableconstructor  goto 36
+
+state 77
+	expr:  expr TOr.expr 
+
+	TFalse  shift 29
+	TFunction  shift 40
+	TNil  shift 28
+	TNot  shift 38
+	TTrue  shift 30
+	T3Dot  shift 32
+	TIdent  shift 20
+	TNumber  shift 31
+	TString  shift 42
+	TLBrace  shift 43
+	TLParen  shift 24
+	TSub  shift 37
+	THash  shift 39
+	.  error
+
+	var  goto 41
+	expr  goto 141
+	string  goto 35
+	prefixexp  goto 34
+	functioncall  goto 23
+	afunctioncall  goto 21
+	function  goto 33
+	tableconstructor  goto 36
+
+state 78
+	expr:  expr TAnd.expr 
+
+	TFalse  shift 29
+	TFunction  shift 40
+	TNil  shift 28
+	TNot  shift 38
+	TTrue  shift 30
+	T3Dot  shift 32
+	TIdent  shift 20
+	TNumber  shift 31
+	TString  shift 42
+	TLBrace  shift 43
+	TLParen  shift 24
+	TSub  shift 37
+	THash  shift 39
+	.  error
+
+	var  goto 41
+	expr  goto 142
+	string  goto 35
+	prefixexp  goto 34
+	functioncall  goto 23
+	afunctioncall  goto 21
+	function  goto 33
+	tableconstructor  goto 36
+
+state 79
+	expr:  expr TBitOr.expr 
+
+	TFalse  shift 29
+	TFunction  shift 40
+	TNil  shift 28
+	TNot  shift 38
+	TTrue  shift 30
+	T3Dot  shift 32
+	TIdent  shift 20
+	TNumber  shift 31
+	TString  shift 42
+	TLBrace  shift 43
+	TLParen  shift 24
+	TSub  shift 37
+	THash  shift 39
+	.  error
+
+	var  goto 41
+	expr  goto 143
+	string  goto 35
+	prefixexp  goto 34
+	functioncall  goto 23
+	afunctioncall  goto 21
+	function  goto 33
+	tableconstructor  goto 36
+
+state 80
+	expr:  expr TBitAnd.expr 
+
+	TFalse  shift 29
+	TFunction  shift 40
+	TNil  shift 28
+	TNot  shift 38
+	TTrue  shift 30
+	T3Dot  shift 32
+	TIdent  shift 20
+	TNumber  shift 31
+	TString  shift 42
+	TLBrace  shift 43
+	TLParen  shift 24
+	TSub  shift 37
+	THash  shift 39
+	.  error
+
+	var  goto 41
+	expr  goto 144
+	string  goto 35
+	prefixexp  goto 34
+	functioncall  goto 23
+	afunctioncall  goto 21
+	function  goto 33
+	tableconstructor  goto 36
+
+state 81
+	expr:  expr TLeftShift.expr 
+
+	TFalse  shift 29
+	TFunction  shift 40
+	TNil  shift 28
+	TNot  shift 38
+	TTrue  shift 30
+	T3Dot  shift 32
+	TIdent  shift 20
+	TNumber  shift 31
+	TString  shift 42
+	TLBrace  shift 43
+	TLParen  shift 24
+	TSub  shift 37
+	THash  shift 39
+	.  error
+
+	var  goto 41
+	expr  goto 145
+	string  goto 35
+	prefixexp  goto 34
+	functioncall  goto 23
+	afunctioncall  goto 21
+	function  goto 33
+	tableconstructor  goto 36
+
+state 82
+	expr:  expr TRightShift.expr 
+
+	TFalse  shift 29
+	TFunction  shift 40
+	TNil  shift 28
+	TNot  shift 38
+	TTrue  shift 30
+	T3Dot  shift 32
+	TIdent  shift 20
+	TNumber  shift 31
+	TString  shift 42
+	TLBrace  shift 43
+	TLParen  shift 24
+	TSub  shift 37
+	THash  shift 39
+	.  error
+
+	var  goto 41
+	expr  goto 146
+	string  goto 35
+	prefixexp  goto 34
+	functioncall  goto 23
+	afunctioncall  goto 21
+	function  goto 33
+	tableconstructor  goto 36
+
+state 83
+	expr:  expr TGt.expr 
+
+	TFalse  shift 29
+	TFunction  shift 40
+	TNil  shift 28
+	TNot  shift 38
+	TTrue  shift 30
+	T3Dot  shift 32
+	TIdent  shift 20
+	TNumber  shift 31
+	TString  shift 42
+	TLBrace  shift 43
+	TLParen  shift 24
+	TSub  shift 37
+	THash  shift 39
+	.  error
+
+	var  goto 41
+	expr  goto 147
+	string  goto 35
+	prefixexp  goto 34
+	functioncall  goto 23
+	afunctioncall  goto 21
+	function  goto 33
+	tableconstructor  goto 36
+
+state 84
+	expr:  expr TLt.expr 
+
+	TFalse  shift 29
+	TFunction  shift 40
+	TNil  shift 28
+	TNot  shift 38
+	TTrue  shift 30
+	T3Dot  shift 32
+	TIdent  shift 20
+	TNumber  shift 31
+	TString  shift 42
+	TLBrace  shift 43
+	TLParen  shift 24
+	TSub  shift 37
+	THash  shift 39
+	.  error
+
+	var  goto 41
+	expr  goto 148
+	string  goto 35
+	prefixexp  goto 34
+	functioncall  goto 23
+	afunctioncall  goto 21
+	function  goto 33
+	tableconstructor  goto 36
+
+state 85
+	expr:  expr TGte.expr 
+
+	TFalse  shift 29
+	TFunction  shift 40
+	TNil  shift 28
+	TNot  shift 38
+	TTrue  shift 30
+	T3Dot  shift 32
+	TIdent  shift 20
+	TNumber  shift 31
+	TString  shift 42
+	TLBrace  shift 43
+	TLParen  shift 24
+	TSub  shift 37
+	THash  shift 39
+	.  error
+
+	var  goto 41
+	expr  goto 149
+	string  goto 35
+	prefixexp  goto 34
+	functioncall  goto 23
+	afunctioncall  goto 21
+	function  goto 33
+	tableconstructor  goto 36
+
+state 86
+	expr:  expr TLte.expr 
+
+	TFalse  shift 29
+	TFunction  shift 40
+	TNil  shift 28
+	TNot  shift 38
+	TTrue  shift 30
+	T3Dot  shift 32
+	TIdent  shift 20
+	TNumber  shift 31
+	TString  shift 42
+	TLBrace  shift 43
+	TLParen  shift 24
+	TSub  shift 37
+	THash  shift 39
+	.  error
+
+	var  goto 41
+	expr  goto 150
+	string  goto 35
+	prefixexp  goto 34
+	functioncall  goto 23
+	afunctioncall  goto 21
+	function  goto 33
+	tableconstructor  goto 36
+
+state 87
+	expr:  expr TEqeq.expr 
+
+	TFalse  shift 29
+	TFunction  shift 40
+	TNil  shift 28
+	TNot  shift 38
+	TTrue  shift 30
+	T3Dot  shift 32
+	TIdent  shift 20
+	TNumber  shift 31
+	TString  shift 42
+	TLBrace  shift 43
+	TLParen  shift 24
+	TSub  shift 37
+	THash  shift 39
+	.  error
+
+	var  goto 41
+	expr  goto 151
+	string  goto 35
+	prefixexp  goto 34
+	functioncall  goto 23
+	afunctioncall  goto 21
+	function  goto 33
+	tableconstructor  goto 36
+
+state 88
+	expr:  expr TNeq.expr 
+
+	TFalse  shift 29
+	TFunction  shift 40
+	TNil  shift 28
+	TNot  shift 38
+	TTrue  shift 30
+	T3Dot  shift 32
+	TIdent  shift 20
+	TNumber  shift 31
+	TString  shift 42
+	TLBrace  shift 43
+	TLParen  shift 24
+	TSub  shift 37
+	THash  shift 39
+	.  error
+
+	var  goto 41
+	expr  goto 152
+	string  goto 35
+	prefixexp  goto 34
+	functioncall  goto 23
+	afunctioncall  goto 21
+	function  goto 33
+	tableconstructor  goto 36
+
+state 89
+	expr:  expr T2Dot.expr 
+
+	TFalse  shift 29
+	TFunction  shift 40
+	TNil  shift 28
+	TNot  shift 38
+	TTrue  shift 30
+	T3Dot  shift 32
+	TIdent  shift 20
+	TNumber  shift 31
+	TString  shift 42
+	TLBrace  shift 43
+	TLParen  shift 24
+	TSub  shift 37
+	THash  shift 39
+	.  error
+
+	var  goto 41
+	expr  goto 153
+	string  goto 35
+	prefixexp  goto 34
+	functioncall  goto 23
+	afunctioncall  goto 21
+	function  goto 33
+	tableconstructor  goto 36
+
+state 90
+	expr:  expr TAdd.expr 
+
+	TFalse  shift 29
+	TFunction  shift 40
+	TNil  shift 28
+	TNot  shift 38
+	TTrue  shift 30
+	T3Dot  shift 32
+	TIdent  shift 20
+	TNumber  shift 31
+	TString  shift 42
+	TLBrace  shift 43
+	TLParen  shift 24
+	TSub  shift 37
+	THash  shift 39
+	.  error
+
+	var  goto 41
+	expr  goto 154
+	string  goto 35
+	prefixexp  goto 34
+	functioncall  goto 23
+	afunctioncall  goto 21
+	function  goto 33
+	tableconstructor  goto 36
+
+state 91
+	expr:  expr TSub.expr 
+
+	TFalse  shift 29
+	TFunction  shift 40
+	TNil  shift 28
+	TNot  shift 38
+	TTrue  shift 30
+	T3Dot  shift 32
+	TIdent  shift 20
+	TNumber  shift 31
+	TString  shift 42
+	TLBrace  shift 43
+	TLParen  shift 24
+	TSub  shift 37
+	THash  shift 39
+	.  error
+
+	var  goto 41
+	expr  goto 155
+	string  goto 35
+	prefixexp  goto 34
+	functioncall  goto 23
+	afunctioncall  goto 21
+	function  goto 33
+	tableconstructor  goto 36
+
+state 92
+	expr:  expr TMul.expr 
+
+	TFalse  shift 29
+	TFunction  shift 40
+	TNil  shift 28
+	TNot  shift 38
+	TTrue  shift 30
+	T3Dot  shift 32
+	TIdent  shift 20
+	TNumber  shift 31
+	TString  shift 42
+	TLBrace  shift 43
+	TLParen  shift 24
+	TSub  shift 37
+	THash  shift 39
+	.  error
+
+	var  goto 41
+	expr  goto 156
+	string  goto 35
+	prefixexp  goto 34
+	functioncall  goto 23
+	afunctioncall  goto 21
+	function  goto 33
+	tableconstructor  goto 36
+
+state 93
+	expr:  expr TDiv.expr 
+
+	TFalse  shift 29
+	TFunction  shift 40
+	TNil  shift 28
+	TNot  shift 38
+	TTrue  shift 30
+	T3Dot  shift 32
+	TIdent  shift 20
+	TNumber  shift 31
+	TString  shift 42
+	TLBrace  shift 43
+	TLParen  shift 24
+	TSub  shift 37
+	THash  shift 39
+	.  error
+
+	var  goto 41
+	expr  goto 157
+	string  goto 35
+	prefixexp  goto 34
+	functioncall  goto 23
+	afunctioncall  goto 21
+	function  goto 33
+	tableconstructor  goto 36
+
+state 94
+	expr:  expr TMod.expr 
+
+	TFalse  shift 29
+	TFunction  shift 40
+	TNil  shift 28
+	TNot  shift 38
+	TTrue  shift 30
+	T3Dot  shift 32
+	TIdent  shift 20
+	TNumber  shift 31
+	TString  shift 42
+	TLBrace  shift 43
+	TLParen  shift 24
+	TSub  shift 37
+	THash  shift 39
+	.  error
+
+	var  goto 41
+	expr  goto 158
+	string  goto 35
+	prefixexp  goto 34
+	functioncall  goto 23
+	afunctioncall  goto 21
+	function  goto 33
+	tableconstructor  goto 36
+
+state 95
+	expr:  expr TPow.expr 
+
+	TFalse  shift 29
+	TFunction  shift 40
+	TNil  shift 28
+	TNot  shift 38
+	TTrue  shift 30
+	T3Dot  shift 32
+	TIdent  shift 20
+	TNumber  shift 31
+	TString  shift 42
+	TLBrace  shift 43
+	TLParen  shift 24
+	TSub  shift 37
+	THash  shift 39
+	.  error
+
+	var  goto 41
+	expr  goto 159
+	string  goto 35
+	prefixexp  goto 34
+	functioncall  goto 23
+	afunctioncall  goto 21
+	function  goto 33
+	tableconstructor  goto 36
+
+state 96
+	expr:  expr TDotLParen.type_expr TRParen 
+
+	TTBool  shift 161
+	TTNumber  shift 162
+	TTString  shift 163
+	TTTable  shift 164
+	TTFunction  shift 165
+	TTUserdata  shift 166
+	TTThread  shift 167
+	TTChannel  shift 168
+	.  error
+
+	type_expr  goto 160
+
+97: shift/reduce conflict (shift 96(0), red'n 89(11)) on TDotLParen
+state 97
+	expr:  expr.TOr expr 
+	expr:  expr.TAnd expr 
+	expr:  expr.TBitOr expr 
+	expr:  expr.TBitAnd expr 
+	expr:  expr.TLeftShift expr 
+	expr:  expr.TRightShift expr 
+	expr:  expr.TGt expr 
+	expr:  expr.TLt expr 
+	expr:  expr.TGte expr 
+	expr:  expr.TLte expr 
+	expr:  expr.TEqeq expr 
+	expr:  expr.TNeq expr 
+	expr:  expr.T2Dot expr 
+	expr:  expr.TAdd expr 
+	expr:  expr.TSub expr 
+	expr:  expr.TMul expr 
+	expr:  expr.TDiv expr 
+	expr:  expr.TMod expr 
+	expr:  expr.TPow expr 
+	expr:  TSub expr.    (89)
+	expr:  expr.TDotLParen type_expr TRParen 
+
+	TPow  shift 95
+	TDotLParen  shift 96
+	.  reduce 89 (src line 477)
+
+
+98: shift/reduce conflict (shift 96(0), red'n 90(11)) on TDotLParen
+state 98
+	expr:  expr.TOr expr 
+	expr:  expr.TAnd expr 
+	expr:  expr.TBitOr expr 
+	expr:  expr.TBitAnd expr 
+	expr:  expr.TLeftShift expr 
+	expr:  expr.TRightShift expr 
+	expr:  expr.TGt expr 
+	expr:  expr.TLt expr 
+	expr:  expr.TGte expr 
+	expr:  expr.TLte expr 
+	expr:  expr.TEqeq expr 
+	expr:  expr.TNeq expr 
+	expr:  expr.T2Dot expr 
+	expr:  expr.TAdd expr 
+	expr:  expr.TSub expr 
+	expr:  expr.TMul expr 
+	expr:  expr.TDiv expr 
+	expr:  expr.TMod expr 
+	expr:  expr.TPow expr 
+	expr:  TNot expr.    (90)
+	expr:  expr.TDotLParen type_expr TRParen 
+
+	TPow  shift 95
+	TDotLParen  shift 96
+	.  reduce 90 (src line 481)
+
+
+99: shift/reduce conflict (shift 96(0), red'n 91(11)) on TDotLParen
+state 99
+	expr:  expr.TOr expr 
+	expr:  expr.TAnd expr 
+	expr:  expr.TBitOr expr 
+	expr:  expr.TBitAnd expr 
+	expr:  expr.TLeftShift expr 
+	expr:  expr.TRightShift expr 
+	expr:  expr.TGt expr 
+	expr:  expr.TLt expr 
+	expr:  expr.TGte expr 
+	expr:  expr.TLte expr 
+	expr:  expr.TEqeq expr 
+	expr:  expr.TNeq expr 
+	expr:  expr.T2Dot expr 
+	expr:  expr.TAdd expr 
+	expr:  expr.TSub expr 
+	expr:  expr.TMul expr 
+	expr:  expr.TDiv expr 
+	expr:  expr.TMod expr 
+	expr:  expr.TPow expr 
+	expr:  THash expr.    (91)
+	expr:  expr.TDotLParen type_expr TRParen 
+
+	TPow  shift 95
+	TDotLParen  shift 96
+	.  reduce 91 (src line 485)
+
+
+state 100
+	tableconstructor:  TLBrace TRBrace.    (110)
+
+	.  reduce 110 (src line 588)
+
+
+state 101
+	tableconstructor:  TLBrace fieldlist.TRBrace 
+	fieldlist:  fieldlist.fieldsep field 
+	fieldlist:  fieldlist.fieldsep 
+
+	TRBrace  shift 169
+	TComma  shift 171
+	TSemi  shift 172
+	.  error
+
+	fieldsep  goto 170
+
+state 102
+	fieldlist:  field.    (112)
+
+	.  reduce 112 (src line 599)
+
+
+state 103
+	var:  TIdent.    (46)
+	field:  TIdent.TAssign expr 
+
+	TAssign  shift 173
+	.  reduce 46 (src line 310)
+
+
+state 104
+	field:  TLBracket.expr TRBracket TAssign expr 
+
+	TFalse  shift 29
+	TFunction  shift 40
+	TNil  shift 28
+	TNot  shift 38
+	TTrue  shift 30
+	T3Dot  shift 32
+	TIdent  shift 20
+	TNumber  shift 31
+	TString  shift 42
+	TLBrace  shift 43
+	TLParen  shift 24
+	TSub  shift 37
+	THash  shift 39
+	.  error
+
+	var  goto 41
+	expr  goto 174
+	string  goto 35
+	prefixexp  goto 34
+	functioncall  goto 23
+	afunctioncall  goto 21
+	function  goto 33
+	tableconstructor  goto 36
+
+state 105
+	expr:  expr.TOr expr 
+	expr:  expr.TAnd expr 
+	expr:  expr.TBitOr expr 
+	expr:  expr.TBitAnd expr 
+	expr:  expr.TLeftShift expr 
+	expr:  expr.TRightShift expr 
+	expr:  expr.TGt expr 
+	expr:  expr.TLt expr 
+	expr:  expr.TGte expr 
+	expr:  expr.TLte expr 
+	expr:  expr.TEqeq expr 
+	expr:  expr.TNeq expr 
+	expr:  expr.T2Dot expr 
+	expr:  expr.TAdd expr 
+	expr:  expr.TSub expr 
+	expr:  expr.TMul expr 
+	expr:  expr.TDiv expr 
+	expr:  expr.TMod expr 
+	expr:  expr.TPow expr 
+	expr:  expr.TDotLParen type_expr TRParen 
+	field:  expr.    (117)
+
+	TAnd  shift 78
+	TOr  shift 77
+	TEqeq  shift 87
+	TNeq  shift 88
+	TLte  shift 86
+	TGte  shift 85
+	T2Dot  shift 89
+	TAdd  shift 90
+	TSub  shift 91
+	TMul  shift 92
+	TDiv  shift 93
+	TMod  shift 94
+	TPow  shift 95
+	TLeftShift  shift 81
+	TRightShift  shift 82
+	TBitAnd  shift 80
+	TBitOr  shift 79
+	TDotLParen  shift 96
+	TGt  shift 83
+	TLt  shift 84
+	.  reduce 117 (src line 617)
+
+
+state 106
+	stat:  var TAddAssign expr.    (8)
+	expr:  expr.TOr expr 
+	expr:  expr.TAnd expr 
+	expr:  expr.TBitOr expr 
+	expr:  expr.TBitAnd expr 
+	expr:  expr.TLeftShift expr 
+	expr:  expr.TRightShift expr 
+	expr:  expr.TGt expr 
+	expr:  expr.TLt expr 
+	expr:  expr.TGte expr 
+	expr:  expr.TLte expr 
+	expr:  expr.TEqeq expr 
+	expr:  expr.TNeq expr 
+	expr:  expr.T2Dot expr 
+	expr:  expr.TAdd expr 
+	expr:  expr.TSub expr 
+	expr:  expr.TMul expr 
+	expr:  expr.TDiv expr 
+	expr:  expr.TMod expr 
+	expr:  expr.TPow expr 
+	expr:  expr.TDotLParen type_expr TRParen 
+
+	TAnd  shift 78
+	TOr  shift 77
+	TEqeq  shift 87
+	TNeq  shift 88
+	TLte  shift 86
+	TGte  shift 85
+	T2Dot  shift 89
+	TAdd  shift 90
+	TSub  shift 91
+	TMul  shift 92
+	TDiv  shift 93
+	TMod  shift 94
+	TPow  shift 95
+	TLeftShift  shift 81
+	TRightShift  shift 82
+	TBitAnd  shift 80
+	TBitOr  shift 79
+	TDotLParen  shift 96
+	TGt  shift 83
+	TLt  shift 84
+	.  reduce 8 (src line 117)
+
+
+state 107
+	stat:  var TSubAssign expr.    (9)
+	expr:  expr.TOr expr 
+	expr:  expr.TAnd expr 
+	expr:  expr.TBitOr expr 
+	expr:  expr.TBitAnd expr 
+	expr:  expr.TLeftShift expr 
+	expr:  expr.TRightShift expr 
+	expr:  expr.TGt expr 
+	expr:  expr.TLt expr 
+	expr:  expr.TGte expr 
+	expr:  expr.TLte expr 
+	expr:  expr.TEqeq expr 
+	expr:  expr.TNeq expr 
+	expr:  expr.T2Dot expr 
+	expr:  expr.TAdd expr 
+	expr:  expr.TSub expr 
+	expr:  expr.TMul expr 
+	expr:  expr.TDiv expr 
+	expr:  expr.TMod expr 
+	expr:  expr.TPow expr 
+	expr:  expr.TDotLParen type_expr TRParen 
+
+	TAnd  shift 78
+	TOr  shift 77
+	TEqeq  shift 87
+	TNeq  shift 88
+	TLte  shift 86
+	TGte  shift 85
+	T2Dot  shift 89
+	TAdd  shift 90
+	TSub  shift 91
+	TMul  shift 92
+	TDiv  shift 93
+	TMod  shift 94
+	TPow  shift 95
+	TLeftShift  shift 81
+	TRightShift  shift 82
+	TBitAnd  shift 80
+	TBitOr  shift 79
+	TDotLParen  shift 96
+	TGt  shift 83
+	TLt  shift 84
+	.  reduce 9 (src line 121)
+
+
+state 108
+	stat:  var TMulAssign expr.    (10)
+	expr:  expr.TOr expr 
+	expr:  expr.TAnd expr 
+	expr:  expr.TBitOr expr 
+	expr:  expr.TBitAnd expr 
+	expr:  expr.TLeftShift expr 
+	expr:  expr.TRightShift expr 
+	expr:  expr.TGt expr 
+	expr:  expr.TLt expr 
+	expr:  expr.TGte expr 
+	expr:  expr.TLte expr 
+	expr:  expr.TEqeq expr 
+	expr:  expr.TNeq expr 
+	expr:  expr.T2Dot expr 
+	expr:  expr.TAdd expr 
+	expr:  expr.TSub expr 
+	expr:  expr.TMul expr 
+	expr:  expr.TDiv expr 
+	expr:  expr.TMod expr 
+	expr:  expr.TPow expr 
+	expr:  expr.TDotLParen type_expr TRParen 
+
+	TAnd  shift 78
+	TOr  shift 77
+	TEqeq  shift 87
+	TNeq  shift 88
+	TLte  shift 86
+	TGte  shift 85
+	T2Dot  shift 89
+	TAdd  shift 90
+	TSub  shift 91
+	TMul  shift 92
+	TDiv  shift 93
+	TMod  shift 94
+	TPow  shift 95
+	TLeftShift  shift 81
+	TRightShift  shift 82
+	TBitAnd  shift 80
+	TBitOr  shift 79
+	TDotLParen  shift 96
+	TGt  shift 83
+	TLt  shift 84
+	.  reduce 10 (src line 125)
+
+
+state 109
+	stat:  var TDivAssign expr.    (11)
+	expr:  expr.TOr expr 
+	expr:  expr.TAnd expr 
+	expr:  expr.TBitOr expr 
+	expr:  expr.TBitAnd expr 
+	expr:  expr.TLeftShift expr 
+	expr:  expr.TRightShift expr 
+	expr:  expr.TGt expr 
+	expr:  expr.TLt expr 
+	expr:  expr.TGte expr 
+	expr:  expr.TLte expr 
+	expr:  expr.TEqeq expr 
+	expr:  expr.TNeq expr 
+	expr:  expr.T2Dot expr 
+	expr:  expr.TAdd expr 
+	expr:  expr.TSub expr 
+	expr:  expr.TMul expr 
+	expr:  expr.TDiv expr 
+	expr:  expr.TMod expr 
+	expr:  expr.TPow expr 
+	expr:  expr.TDotLParen type_expr TRParen 
+
+	TAnd  shift 78
+	TOr  shift 77
+	TEqeq  shift 87
+	TNeq  shift 88
+	TLte  shift 86
+	TGte  shift 85
+	T2Dot  shift 89
+	TAdd  shift 90
+	TSub  shift 91
+	TMul  shift 92
+	TDiv  shift 93
+	TMod  shift 94
+	TPow  shift 95
+	TLeftShift  shift 81
+	TRightShift  shift 82
+	TBitAnd  shift 80
+	TBitOr  shift 79
+	TDotLParen  shift 96
+	TGt  shift 83
+	TLt  shift 84
+	.  reduce 11 (src line 129)
+
+
+state 110
+	stat:  var TModAssign expr.    (12)
+	expr:  expr.TOr expr 
+	expr:  expr.TAnd expr 
+	expr:  expr.TBitOr expr 
+	expr:  expr.TBitAnd expr 
+	expr:  expr.TLeftShift expr 
+	expr:  expr.TRightShift expr 
+	expr:  expr.TGt expr 
+	expr:  expr.TLt expr 
+	expr:  expr.TGte expr 
+	expr:  expr.TLte expr 
+	expr:  expr.TEqeq expr 
+	expr:  expr.TNeq expr 
+	expr:  expr.T2Dot expr 
+	expr:  expr.TAdd expr 
+	expr:  expr.TSub expr 
+	expr:  expr.TMul expr 
+	expr:  expr.TDiv expr 
+	expr:  expr.TMod expr 
+	expr:  expr.TPow expr 
+	expr:  expr.TDotLParen type_expr TRParen 
+
+	TAnd  shift 78
+	TOr  shift 77
+	TEqeq  shift 87
+	TNeq  shift 88
+	TLte  shift 86
+	TGte  shift 85
+	T2Dot  shift 89
+	TAdd  shift 90
+	TSub  shift 91
+	TMul  shift 92
+	TDiv  shift 93
+	TMod  shift 94
+	TPow  shift 95
+	TLeftShift  shift 81
+	TRightShift  shift 82
+	TBitAnd  shift 80
+	TBitOr  shift 79
+	TDotLParen  shift 96
+	TGt  shift 83
+	TLt  shift 84
+	.  reduce 12 (src line 133)
+
+
+state 111
+	stat:  var TPowAssign expr.    (13)
+	expr:  expr.TOr expr 
+	expr:  expr.TAnd expr 
+	expr:  expr.TBitOr expr 
+	expr:  expr.TBitAnd expr 
+	expr:  expr.TLeftShift expr 
+	expr:  expr.TRightShift expr 
+	expr:  expr.TGt expr 
+	expr:  expr.TLt expr 
+	expr:  expr.TGte expr 
+	expr:  expr.TLte expr 
+	expr:  expr.TEqeq expr 
+	expr:  expr.TNeq expr 
+	expr:  expr.T2Dot expr 
+	expr:  expr.TAdd expr 
+	expr:  expr.TSub expr 
+	expr:  expr.TMul expr 
+	expr:  expr.TDiv expr 
+	expr:  expr.TMod expr 
+	expr:  expr.TPow expr 
+	expr:  expr.TDotLParen type_expr TRParen 
+
+	TAnd  shift 78
+	TOr  shift 77
+	TEqeq  shift 87
+	TNeq  shift 88
+	TLte  shift 86
+	TGte  shift 85
+	T2Dot  shift 89
+	TAdd  shift 90
+	TSub  shift 91
+	TMul  shift 92
+	TDiv  shift 93
+	TMod  shift 94
+	TPow  shift 95
+	TLeftShift  shift 81
+	TRightShift  shift 82
+	TBitAnd  shift 80
+	TBitOr  shift 79
+	TDotLParen  shift 96
+	TGt  shift 83
+	TLt  shift 84
+	.  reduce 13 (src line 137)
+
+
+state 112
+	stat:  varlist TAssign exprlist.    (14)
+	exprlist:  exprlist.TComma expr 
+
+	TComma  shift 76
+	.  reduce 14 (src line 141)
+
+
+state 113
+	varlist:  varlist TComma var.    (45)
+	prefixexp:  var.    (94)
+
+	TComma  reduce 45 (src line 305)
+	TAssign  reduce 45 (src line 305)
+	.  reduce 94 (src line 504)
+
+
+state 114
+	var:  prefixexp.TLBracket expr TRBracket 
+	var:  prefixexp.TDot TIdent 
+	functioncall:  prefixexp.args 
+	functioncall:  prefixexp.TColon TIdent args 
+
+	TDot  shift 53
+	TLParen  shift 56
+	TLBracket  shift 52
+	TColon  shift 55
+	.  error
+
+	args  goto 54
+
+state 115
+	var:  prefixexp TLBracket expr.TRBracket 
+	expr:  expr.TOr expr 
+	expr:  expr.TAnd expr 
+	expr:  expr.TBitOr expr 
+	expr:  expr.TBitAnd expr 
+	expr:  expr.TLeftShift expr 
+	expr:  expr.TRightShift expr 
+	expr:  expr.TGt expr 
+	expr:  expr.TLt expr 
+	expr:  expr.TGte expr 
+	expr:  expr.TLte expr 
+	expr:  expr.TEqeq expr 
+	expr:  expr.TNeq expr 
+	expr:  expr.T2Dot expr 
+	expr:  expr.TAdd expr 
+	expr:  expr.TSub expr 
+	expr:  expr.TMul expr 
+	expr:  expr.TDiv expr 
+	expr:  expr.TMod expr 
+	expr:  expr.TPow expr 
+	expr:  expr.TDotLParen type_expr TRParen 
+
+	TAnd  shift 78
+	TOr  shift 77
+	TEqeq  shift 87
+	TNeq  shift 88
+	TLte  shift 86
+	TGte  shift 85
+	T2Dot  shift 89
+	TRBracket  shift 175
+	TAdd  shift 90
+	TSub  shift 91
+	TMul  shift 92
+	TDiv  shift 93
+	TMod  shift 94
+	TPow  shift 95
+	TLeftShift  shift 81
+	TRightShift  shift 82
+	TBitAnd  shift 80
+	TBitOr  shift 79
+	TDotLParen  shift 96
+	TGt  shift 83
+	TLt  shift 84
+	.  error
+
+
+state 116
+	var:  prefixexp TDot TIdent.    (48)
+
+	.  reduce 48 (src line 318)
+
+
+state 117
+	functioncall:  prefixexp TColon TIdent.args 
+
+	TLParen  shift 56
+	.  error
+
+	args  goto 176
+
+state 118
+	args:  TLParen TRParen.    (102)
+
+	.  reduce 102 (src line 541)
+
+
+state 119
+	exprlist:  exprlist.TComma expr 
+	args:  TLParen exprlist.TRParen 
+
+	TRParen  shift 177
+	TComma  shift 76
+	.  error
+
+
+state 120
+	stat:  TLBrace block TRBrace.    (16)
+
+	.  reduce 16 (src line 154)
+
+
+state 121
+	stat:  TWhile expr TLBrace.block TRBrace 
+	chunk1: .    (4)
+
+	.  reduce 4 (src line 101)
+
+	chunk  goto 58
+	chunk1  goto 2
+	block  goto 178
+
+state 122
+	stat:  TRepeat TLBrace block.TRBrace TUntil expr 
+
+	TRBrace  shift 179
+	.  error
+
+
+state 123
+	stat:  TLBrace.block TRBrace 
+	stat:  TIf expr TLBrace.block TRBrace 
+	stat:  TIf expr TLBrace.block TRBrace elseifs 
+	stat:  TIf expr TLBrace.block TRBrace elseifs TElse TLBrace block TRBrace 
+	chunk1: .    (4)
+
+	.  reduce 4 (src line 101)
+
+	chunk  goto 58
+	chunk1  goto 2
+	block  goto 180
+
+state 124
+	stat:  TIf expr stat.    (20)
+
+	.  reduce 20 (src line 174)
+
+
+state 125
+	stat:  TFor TIdent TAssign.expr TComma expr TLBrace block TRBrace TIfThru TLBrace block TRBrace 
+	stat:  TFor TIdent TAssign.expr TComma expr TLBrace block TRBrace 
+	stat:  TFor TIdent TAssign.expr TComma expr TComma expr TLBrace block TRBrace TIfThru TLBrace block TRBrace 
+	stat:  TFor TIdent TAssign.expr TComma expr TComma expr TLBrace block TRBrace 
+
+	TFalse  shift 29
+	TFunction  shift 40
+	TNil  shift 28
+	TNot  shift 38
+	TTrue  shift 30
+	T3Dot  shift 32
+	TIdent  shift 20
+	TNumber  shift 31
+	TString  shift 42
+	TLBrace  shift 43
+	TLParen  shift 24
+	TSub  shift 37
+	THash  shift 39
+	.  error
+
+	var  goto 41
+	expr  goto 181
+	string  goto 35
+	prefixexp  goto 34
+	functioncall  goto 23
+	afunctioncall  goto 21
+	function  goto 33
+	tableconstructor  goto 36
+
+state 126
+	stat:  TFor namelist TIn.exprlist TLBrace block TRBrace TIfThru TLBrace block TRBrace 
+	stat:  TFor namelist TIn.exprlist TLBrace block TRBrace 
+
+	TFalse  shift 29
+	TFunction  shift 40
+	TNil  shift 28
+	TNot  shift 38
+	TTrue  shift 30
+	T3Dot  shift 32
+	TIdent  shift 20
+	TNumber  shift 31
+	TString  shift 42
+	TLBrace  shift 43
+	TLParen  shift 24
+	TSub  shift 37
+	THash  shift 39
+	.  error
+
+	var  goto 41
+	exprlist  goto 182
+	expr  goto 27
+	string  goto 35
+	prefixexp  goto 34
+	functioncall  goto 23
+	afunctioncall  goto 21
+	function  goto 33
+	tableconstructor  goto 36
+
+state 127
+	namelist:  namelist TComma.TIdent 
+
+	TIdent  shift 183
+	.  error
+
+
+state 128
+	stat:  TFunction funcname funcbody.    (29)
+
+	.  reduce 29 (src line 230)
+
+
+state 129
+	funcname:  funcname1 TColon.TIdent 
+
+	TIdent  shift 184
+	.  error
+
+
+state 130
+	funcname1:  funcname1 TDot.TIdent 
+
+	TIdent  shift 185
+	.  error
+
+
+state 131
+	funcbody:  TLParen parlist.TRParen TLBrace block TRBrace 
+
+	TRParen  shift 186
+	.  error
+
+
+state 132
+	funcbody:  TLParen TRParen.TLBrace block TRBrace 
+
+	TLBrace  shift 187
+	.  error
+
+
+state 133
+	parlist:  T3Dot.    (107)
+
+	.  reduce 107 (src line 574)
+
+
+state 134
+	namelist:  namelist.TComma TIdent 
+	parlist:  namelist.    (108)
+	parlist:  namelist.TComma T3Dot 
+
+	TComma  shift 188
+	.  reduce 108 (src line 577)
+
+
+state 135
+	stat:  TLocal TFunction TIdent.funcbody 
+
+	TLParen  shift 67
+	.  error
+
+	funcbody  goto 189
+
+state 136
+	stat:  TLocal namelist TAssign.exprlist 
+
+	TFalse  shift 29
+	TFunction  shift 40
+	TNil  shift 28
+	TNot  shift 38
+	TTrue  shift 30
+	T3Dot  shift 32
+	TIdent  shift 20
+	TNumber  shift 31
+	TString  shift 42
+	TLBrace  shift 43
+	TLParen  shift 24
+	TSub  shift 37
+	THash  shift 39
+	.  error
+
+	var  goto 41
+	exprlist  goto 190
+	expr  goto 27
+	string  goto 35
+	prefixexp  goto 34
+	functioncall  goto 23
+	afunctioncall  goto 21
+	function  goto 33
+	tableconstructor  goto 36
+
+state 137
+	stat:  T2Colon TIdent T2Colon.    (33)
+
+	.  reduce 33 (src line 248)
+
+
+state 138
+	prefixexp:  TLParen expr TRParen.    (98)
+
+	.  reduce 98 (src line 516)
+
+
+state 139
+	afunctioncall:  TLParen functioncall TRParen.    (99)
+
+	.  reduce 99 (src line 525)
+
+
+state 140
+	exprlist:  exprlist TComma expr.    (52)
+	expr:  expr.TOr expr 
+	expr:  expr.TAnd expr 
+	expr:  expr.TBitOr expr 
+	expr:  expr.TBitAnd expr 
+	expr:  expr.TLeftShift expr 
+	expr:  expr.TRightShift expr 
+	expr:  expr.TGt expr 
+	expr:  expr.TLt expr 
+	expr:  expr.TGte expr 
+	expr:  expr.TLte expr 
+	expr:  expr.TEqeq expr 
+	expr:  expr.TNeq expr 
+	expr:  expr.T2Dot expr 
+	expr:  expr.TAdd expr 
+	expr:  expr.TSub expr 
+	expr:  expr.TMul expr 
+	expr:  expr.TDiv expr 
+	expr:  expr.TMod expr 
+	expr:  expr.TPow expr 
+	expr:  expr.TDotLParen type_expr TRParen 
+
+	TAnd  shift 78
+	TOr  shift 77
+	TEqeq  shift 87
+	TNeq  shift 88
+	TLte  shift 86
+	TGte  shift 85
+	T2Dot  shift 89
+	TAdd  shift 90
+	TSub  shift 91
+	TMul  shift 92
+	TDiv  shift 93
+	TMod  shift 94
+	TPow  shift 95
+	TLeftShift  shift 81
+	TRightShift  shift 82
+	TBitAnd  shift 80
+	TBitOr  shift 79
+	TDotLParen  shift 96
+	TGt  shift 83
+	TLt  shift 84
+	.  reduce 52 (src line 337)
+
+
+141: shift/reduce conflict (shift 96(0), red'n 70(2)) on TDotLParen
+state 141
+	expr:  expr.TOr expr 
+	expr:  expr TOr expr.    (70)
+	expr:  expr.TAnd expr 
+	expr:  expr.TBitOr expr 
+	expr:  expr.TBitAnd expr 
+	expr:  expr.TLeftShift expr 
+	expr:  expr.TRightShift expr 
+	expr:  expr.TGt expr 
+	expr:  expr.TLt expr 
+	expr:  expr.TGte expr 
+	expr:  expr.TLte expr 
+	expr:  expr.TEqeq expr 
+	expr:  expr.TNeq expr 
+	expr:  expr.T2Dot expr 
+	expr:  expr.TAdd expr 
+	expr:  expr.TSub expr 
+	expr:  expr.TMul expr 
+	expr:  expr.TDiv expr 
+	expr:  expr.TMod expr 
+	expr:  expr.TPow expr 
+	expr:  expr.TDotLParen type_expr TRParen 
+
+	TAnd  shift 78
+	TEqeq  shift 87
+	TNeq  shift 88
+	TLte  shift 86
+	TGte  shift 85
+	T2Dot  shift 89
+	TAdd  shift 90
+	TSub  shift 91
+	TMul  shift 92
+	TDiv  shift 93
+	TMod  shift 94
+	TPow  shift 95
+	TLeftShift  shift 81
+	TRightShift  shift 82
+	TBitAnd  shift 80
+	TBitOr  shift 79
+	TDotLParen  shift 96
+	TGt  shift 83
+	TLt  shift 84
+	.  reduce 70 (src line 401)
+
+
+142: shift/reduce conflict (shift 96(0), red'n 71(3)) on TDotLParen
+state 142
+	expr:  expr.TOr expr 
+	expr:  expr.TAnd expr 
+	expr:  expr TAnd expr.    (71)
+	expr:  expr.TBitOr expr 
+	expr:  expr.TBitAnd expr 
+	expr:  expr.TLeftShift expr 
+	expr:  expr.TRightShift expr 
+	expr:  expr.TGt expr 
+	expr:  expr.TLt expr 
+	expr:  expr.TGte expr 
+	expr:  expr.TLte expr 
+	expr:  expr.TEqeq expr 
+	expr:  expr.TNeq expr 
+	expr:  expr.T2Dot expr 
+	expr:  expr.TAdd expr 
+	expr:  expr.TSub expr 
+	expr:  expr.TMul expr 
+	expr:  expr.TDiv expr 
+	expr:  expr.TMod expr 
+	expr:  expr.TPow expr 
+	expr:  expr.TDotLParen type_expr TRParen 
+
+	TEqeq  shift 87
+	TNeq  shift 88
+	TLte  shift 86
+	TGte  shift 85
+	T2Dot  shift 89
+	TAdd  shift 90
+	TSub  shift 91
+	TMul  shift 92
+	TDiv  shift 93
+	TMod  shift 94
+	TPow  shift 95
+	TLeftShift  shift 81
+	TRightShift  shift 82
+	TBitAnd  shift 80
+	TBitOr  shift 79
+	TDotLParen  shift 96
+	TGt  shift 83
+	TLt  shift 84
+	.  reduce 71 (src line 405)
+
+
+143: shift/reduce conflict (shift 96(0), red'n 72(5)) on TDotLParen
+state 143
+	expr:  expr.TOr expr 
+	expr:  expr.TAnd expr 
+	expr:  expr.TBitOr expr 
+	expr:  expr TBitOr expr.    (72)
+	expr:  expr.TBitAnd expr 
+	expr:  expr.TLeftShift expr 
+	expr:  expr.TRightShift expr 
+	expr:  expr.TGt expr 
+	expr:  expr.TLt expr 
+	expr:  expr.TGte expr 
+	expr:  expr.TLte expr 
+	expr:  expr.TEqeq expr 
+	expr:  expr.TNeq expr 
+	expr:  expr.T2Dot expr 
+	expr:  expr.TAdd expr 
+	expr:  expr.TSub expr 
+	expr:  expr.TMul expr 
+	expr:  expr.TDiv expr 
+	expr:  expr.TMod expr 
+	expr:  expr.TPow expr 
+	expr:  expr.TDotLParen type_expr TRParen 
+
+	T2Dot  shift 89
+	TAdd  shift 90
+	TSub  shift 91
+	TMul  shift 92
+	TDiv  shift 93
+	TMod  shift 94
+	TPow  shift 95
+	TLeftShift  shift 81
+	TRightShift  shift 82
+	TBitAnd  shift 80
+	TDotLParen  shift 96
+	.  reduce 72 (src line 409)
+
+
+144: shift/reduce conflict (shift 96(0), red'n 73(6)) on TDotLParen
+state 144
+	expr:  expr.TOr expr 
+	expr:  expr.TAnd expr 
+	expr:  expr.TBitOr expr 
+	expr:  expr.TBitAnd expr 
+	expr:  expr TBitAnd expr.    (73)
+	expr:  expr.TLeftShift expr 
+	expr:  expr.TRightShift expr 
+	expr:  expr.TGt expr 
+	expr:  expr.TLt expr 
+	expr:  expr.TGte expr 
+	expr:  expr.TLte expr 
+	expr:  expr.TEqeq expr 
+	expr:  expr.TNeq expr 
+	expr:  expr.T2Dot expr 
+	expr:  expr.TAdd expr 
+	expr:  expr.TSub expr 
+	expr:  expr.TMul expr 
+	expr:  expr.TDiv expr 
+	expr:  expr.TMod expr 
+	expr:  expr.TPow expr 
+	expr:  expr.TDotLParen type_expr TRParen 
+
+	T2Dot  shift 89
+	TAdd  shift 90
+	TSub  shift 91
+	TMul  shift 92
+	TDiv  shift 93
+	TMod  shift 94
+	TPow  shift 95
+	TLeftShift  shift 81
+	TRightShift  shift 82
+	TDotLParen  shift 96
+	.  reduce 73 (src line 413)
+
+
+145: shift/reduce conflict (shift 96(0), red'n 74(7)) on TDotLParen
+state 145
+	expr:  expr.TOr expr 
+	expr:  expr.TAnd expr 
+	expr:  expr.TBitOr expr 
+	expr:  expr.TBitAnd expr 
+	expr:  expr.TLeftShift expr 
+	expr:  expr TLeftShift expr.    (74)
+	expr:  expr.TRightShift expr 
+	expr:  expr.TGt expr 
+	expr:  expr.TLt expr 
+	expr:  expr.TGte expr 
+	expr:  expr.TLte expr 
+	expr:  expr.TEqeq expr 
+	expr:  expr.TNeq expr 
+	expr:  expr.T2Dot expr 
+	expr:  expr.TAdd expr 
+	expr:  expr.TSub expr 
+	expr:  expr.TMul expr 
+	expr:  expr.TDiv expr 
+	expr:  expr.TMod expr 
+	expr:  expr.TPow expr 
+	expr:  expr.TDotLParen type_expr TRParen 
+
+	T2Dot  shift 89
+	TAdd  shift 90
+	TSub  shift 91
+	TMul  shift 92
+	TDiv  shift 93
+	TMod  shift 94
+	TPow  shift 95
+	TDotLParen  shift 96
+	.  reduce 74 (src line 417)
+
+
+146: shift/reduce conflict (shift 96(0), red'n 75(7)) on TDotLParen
+state 146
+	expr:  expr.TOr expr 
+	expr:  expr.TAnd expr 
+	expr:  expr.TBitOr expr 
+	expr:  expr.TBitAnd expr 
+	expr:  expr.TLeftShift expr 
+	expr:  expr.TRightShift expr 
+	expr:  expr TRightShift expr.    (75)
+	expr:  expr.TGt expr 
+	expr:  expr.TLt expr 
+	expr:  expr.TGte expr 
+	expr:  expr.TLte expr 
+	expr:  expr.TEqeq expr 
+	expr:  expr.TNeq expr 
+	expr:  expr.T2Dot expr 
+	expr:  expr.TAdd expr 
+	expr:  expr.TSub expr 
+	expr:  expr.TMul expr 
+	expr:  expr.TDiv expr 
+	expr:  expr.TMod expr 
+	expr:  expr.TPow expr 
+	expr:  expr.TDotLParen type_expr TRParen 
+
+	T2Dot  shift 89
+	TAdd  shift 90
+	TSub  shift 91
+	TMul  shift 92
+	TDiv  shift 93
+	TMod  shift 94
+	TPow  shift 95
+	TDotLParen  shift 96
+	.  reduce 75 (src line 421)
+
+
+147: shift/reduce conflict (shift 96(0), red'n 76(4)) on TDotLParen
+state 147
+	expr:  expr.TOr expr 
+	expr:  expr.TAnd expr 
+	expr:  expr.TBitOr expr 
+	expr:  expr.TBitAnd expr 
+	expr:  expr.TLeftShift expr 
+	expr:  expr.TRightShift expr 
+	expr:  expr.TGt expr 
+	expr:  expr TGt expr.    (76)
+	expr:  expr.TLt expr 
+	expr:  expr.TGte expr 
+	expr:  expr.TLte expr 
+	expr:  expr.TEqeq expr 
+	expr:  expr.TNeq expr 
+	expr:  expr.T2Dot expr 
+	expr:  expr.TAdd expr 
+	expr:  expr.TSub expr 
+	expr:  expr.TMul expr 
+	expr:  expr.TDiv expr 
+	expr:  expr.TMod expr 
+	expr:  expr.TPow expr 
+	expr:  expr.TDotLParen type_expr TRParen 
+
+	T2Dot  shift 89
+	TAdd  shift 90
+	TSub  shift 91
+	TMul  shift 92
+	TDiv  shift 93
+	TMod  shift 94
+	TPow  shift 95
+	TLeftShift  shift 81
+	TRightShift  shift 82
+	TBitAnd  shift 80
+	TBitOr  shift 79
+	TDotLParen  shift 96
+	.  reduce 76 (src line 425)
+
+
+148: shift/reduce conflict (shift 96(0), red'n 77(4)) on TDotLParen
+state 148
+	expr:  expr.TOr expr 
+	expr:  expr.TAnd expr 
+	expr:  expr.TBitOr expr 
+	expr:  expr.TBitAnd expr 
+	expr:  expr.TLeftShift expr 
+	expr:  expr.TRightShift expr 
+	expr:  expr.TGt expr 
+	expr:  expr.TLt expr 
+	expr:  expr TLt expr.    (77)
+	expr:  expr.TGte expr 
+	expr:  expr.TLte expr 
+	expr:  expr.TEqeq expr 
+	expr:  expr.TNeq expr 
+	expr:  expr.T2Dot expr 
+	expr:  expr.TAdd expr 
+	expr:  expr.TSub expr 
+	expr:  expr.TMul expr 
+	expr:  expr.TDiv expr 
+	expr:  expr.TMod expr 
+	expr:  expr.TPow expr 
+	expr:  expr.TDotLParen type_expr TRParen 
+
+	T2Dot  shift 89
+	TAdd  shift 90
+	TSub  shift 91
+	TMul  shift 92
+	TDiv  shift 93
+	TMod  shift 94
+	TPow  shift 95
+	TLeftShift  shift 81
+	TRightShift  shift 82
+	TBitAnd  shift 80
+	TBitOr  shift 79
+	TDotLParen  shift 96
+	.  reduce 77 (src line 429)
+
+
+149: shift/reduce conflict (shift 96(0), red'n 78(4)) on TDotLParen
+state 149
+	expr:  expr.TOr expr 
+	expr:  expr.TAnd expr 
+	expr:  expr.TBitOr expr 
+	expr:  expr.TBitAnd expr 
+	expr:  expr.TLeftShift expr 
+	expr:  expr.TRightShift expr 
+	expr:  expr.TGt expr 
+	expr:  expr.TLt expr 
+	expr:  expr.TGte expr 
+	expr:  expr TGte expr.    (78)
+	expr:  expr.TLte expr 
+	expr:  expr.TEqeq expr 
+	expr:  expr.TNeq expr 
+	expr:  expr.T2Dot expr 
+	expr:  expr.TAdd expr 
+	expr:  expr.TSub expr 
+	expr:  expr.TMul expr 
+	expr:  expr.TDiv expr 
+	expr:  expr.TMod expr 
+	expr:  expr.TPow expr 
+	expr:  expr.TDotLParen type_expr TRParen 
+
+	T2Dot  shift 89
+	TAdd  shift 90
+	TSub  shift 91
+	TMul  shift 92
+	TDiv  shift 93
+	TMod  shift 94
+	TPow  shift 95
+	TLeftShift  shift 81
+	TRightShift  shift 82
+	TBitAnd  shift 80
+	TBitOr  shift 79
+	TDotLParen  shift 96
+	.  reduce 78 (src line 433)
+
+
+150: shift/reduce conflict (shift 96(0), red'n 79(4)) on TDotLParen
+state 150
+	expr:  expr.TOr expr 
+	expr:  expr.TAnd expr 
+	expr:  expr.TBitOr expr 
+	expr:  expr.TBitAnd expr 
+	expr:  expr.TLeftShift expr 
+	expr:  expr.TRightShift expr 
+	expr:  expr.TGt expr 
+	expr:  expr.TLt expr 
+	expr:  expr.TGte expr 
+	expr:  expr.TLte expr 
+	expr:  expr TLte expr.    (79)
+	expr:  expr.TEqeq expr 
+	expr:  expr.TNeq expr 
+	expr:  expr.T2Dot expr 
+	expr:  expr.TAdd expr 
+	expr:  expr.TSub expr 
+	expr:  expr.TMul expr 
+	expr:  expr.TDiv expr 
+	expr:  expr.TMod expr 
+	expr:  expr.TPow expr 
+	expr:  expr.TDotLParen type_expr TRParen 
+
+	T2Dot  shift 89
+	TAdd  shift 90
+	TSub  shift 91
+	TMul  shift 92
+	TDiv  shift 93
+	TMod  shift 94
+	TPow  shift 95
+	TLeftShift  shift 81
+	TRightShift  shift 82
+	TBitAnd  shift 80
+	TBitOr  shift 79
+	TDotLParen  shift 96
+	.  reduce 79 (src line 437)
+
+
+151: shift/reduce conflict (shift 96(0), red'n 80(4)) on TDotLParen
+state 151
+	expr:  expr.TOr expr 
+	expr:  expr.TAnd expr 
+	expr:  expr.TBitOr expr 
+	expr:  expr.TBitAnd expr 
+	expr:  expr.TLeftShift expr 
+	expr:  expr.TRightShift expr 
+	expr:  expr.TGt expr 
+	expr:  expr.TLt expr 
+	expr:  expr.TGte expr 
+	expr:  expr.TLte expr 
+	expr:  expr.TEqeq expr 
+	expr:  expr TEqeq expr.    (80)
+	expr:  expr.TNeq expr 
+	expr:  expr.T2Dot expr 
+	expr:  expr.TAdd expr 
+	expr:  expr.TSub expr 
+	expr:  expr.TMul expr 
+	expr:  expr.TDiv expr 
+	expr:  expr.TMod expr 
+	expr:  expr.TPow expr 
+	expr:  expr.TDotLParen type_expr TRParen 
+
+	T2Dot  shift 89
+	TAdd  shift 90
+	TSub  shift 91
+	TMul  shift 92
+	TDiv  shift 93
+	TMod  shift 94
+	TPow  shift 95
+	TLeftShift  shift 81
+	TRightShift  shift 82
+	TBitAnd  shift 80
+	TBitOr  shift 79
+	TDotLParen  shift 96
+	.  reduce 80 (src line 441)
+
+
+152: shift/reduce conflict (shift 96(0), red'n 81(4)) on TDotLParen
+state 152
+	expr:  expr.TOr expr 
+	expr:  expr.TAnd expr 
+	expr:  expr.TBitOr expr 
+	expr:  expr.TBitAnd expr 
+	expr:  expr.TLeftShift expr 
+	expr:  expr.TRightShift expr 
+	expr:  expr.TGt expr 
+	expr:  expr.TLt expr 
+	expr:  expr.TGte expr 
+	expr:  expr.TLte expr 
+	expr:  expr.TEqeq expr 
+	expr:  expr.TNeq expr 
+	expr:  expr TNeq expr.    (81)
+	expr:  expr.T2Dot expr 
+	expr:  expr.TAdd expr 
+	expr:  expr.TSub expr 
+	expr:  expr.TMul expr 
+	expr:  expr.TDiv expr 
+	expr:  expr.TMod expr 
+	expr:  expr.TPow expr 
+	expr:  expr.TDotLParen type_expr TRParen 
+
+	T2Dot  shift 89
+	TAdd  shift 90
+	TSub  shift 91
+	TMul  shift 92
+	TDiv  shift 93
+	TMod  shift 94
+	TPow  shift 95
+	TLeftShift  shift 81
+	TRightShift  shift 82
+	TBitAnd  shift 80
+	TBitOr  shift 79
+	TDotLParen  shift 96
+	.  reduce 81 (src line 445)
+
+
+153: shift/reduce conflict (shift 96(0), red'n 82(8)) on TDotLParen
+state 153
+	expr:  expr.TOr expr 
+	expr:  expr.TAnd expr 
+	expr:  expr.TBitOr expr 
+	expr:  expr.TBitAnd expr 
+	expr:  expr.TLeftShift expr 
+	expr:  expr.TRightShift expr 
+	expr:  expr.TGt expr 
+	expr:  expr.TLt expr 
+	expr:  expr.TGte expr 
+	expr:  expr.TLte expr 
+	expr:  expr.TEqeq expr 
+	expr:  expr.TNeq expr 
+	expr:  expr.T2Dot expr 
+	expr:  expr T2Dot expr.    (82)
+	expr:  expr.TAdd expr 
+	expr:  expr.TSub expr 
+	expr:  expr.TMul expr 
+	expr:  expr.TDiv expr 
+	expr:  expr.TMod expr 
+	expr:  expr.TPow expr 
+	expr:  expr.TDotLParen type_expr TRParen 
+
+	T2Dot  shift 89
+	TAdd  shift 90
+	TSub  shift 91
+	TMul  shift 92
+	TDiv  shift 93
+	TMod  shift 94
+	TPow  shift 95
+	TDotLParen  shift 96
+	.  reduce 82 (src line 449)
+
+
+154: shift/reduce conflict (shift 96(0), red'n 83(9)) on TDotLParen
+state 154
+	expr:  expr.TOr expr 
+	expr:  expr.TAnd expr 
+	expr:  expr.TBitOr expr 
+	expr:  expr.TBitAnd expr 
+	expr:  expr.TLeftShift expr 
+	expr:  expr.TRightShift expr 
+	expr:  expr.TGt expr 
+	expr:  expr.TLt expr 
+	expr:  expr.TGte expr 
+	expr:  expr.TLte expr 
+	expr:  expr.TEqeq expr 
+	expr:  expr.TNeq expr 
+	expr:  expr.T2Dot expr 
+	expr:  expr.TAdd expr 
+	expr:  expr TAdd expr.    (83)
+	expr:  expr.TSub expr 
+	expr:  expr.TMul expr 
+	expr:  expr.TDiv expr 
+	expr:  expr.TMod expr 
+	expr:  expr.TPow expr 
+	expr:  expr.TDotLParen type_expr TRParen 
+
+	TMul  shift 92
+	TDiv  shift 93
+	TMod  shift 94
+	TPow  shift 95
+	TDotLParen  shift 96
+	.  reduce 83 (src line 453)
+
+
+155: shift/reduce conflict (shift 96(0), red'n 84(9)) on TDotLParen
+state 155
+	expr:  expr.TOr expr 
+	expr:  expr.TAnd expr 
+	expr:  expr.TBitOr expr 
+	expr:  expr.TBitAnd expr 
+	expr:  expr.TLeftShift expr 
+	expr:  expr.TRightShift expr 
+	expr:  expr.TGt expr 
+	expr:  expr.TLt expr 
+	expr:  expr.TGte expr 
+	expr:  expr.TLte expr 
+	expr:  expr.TEqeq expr 
+	expr:  expr.TNeq expr 
+	expr:  expr.T2Dot expr 
+	expr:  expr.TAdd expr 
+	expr:  expr.TSub expr 
+	expr:  expr TSub expr.    (84)
+	expr:  expr.TMul expr 
+	expr:  expr.TDiv expr 
+	expr:  expr.TMod expr 
+	expr:  expr.TPow expr 
+	expr:  expr.TDotLParen type_expr TRParen 
+
+	TMul  shift 92
+	TDiv  shift 93
+	TMod  shift 94
+	TPow  shift 95
+	TDotLParen  shift 96
+	.  reduce 84 (src line 457)
+
+
+156: shift/reduce conflict (shift 96(0), red'n 85(10)) on TDotLParen
+state 156
+	expr:  expr.TOr expr 
+	expr:  expr.TAnd expr 
+	expr:  expr.TBitOr expr 
+	expr:  expr.TBitAnd expr 
+	expr:  expr.TLeftShift expr 
+	expr:  expr.TRightShift expr 
+	expr:  expr.TGt expr 
+	expr:  expr.TLt expr 
+	expr:  expr.TGte expr 
+	expr:  expr.TLte expr 
+	expr:  expr.TEqeq expr 
+	expr:  expr.TNeq expr 
+	expr:  expr.T2Dot expr 
+	expr:  expr.TAdd expr 
+	expr:  expr.TSub expr 
+	expr:  expr.TMul expr 
+	expr:  expr TMul expr.    (85)
+	expr:  expr.TDiv expr 
+	expr:  expr.TMod expr 
+	expr:  expr.TPow expr 
+	expr:  expr.TDotLParen type_expr TRParen 
+
+	TPow  shift 95
+	TDotLParen  shift 96
+	.  reduce 85 (src line 461)
+
+
+157: shift/reduce conflict (shift 96(0), red'n 86(10)) on TDotLParen
+state 157
+	expr:  expr.TOr expr 
+	expr:  expr.TAnd expr 
+	expr:  expr.TBitOr expr 
+	expr:  expr.TBitAnd expr 
+	expr:  expr.TLeftShift expr 
+	expr:  expr.TRightShift expr 
+	expr:  expr.TGt expr 
+	expr:  expr.TLt expr 
+	expr:  expr.TGte expr 
+	expr:  expr.TLte expr 
+	expr:  expr.TEqeq expr 
+	expr:  expr.TNeq expr 
+	expr:  expr.T2Dot expr 
+	expr:  expr.TAdd expr 
+	expr:  expr.TSub expr 
+	expr:  expr.TMul expr 
+	expr:  expr.TDiv expr 
+	expr:  expr TDiv expr.    (86)
+	expr:  expr.TMod expr 
+	expr:  expr.TPow expr 
+	expr:  expr.TDotLParen type_expr TRParen 
+
+	TPow  shift 95
+	TDotLParen  shift 96
+	.  reduce 86 (src line 465)
+
+
+158: shift/reduce conflict (shift 96(0), red'n 87(10)) on TDotLParen
+state 158
+	expr:  expr.TOr expr 
+	expr:  expr.TAnd expr 
+	expr:  expr.TBitOr expr 
+	expr:  expr.TBitAnd expr 
+	expr:  expr.TLeftShift expr 
+	expr:  expr.TRightShift expr 
+	expr:  expr.TGt expr 
+	expr:  expr.TLt expr 
+	expr:  expr.TGte expr 
+	expr:  expr.TLte expr 
+	expr:  expr.TEqeq expr 
+	expr:  expr.TNeq expr 
+	expr:  expr.T2Dot expr 
+	expr:  expr.TAdd expr 
+	expr:  expr.TSub expr 
+	expr:  expr.TMul expr 
+	expr:  expr.TDiv expr 
+	expr:  expr.TMod expr 
+	expr:  expr TMod expr.    (87)
+	expr:  expr.TPow expr 
+	expr:  expr.TDotLParen type_expr TRParen 
+
+	TPow  shift 95
+	TDotLParen  shift 96
+	.  reduce 87 (src line 469)
+
+
+159: shift/reduce conflict (shift 96(0), red'n 88(12)) on TDotLParen
+state 159
+	expr:  expr.TOr expr 
+	expr:  expr.TAnd expr 
+	expr:  expr.TBitOr expr 
+	expr:  expr.TBitAnd expr 
+	expr:  expr.TLeftShift expr 
+	expr:  expr.TRightShift expr 
+	expr:  expr.TGt expr 
+	expr:  expr.TLt expr 
+	expr:  expr.TGte expr 
+	expr:  expr.TLte expr 
+	expr:  expr.TEqeq expr 
+	expr:  expr.TNeq expr 
+	expr:  expr.T2Dot expr 
+	expr:  expr.TAdd expr 
+	expr:  expr.TSub expr 
+	expr:  expr.TMul expr 
+	expr:  expr.TDiv expr 
+	expr:  expr.TMod expr 
+	expr:  expr.TPow expr 
+	expr:  expr TPow expr.    (88)
+	expr:  expr.TDotLParen type_expr TRParen 
+
+	TPow  shift 95
+	TDotLParen  shift 96
+	.  reduce 88 (src line 473)
+
+
+state 160
+	expr:  expr TDotLParen type_expr.TRParen 
+
+	TRParen  shift 191
+	.  error
+
+
+state 161
+	type_expr:  TTBool.    (53)
+
+	.  reduce 53 (src line 342)
+
+
+state 162
+	type_expr:  TTNumber.    (54)
+
+	.  reduce 54 (src line 345)
+
+
+state 163
+	type_expr:  TTString.    (55)
+
+	.  reduce 55 (src line 348)
+
+
+state 164
+	type_expr:  TTTable.    (56)
+
+	.  reduce 56 (src line 351)
+
+
+state 165
+	type_expr:  TTFunction.    (57)
+
+	.  reduce 57 (src line 354)
+
+
+state 166
+	type_expr:  TTUserdata.    (58)
+
+	.  reduce 58 (src line 357)
+
+
+state 167
+	type_expr:  TTThread.    (59)
+
+	.  reduce 59 (src line 360)
+
+
+state 168
+	type_expr:  TTChannel.    (60)
+
+	.  reduce 60 (src line 363)
+
+
+state 169
+	tableconstructor:  TLBrace fieldlist TRBrace.    (111)
+
+	.  reduce 111 (src line 592)
+
+
+state 170
+	fieldlist:  fieldlist fieldsep.field 
+	fieldlist:  fieldlist fieldsep.    (114)
+
+	TFalse  shift 29
+	TFunction  shift 40
+	TNil  shift 28
+	TNot  shift 38
+	TTrue  shift 30
+	T3Dot  shift 32
+	TIdent  shift 103
+	TNumber  shift 31
+	TString  shift 42
+	TLBrace  shift 43
+	TLParen  shift 24
+	TLBracket  shift 104
+	TSub  shift 37
+	THash  shift 39
+	.  reduce 114 (src line 605)
+
+	var  goto 41
+	expr  goto 105
+	string  goto 35
+	prefixexp  goto 34
+	functioncall  goto 23
+	afunctioncall  goto 21
+	function  goto 33
+	tableconstructor  goto 36
+	field  goto 192
+
+state 171
+	fieldsep:  TComma.    (118)
+
+	.  reduce 118 (src line 622)
+
+
+state 172
+	fieldsep:  TSemi.    (119)
+
+	.  reduce 119 (src line 625)
+
+
+state 173
+	field:  TIdent TAssign.expr 
+
+	TFalse  shift 29
+	TFunction  shift 40
+	TNil  shift 28
+	TNot  shift 38
+	TTrue  shift 30
+	T3Dot  shift 32
+	TIdent  shift 20
+	TNumber  shift 31
+	TString  shift 42
+	TLBrace  shift 43
+	TLParen  shift 24
+	TSub  shift 37
+	THash  shift 39
+	.  error
+
+	var  goto 41
+	expr  goto 193
+	string  goto 35
+	prefixexp  goto 34
+	functioncall  goto 23
+	afunctioncall  goto 21
+	function  goto 33
+	tableconstructor  goto 36
+
+state 174
+	expr:  expr.TOr expr 
+	expr:  expr.TAnd expr 
+	expr:  expr.TBitOr expr 
+	expr:  expr.TBitAnd expr 
+	expr:  expr.TLeftShift expr 
+	expr:  expr.TRightShift expr 
+	expr:  expr.TGt expr 
+	expr:  expr.TLt expr 
+	expr:  expr.TGte expr 
+	expr:  expr.TLte expr 
+	expr:  expr.TEqeq expr 
+	expr:  expr.TNeq expr 
+	expr:  expr.T2Dot expr 
+	expr:  expr.TAdd expr 
+	expr:  expr.TSub expr 
+	expr:  expr.TMul expr 
+	expr:  expr.TDiv expr 
+	expr:  expr.TMod expr 
+	expr:  expr.TPow expr 
+	expr:  expr.TDotLParen type_expr TRParen 
+	field:  TLBracket expr.TRBracket TAssign expr 
+
+	TAnd  shift 78
+	TOr  shift 77
+	TEqeq  shift 87
+	TNeq  shift 88
+	TLte  shift 86
+	TGte  shift 85
+	T2Dot  shift 89
+	TRBracket  shift 194
+	TAdd  shift 90
+	TSub  shift 91
+	TMul  shift 92
+	TDiv  shift 93
+	TMod  shift 94
+	TPow  shift 95
+	TLeftShift  shift 81
+	TRightShift  shift 82
+	TBitAnd  shift 80
+	TBitOr  shift 79
+	TDotLParen  shift 96
+	TGt  shift 83
+	TLt  shift 84
+	.  error
+
+
+state 175
+	var:  prefixexp TLBracket expr TRBracket.    (47)
+
+	.  reduce 47 (src line 314)
+
+
+state 176
+	functioncall:  prefixexp TColon TIdent args.    (101)
+
+	.  reduce 101 (src line 535)
+
+
+state 177
+	args:  TLParen exprlist TRParen.    (103)
+
+	.  reduce 103 (src line 547)
+
+
+state 178
+	stat:  TWhile expr TLBrace block.TRBrace 
+
+	TRBrace  shift 195
+	.  error
+
+
+state 179
+	stat:  TRepeat TLBrace block TRBrace.TUntil expr 
+
+	TUntil  shift 196
+	.  error
+
+
+state 180
+	stat:  TLBrace block.TRBrace 
+	stat:  TIf expr TLBrace block.TRBrace 
+	stat:  TIf expr TLBrace block.TRBrace elseifs 
+	stat:  TIf expr TLBrace block.TRBrace elseifs TElse TLBrace block TRBrace 
+
+	TRBrace  shift 197
+	.  error
+
+
+state 181
+	stat:  TFor TIdent TAssign expr.TComma expr TLBrace block TRBrace TIfThru TLBrace block TRBrace 
+	stat:  TFor TIdent TAssign expr.TComma expr TLBrace block TRBrace 
+	stat:  TFor TIdent TAssign expr.TComma expr TComma expr TLBrace block TRBrace TIfThru TLBrace block TRBrace 
+	stat:  TFor TIdent TAssign expr.TComma expr TComma expr TLBrace block TRBrace 
+	expr:  expr.TOr expr 
+	expr:  expr.TAnd expr 
+	expr:  expr.TBitOr expr 
+	expr:  expr.TBitAnd expr 
+	expr:  expr.TLeftShift expr 
+	expr:  expr.TRightShift expr 
+	expr:  expr.TGt expr 
+	expr:  expr.TLt expr 
+	expr:  expr.TGte expr 
+	expr:  expr.TLte expr 
+	expr:  expr.TEqeq expr 
+	expr:  expr.TNeq expr 
+	expr:  expr.T2Dot expr 
+	expr:  expr.TAdd expr 
+	expr:  expr.TSub expr 
+	expr:  expr.TMul expr 
+	expr:  expr.TDiv expr 
+	expr:  expr.TMod expr 
+	expr:  expr.TPow expr 
+	expr:  expr.TDotLParen type_expr TRParen 
+
+	TAnd  shift 78
+	TOr  shift 77
+	TEqeq  shift 87
+	TNeq  shift 88
+	TLte  shift 86
+	TGte  shift 85
+	T2Dot  shift 89
+	TComma  shift 198
+	TAdd  shift 90
+	TSub  shift 91
+	TMul  shift 92
+	TDiv  shift 93
+	TMod  shift 94
+	TPow  shift 95
+	TLeftShift  shift 81
+	TRightShift  shift 82
+	TBitAnd  shift 80
+	TBitOr  shift 79
+	TDotLParen  shift 96
+	TGt  shift 83
+	TLt  shift 84
+	.  error
+
+
+state 182
+	stat:  TFor namelist TIn exprlist.TLBrace block TRBrace TIfThru TLBrace block TRBrace 
+	stat:  TFor namelist TIn exprlist.TLBrace block TRBrace 
+	exprlist:  exprlist.TComma expr 
+
+	TLBrace  shift 199
+	TComma  shift 76
+	.  error
+
+
+state 183
+	namelist:  namelist TComma TIdent.    (50)
+
+	.  reduce 50 (src line 329)
+
+
+state 184
+	funcname:  funcname1 TColon TIdent.    (41)
+
+	.  reduce 41 (src line 284)
+
+
+state 185
+	funcname1:  funcname1 TDot TIdent.    (43)
+
+	.  reduce 43 (src line 293)
+
+
+state 186
+	funcbody:  TLParen parlist TRParen.TLBrace block TRBrace 
+
+	TLBrace  shift 200
+	.  error
+
+
+state 187
+	funcbody:  TLParen TRParen TLBrace.block TRBrace 
+	chunk1: .    (4)
+
+	.  reduce 4 (src line 101)
+
+	chunk  goto 58
+	chunk1  goto 2
+	block  goto 201
+
+state 188
+	namelist:  namelist TComma.TIdent 
+	parlist:  namelist TComma.T3Dot 
+
+	T3Dot  shift 202
+	TIdent  shift 183
+	.  error
+
+
+state 189
+	stat:  TLocal TFunction TIdent funcbody.    (30)
+
+	.  reduce 30 (src line 235)
+
+
+state 190
+	stat:  TLocal namelist TAssign exprlist.    (31)
+	exprlist:  exprlist.TComma expr 
+
+	TComma  shift 76
+	.  reduce 31 (src line 240)
+
+
+state 191
+	expr:  expr TDotLParen type_expr TRParen.    (92)
+
+	.  reduce 92 (src line 489)
+
+
+state 192
+	fieldlist:  fieldlist fieldsep field.    (113)
+
+	.  reduce 113 (src line 602)
+
+
+state 193
+	expr:  expr.TOr expr 
+	expr:  expr.TAnd expr 
+	expr:  expr.TBitOr expr 
+	expr:  expr.TBitAnd expr 
+	expr:  expr.TLeftShift expr 
+	expr:  expr.TRightShift expr 
+	expr:  expr.TGt expr 
+	expr:  expr.TLt expr 
+	expr:  expr.TGte expr 
+	expr:  expr.TLte expr 
+	expr:  expr.TEqeq expr 
+	expr:  expr.TNeq expr 
+	expr:  expr.T2Dot expr 
+	expr:  expr.TAdd expr 
+	expr:  expr.TSub expr 
+	expr:  expr.TMul expr 
+	expr:  expr.TDiv expr 
+	expr:  expr.TMod expr 
+	expr:  expr.TPow expr 
+	expr:  expr.TDotLParen type_expr TRParen 
+	field:  TIdent TAssign expr.    (115)
+
+	TAnd  shift 78
+	TOr  shift 77
+	TEqeq  shift 87
+	TNeq  shift 88
+	TLte  shift 86
+	TGte  shift 85
+	T2Dot  shift 89
+	TAdd  shift 90
+	TSub  shift 91
+	TMul  shift 92
+	TDiv  shift 93
+	TMod  shift 94
+	TPow  shift 95
+	TLeftShift  shift 81
+	TRightShift  shift 82
+	TBitAnd  shift 80
+	TBitOr  shift 79
+	TDotLParen  shift 96
+	TGt  shift 83
+	TLt  shift 84
+	.  reduce 115 (src line 610)
+
+
+state 194
+	field:  TLBracket expr TRBracket.TAssign expr 
+
+	TAssign  shift 203
+	.  error
+
+
+state 195
+	stat:  TWhile expr TLBrace block TRBrace.    (17)
+
+	.  reduce 17 (src line 159)
+
+
+state 196
+	stat:  TRepeat TLBrace block TRBrace TUntil.expr 
+
+	TFalse  shift 29
+	TFunction  shift 40
+	TNil  shift 28
+	TNot  shift 38
+	TTrue  shift 30
+	T3Dot  shift 32
+	TIdent  shift 20
+	TNumber  shift 31
+	TString  shift 42
+	TLBrace  shift 43
+	TLParen  shift 24
+	TSub  shift 37
+	THash  shift 39
+	.  error
+
+	var  goto 41
+	expr  goto 204
+	string  goto 35
+	prefixexp  goto 34
+	functioncall  goto 23
+	afunctioncall  goto 21
+	function  goto 33
+	tableconstructor  goto 36
+
+ 197: reduce/reduce conflict  (red'ns 16 and 19) on $end
+ 197: reduce/reduce conflict  (red'ns 16 and 19) on TBreak
+ 197: reduce/reduce conflict  (red'ns 16 and 19) on TFor
+ 197: reduce/reduce conflict  (red'ns 16 and 19) on TFunction
+ 197: reduce/reduce conflict  (red'ns 16 and 19) on TIf
+ 197: reduce/reduce conflict  (red'ns 16 and 19) on TLocal
+ 197: reduce/reduce conflict  (red'ns 16 and 19) on TReturn
+ 197: reduce/reduce conflict  (red'ns 16 and 19) on TRepeat
+ 197: reduce/reduce conflict  (red'ns 16 and 19) on TWhile
+ 197: reduce/reduce conflict  (red'ns 16 and 19) on TGoto
+ 197: reduce/reduce conflict  (red'ns 16 and 19) on T2Colon
+ 197: reduce/reduce conflict  (red'ns 16 and 19) on TIdent
+ 197: reduce/reduce conflict  (red'ns 16 and 19) on TLBrace
+ 197: reduce/reduce conflict  (red'ns 16 and 19) on TRBrace
+ 197: reduce/reduce conflict  (red'ns 16 and 19) on TLParen
+ 197: reduce/reduce conflict  (red'ns 16 and 19) on TSemi
+ 197: reduce/reduce conflict  (red'ns 16 and 35) on $end
+ 197: reduce/reduce conflict  (red'ns 16 and 35) on TBreak
+ 197: reduce/reduce conflict  (red'ns 16 and 35) on TFor
+ 197: reduce/reduce conflict  (red'ns 16 and 35) on TFunction
+ 197: reduce/reduce conflict  (red'ns 16 and 35) on TIf
+ 197: reduce/reduce conflict  (red'ns 16 and 35) on TLocal
+ 197: reduce/reduce conflict  (red'ns 16 and 35) on TReturn
+ 197: reduce/reduce conflict  (red'ns 16 and 35) on TRepeat
+ 197: reduce/reduce conflict  (red'ns 16 and 35) on TWhile
+ 197: reduce/reduce conflict  (red'ns 16 and 35) on TGoto
+ 197: reduce/reduce conflict  (red'ns 16 and 35) on T2Colon
+ 197: reduce/reduce conflict  (red'ns 16 and 35) on TIdent
+ 197: reduce/reduce conflict  (red'ns 16 and 35) on TLBrace
+ 197: reduce/reduce conflict  (red'ns 16 and 35) on TRBrace
+ 197: reduce/reduce conflict  (red'ns 16 and 35) on TLParen
+ 197: reduce/reduce conflict  (red'ns 16 and 35) on TSemi
+state 197
+	stat:  TLBrace block TRBrace.    (16)
+	stat:  TIf expr TLBrace block TRBrace.    (19)
+	stat:  TIf expr TLBrace block TRBrace.elseifs 
+	stat:  TIf expr TLBrace block TRBrace.elseifs TElse TLBrace block TRBrace 
+	elseifs: .    (35)
+
+	TElse  reduce 35 (src line 258)
+	TElseIf  reduce 35 (src line 258)
+	.  reduce 16 (src line 154)
+
+	elseifs  goto 205
+
+state 198
+	stat:  TFor TIdent TAssign expr TComma.expr TLBrace block TRBrace TIfThru TLBrace block TRBrace 
+	stat:  TFor TIdent TAssign expr TComma.expr TLBrace block TRBrace 
+	stat:  TFor TIdent TAssign expr TComma.expr TComma expr TLBrace block TRBrace TIfThru TLBrace block TRBrace 
+	stat:  TFor TIdent TAssign expr TComma.expr TComma expr TLBrace block TRBrace 
+
+	TFalse  shift 29
+	TFunction  shift 40
+	TNil  shift 28
+	TNot  shift 38
+	TTrue  shift 30
+	T3Dot  shift 32
+	TIdent  shift 20
+	TNumber  shift 31
+	TString  shift 42
+	TLBrace  shift 43
+	TLParen  shift 24
+	TSub  shift 37
+	THash  shift 39
+	.  error
+
+	var  goto 41
+	expr  goto 206
+	string  goto 35
+	prefixexp  goto 34
+	functioncall  goto 23
+	afunctioncall  goto 21
+	function  goto 33
+	tableconstructor  goto 36
+
+state 199
+	stat:  TFor namelist TIn exprlist TLBrace.block TRBrace TIfThru TLBrace block TRBrace 
+	stat:  TFor namelist TIn exprlist TLBrace.block TRBrace 
+	chunk1: .    (4)
+
+	.  reduce 4 (src line 101)
+
+	chunk  goto 58
+	chunk1  goto 2
+	block  goto 207
+
+state 200
+	funcbody:  TLParen parlist TRParen TLBrace.block TRBrace 
+	chunk1: .    (4)
+
+	.  reduce 4 (src line 101)
+
+	chunk  goto 58
+	chunk1  goto 2
+	block  goto 208
+
+state 201
+	funcbody:  TLParen TRParen TLBrace block.TRBrace 
+
+	TRBrace  shift 209
+	.  error
+
+
+state 202
+	parlist:  namelist TComma T3Dot.    (109)
+
+	.  reduce 109 (src line 581)
+
+
+state 203
+	field:  TLBracket expr TRBracket TAssign.expr 
+
+	TFalse  shift 29
+	TFunction  shift 40
+	TNil  shift 28
+	TNot  shift 38
+	TTrue  shift 30
+	T3Dot  shift 32
+	TIdent  shift 20
+	TNumber  shift 31
+	TString  shift 42
+	TLBrace  shift 43
+	TLParen  shift 24
+	TSub  shift 37
+	THash  shift 39
+	.  error
+
+	var  goto 41
+	expr  goto 210
+	string  goto 35
+	prefixexp  goto 34
+	functioncall  goto 23
+	afunctioncall  goto 21
+	function  goto 33
+	tableconstructor  goto 36
+
+state 204
+	stat:  TRepeat TLBrace block TRBrace TUntil expr.    (18)
+	expr:  expr.TOr expr 
+	expr:  expr.TAnd expr 
+	expr:  expr.TBitOr expr 
+	expr:  expr.TBitAnd expr 
+	expr:  expr.TLeftShift expr 
+	expr:  expr.TRightShift expr 
+	expr:  expr.TGt expr 
+	expr:  expr.TLt expr 
+	expr:  expr.TGte expr 
+	expr:  expr.TLte expr 
+	expr:  expr.TEqeq expr 
+	expr:  expr.TNeq expr 
+	expr:  expr.T2Dot expr 
+	expr:  expr.TAdd expr 
+	expr:  expr.TSub expr 
+	expr:  expr.TMul expr 
+	expr:  expr.TDiv expr 
+	expr:  expr.TMod expr 
+	expr:  expr.TPow expr 
+	expr:  expr.TDotLParen type_expr TRParen 
+
+	TAnd  shift 78
+	TOr  shift 77
+	TEqeq  shift 87
+	TNeq  shift 88
+	TLte  shift 86
+	TGte  shift 85
+	T2Dot  shift 89
+	TAdd  shift 90
+	TSub  shift 91
+	TMul  shift 92
+	TDiv  shift 93
+	TMod  shift 94
+	TPow  shift 95
+	TLeftShift  shift 81
+	TRightShift  shift 82
+	TBitAnd  shift 80
+	TBitOr  shift 79
+	TDotLParen  shift 96
+	TGt  shift 83
+	TLt  shift 84
+	.  reduce 18 (src line 164)
+
+
+state 205
+	stat:  TIf expr TLBrace block TRBrace elseifs.    (21)
+	stat:  TIf expr TLBrace block TRBrace elseifs.TElse TLBrace block TRBrace 
+	elseifs:  elseifs.TElseIf expr TLBrace block TRBrace 
+
+	TElse  shift 211
+	TElseIf  shift 212
+	.  reduce 21 (src line 179)
+
+
+state 206
+	stat:  TFor TIdent TAssign expr TComma expr.TLBrace block TRBrace TIfThru TLBrace block TRBrace 
+	stat:  TFor TIdent TAssign expr TComma expr.TLBrace block TRBrace 
+	stat:  TFor TIdent TAssign expr TComma expr.TComma expr TLBrace block TRBrace TIfThru TLBrace block TRBrace 
+	stat:  TFor TIdent TAssign expr TComma expr.TComma expr TLBrace block TRBrace 
+	expr:  expr.TOr expr 
+	expr:  expr.TAnd expr 
+	expr:  expr.TBitOr expr 
+	expr:  expr.TBitAnd expr 
+	expr:  expr.TLeftShift expr 
+	expr:  expr.TRightShift expr 
+	expr:  expr.TGt expr 
+	expr:  expr.TLt expr 
+	expr:  expr.TGte expr 
+	expr:  expr.TLte expr 
+	expr:  expr.TEqeq expr 
+	expr:  expr.TNeq expr 
+	expr:  expr.T2Dot expr 
+	expr:  expr.TAdd expr 
+	expr:  expr.TSub expr 
+	expr:  expr.TMul expr 
+	expr:  expr.TDiv expr 
+	expr:  expr.TMod expr 
+	expr:  expr.TPow expr 
+	expr:  expr.TDotLParen type_expr TRParen 
+
+	TAnd  shift 78
+	TOr  shift 77
+	TEqeq  shift 87
+	TNeq  shift 88
+	TLte  shift 86
+	TGte  shift 85
+	T2Dot  shift 89
+	TLBrace  shift 213
+	TComma  shift 214
+	TAdd  shift 90
+	TSub  shift 91
+	TMul  shift 92
+	TDiv  shift 93
+	TMod  shift 94
+	TPow  shift 95
+	TLeftShift  shift 81
+	TRightShift  shift 82
+	TBitAnd  shift 80
+	TBitOr  shift 79
+	TDotLParen  shift 96
+	TGt  shift 83
+	TLt  shift 84
+	.  error
+
+
+state 207
+	stat:  TFor namelist TIn exprlist TLBrace block.TRBrace TIfThru TLBrace block TRBrace 
+	stat:  TFor namelist TIn exprlist TLBrace block.TRBrace 
+
+	TRBrace  shift 215
+	.  error
+
+
+state 208
+	funcbody:  TLParen parlist TRParen TLBrace block.TRBrace 
+
+	TRBrace  shift 216
+	.  error
+
+
+state 209
+	funcbody:  TLParen TRParen TLBrace block TRBrace.    (106)
+
+	.  reduce 106 (src line 567)
+
+
+state 210
+	expr:  expr.TOr expr 
+	expr:  expr.TAnd expr 
+	expr:  expr.TBitOr expr 
+	expr:  expr.TBitAnd expr 
+	expr:  expr.TLeftShift expr 
+	expr:  expr.TRightShift expr 
+	expr:  expr.TGt expr 
+	expr:  expr.TLt expr 
+	expr:  expr.TGte expr 
+	expr:  expr.TLte expr 
+	expr:  expr.TEqeq expr 
+	expr:  expr.TNeq expr 
+	expr:  expr.T2Dot expr 
+	expr:  expr.TAdd expr 
+	expr:  expr.TSub expr 
+	expr:  expr.TMul expr 
+	expr:  expr.TDiv expr 
+	expr:  expr.TMod expr 
+	expr:  expr.TPow expr 
+	expr:  expr.TDotLParen type_expr TRParen 
+	field:  TLBracket expr TRBracket TAssign expr.    (116)
+
+	TAnd  shift 78
+	TOr  shift 77
+	TEqeq  shift 87
+	TNeq  shift 88
+	TLte  shift 86
+	TGte  shift 85
+	T2Dot  shift 89
+	TAdd  shift 90
+	TSub  shift 91
+	TMul  shift 92
+	TDiv  shift 93
+	TMod  shift 94
+	TPow  shift 95
+	TLeftShift  shift 81
+	TRightShift  shift 82
+	TBitAnd  shift 80
+	TBitOr  shift 79
+	TDotLParen  shift 96
+	TGt  shift 83
+	TLt  shift 84
+	.  reduce 116 (src line 614)
+
+
+state 211
+	stat:  TIf expr TLBrace block TRBrace elseifs TElse.TLBrace block TRBrace 
+
+	TLBrace  shift 217
+	.  error
+
+
+state 212
+	elseifs:  elseifs TElseIf.expr TLBrace block TRBrace 
+
+	TFalse  shift 29
+	TFunction  shift 40
+	TNil  shift 28
+	TNot  shift 38
+	TTrue  shift 30
+	T3Dot  shift 32
+	TIdent  shift 20
+	TNumber  shift 31
+	TString  shift 42
+	TLBrace  shift 43
+	TLParen  shift 24
+	TSub  shift 37
+	THash  shift 39
+	.  error
+
+	var  goto 41
+	expr  goto 218
+	string  goto 35
+	prefixexp  goto 34
+	functioncall  goto 23
+	afunctioncall  goto 21
+	function  goto 33
+	tableconstructor  goto 36
+
+state 213
+	stat:  TFor TIdent TAssign expr TComma expr TLBrace.block TRBrace TIfThru TLBrace block TRBrace 
+	stat:  TFor TIdent TAssign expr TComma expr TLBrace.block TRBrace 
+	chunk1: .    (4)
+
+	.  reduce 4 (src line 101)
+
+	chunk  goto 58
+	chunk1  goto 2
+	block  goto 219
+
+state 214
+	stat:  TFor TIdent TAssign expr TComma expr TComma.expr TLBrace block TRBrace TIfThru TLBrace block TRBrace 
+	stat:  TFor TIdent TAssign expr TComma expr TComma.expr TLBrace block TRBrace 
+
+	TFalse  shift 29
+	TFunction  shift 40
+	TNil  shift 28
+	TNot  shift 38
+	TTrue  shift 30
+	T3Dot  shift 32
+	TIdent  shift 20
+	TNumber  shift 31
+	TString  shift 42
+	TLBrace  shift 43
+	TLParen  shift 24
+	TSub  shift 37
+	THash  shift 39
+	.  error
+
+	var  goto 41
+	expr  goto 220
+	string  goto 35
+	prefixexp  goto 34
+	functioncall  goto 23
+	afunctioncall  goto 21
+	function  goto 33
+	tableconstructor  goto 36
+
+state 215
+	stat:  TFor namelist TIn exprlist TLBrace block TRBrace.TIfThru TLBrace block TRBrace 
+	stat:  TFor namelist TIn exprlist TLBrace block TRBrace.    (28)
+
+	TIfThru  shift 221
+	.  reduce 28 (src line 225)
+
+
+state 216
+	funcbody:  TLParen parlist TRParen TLBrace block TRBrace.    (105)
+
+	.  reduce 105 (src line 562)
+
+
+state 217
+	stat:  TIf expr TLBrace block TRBrace elseifs TElse TLBrace.block TRBrace 
+	chunk1: .    (4)
+
+	.  reduce 4 (src line 101)
+
+	chunk  goto 58
+	chunk1  goto 2
+	block  goto 222
+
+state 218
+	elseifs:  elseifs TElseIf expr.TLBrace block TRBrace 
+	expr:  expr.TOr expr 
+	expr:  expr.TAnd expr 
+	expr:  expr.TBitOr expr 
+	expr:  expr.TBitAnd expr 
+	expr:  expr.TLeftShift expr 
+	expr:  expr.TRightShift expr 
+	expr:  expr.TGt expr 
+	expr:  expr.TLt expr 
+	expr:  expr.TGte expr 
+	expr:  expr.TLte expr 
+	expr:  expr.TEqeq expr 
+	expr:  expr.TNeq expr 
+	expr:  expr.T2Dot expr 
+	expr:  expr.TAdd expr 
+	expr:  expr.TSub expr 
+	expr:  expr.TMul expr 
+	expr:  expr.TDiv expr 
+	expr:  expr.TMod expr 
+	expr:  expr.TPow expr 
+	expr:  expr.TDotLParen type_expr TRParen 
+
+	TAnd  shift 78
+	TOr  shift 77
+	TEqeq  shift 87
+	TNeq  shift 88
+	TLte  shift 86
+	TGte  shift 85
+	T2Dot  shift 89
+	TLBrace  shift 223
+	TAdd  shift 90
+	TSub  shift 91
+	TMul  shift 92
+	TDiv  shift 93
+	TMod  shift 94
+	TPow  shift 95
+	TLeftShift  shift 81
+	TRightShift  shift 82
+	TBitAnd  shift 80
+	TBitOr  shift 79
+	TDotLParen  shift 96
+	TGt  shift 83
+	TLt  shift 84
+	.  error
+
+
+state 219
+	stat:  TFor TIdent TAssign expr TComma expr TLBrace block.TRBrace TIfThru TLBrace block TRBrace 
+	stat:  TFor TIdent TAssign expr TComma expr TLBrace block.TRBrace 
+
+	TRBrace  shift 224
+	.  error
+
+
+state 220
+	stat:  TFor TIdent TAssign expr TComma expr TComma expr.TLBrace block TRBrace TIfThru TLBrace block TRBrace 
+	stat:  TFor TIdent TAssign expr TComma expr TComma expr.TLBrace block TRBrace 
+	expr:  expr.TOr expr 
+	expr:  expr.TAnd expr 
+	expr:  expr.TBitOr expr 
+	expr:  expr.TBitAnd expr 
+	expr:  expr.TLeftShift expr 
+	expr:  expr.TRightShift expr 
+	expr:  expr.TGt expr 
+	expr:  expr.TLt expr 
+	expr:  expr.TGte expr 
+	expr:  expr.TLte expr 
+	expr:  expr.TEqeq expr 
+	expr:  expr.TNeq expr 
+	expr:  expr.T2Dot expr 
+	expr:  expr.TAdd expr 
+	expr:  expr.TSub expr 
+	expr:  expr.TMul expr 
+	expr:  expr.TDiv expr 
+	expr:  expr.TMod expr 
+	expr:  expr.TPow expr 
+	expr:  expr.TDotLParen type_expr TRParen 
+
+	TAnd  shift 78
+	TOr  shift 77
+	TEqeq  shift 87
+	TNeq  shift 88
+	TLte  shift 86
+	TGte  shift 85
+	T2Dot  shift 89
+	TLBrace  shift 225
+	TAdd  shift 90
+	TSub  shift 91
+	TMul  shift 92
+	TDiv  shift 93
+	TMod  shift 94
+	TPow  shift 95
+	TLeftShift  shift 81
+	TRightShift  shift 82
+	TBitAnd  shift 80
+	TBitOr  shift 79
+	TDotLParen  shift 96
+	TGt  shift 83
+	TLt  shift 84
+	.  error
+
+
+state 221
+	stat:  TFor namelist TIn exprlist TLBrace block TRBrace TIfThru.TLBrace block TRBrace 
+
+	TLBrace  shift 226
+	.  error
+
+
+state 222
+	stat:  TIf expr TLBrace block TRBrace elseifs TElse TLBrace block.TRBrace 
+
+	TRBrace  shift 227
+	.  error
+
+
+state 223
+	elseifs:  elseifs TElseIf expr TLBrace.block TRBrace 
+	chunk1: .    (4)
+
+	.  reduce 4 (src line 101)
+
+	chunk  goto 58
+	chunk1  goto 2
+	block  goto 228
+
+state 224
+	stat:  TFor TIdent TAssign expr TComma expr TLBrace block TRBrace.TIfThru TLBrace block TRBrace 
+	stat:  TFor TIdent TAssign expr TComma expr TLBrace block TRBrace.    (24)
+
+	TIfThru  shift 229
+	.  reduce 24 (src line 205)
+
+
+state 225
+	stat:  TFor TIdent TAssign expr TComma expr TComma expr TLBrace.block TRBrace TIfThru TLBrace block TRBrace 
+	stat:  TFor TIdent TAssign expr TComma expr TComma expr TLBrace.block TRBrace 
+	chunk1: .    (4)
+
+	.  reduce 4 (src line 101)
+
+	chunk  goto 58
+	chunk1  goto 2
+	block  goto 230
+
+state 226
+	stat:  TFor namelist TIn exprlist TLBrace block TRBrace TIfThru TLBrace.block TRBrace 
+	chunk1: .    (4)
+
+	.  reduce 4 (src line 101)
+
+	chunk  goto 58
+	chunk1  goto 2
+	block  goto 231
+
+state 227
+	stat:  TIf expr TLBrace block TRBrace elseifs TElse TLBrace block TRBrace.    (22)
+
+	.  reduce 22 (src line 189)
+
+
+state 228
+	elseifs:  elseifs TElseIf expr TLBrace block.TRBrace 
+
+	TRBrace  shift 232
+	.  error
+
+
+state 229
+	stat:  TFor TIdent TAssign expr TComma expr TLBrace block TRBrace TIfThru.TLBrace block TRBrace 
+
+	TLBrace  shift 233
+	.  error
+
+
+state 230
+	stat:  TFor TIdent TAssign expr TComma expr TComma expr TLBrace block.TRBrace TIfThru TLBrace block TRBrace 
+	stat:  TFor TIdent TAssign expr TComma expr TComma expr TLBrace block.TRBrace 
+
+	TRBrace  shift 234
+	.  error
+
+
+state 231
+	stat:  TFor namelist TIn exprlist TLBrace block TRBrace TIfThru TLBrace block.TRBrace 
+
+	TRBrace  shift 235
+	.  error
+
+
+state 232
+	elseifs:  elseifs TElseIf expr TLBrace block TRBrace.    (36)
+
+	.  reduce 36 (src line 261)
+
+
+state 233
+	stat:  TFor TIdent TAssign expr TComma expr TLBrace block TRBrace TIfThru TLBrace.block TRBrace 
+	chunk1: .    (4)
+
+	.  reduce 4 (src line 101)
+
+	chunk  goto 58
+	chunk1  goto 2
+	block  goto 236
+
+state 234
+	stat:  TFor TIdent TAssign expr TComma expr TComma expr TLBrace block TRBrace.TIfThru TLBrace block TRBrace 
+	stat:  TFor TIdent TAssign expr TComma expr TComma expr TLBrace block TRBrace.    (26)
+
+	TIfThru  shift 237
+	.  reduce 26 (src line 215)
+
+
+state 235
+	stat:  TFor namelist TIn exprlist TLBrace block TRBrace TIfThru TLBrace block TRBrace.    (27)
+
+	.  reduce 27 (src line 220)
+
+
+state 236
+	stat:  TFor TIdent TAssign expr TComma expr TLBrace block TRBrace TIfThru TLBrace block.TRBrace 
+
+	TRBrace  shift 238
+	.  error
+
+
+state 237
+	stat:  TFor TIdent TAssign expr TComma expr TComma expr TLBrace block TRBrace TIfThru.TLBrace block TRBrace 
+
+	TLBrace  shift 239
+	.  error
+
+
+state 238
+	stat:  TFor TIdent TAssign expr TComma expr TLBrace block TRBrace TIfThru TLBrace block TRBrace.    (23)
+
+	.  reduce 23 (src line 200)
+
+
+state 239
+	stat:  TFor TIdent TAssign expr TComma expr TComma expr TLBrace block TRBrace TIfThru TLBrace.block TRBrace 
+	chunk1: .    (4)
+
+	.  reduce 4 (src line 101)
+
+	chunk  goto 58
+	chunk1  goto 2
+	block  goto 240
+
+state 240
+	stat:  TFor TIdent TAssign expr TComma expr TComma expr TLBrace block TRBrace TIfThru TLBrace block.TRBrace 
+
+	TRBrace  shift 241
+	.  error
+
+
+state 241
+	stat:  TFor TIdent TAssign expr TComma expr TComma expr TLBrace block TRBrace TIfThru TLBrace block TRBrace.    (25)
+
+	.  reduce 25 (src line 210)
+
+Rule not reduced: stat:  TIf expr TLBrace block TRBrace 
+
+73 terminals, 27 nonterminals
+120 grammar rules, 242/16000 states
+25 shift/reduce, 71 reduce/reduce conflicts reported
+76 working sets used
+memory: parser 547/240000
+204 extra closures
+1365 shift entries, 10 exceptions
+104 goto entries
+369 entries saved by goto default
+Optimizer space used: output 928/240000
+928 table entries, 356 zero
+maximum spread: 72, maximum offset: 239

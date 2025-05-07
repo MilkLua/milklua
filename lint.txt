@@ -1,0 +1,2974 @@
+ast/token.go:20:1: receiver-naming: receiver name should be a reflection of its identity; don't use generic names such as "this" or "self" (revive)
+func (self *Token) String() string {
+	return fmt.Sprintf("<type:%v, str:%v>", self.Name, self.Str)
+}
+ast/ast.go:15:1: receiver-naming: receiver name should be a reflection of its identity; don't use generic names such as "this" or "self" (revive)
+func (self *Node) Line() int {
+	return self.line
+}
+ast/ast.go:19:1: receiver-naming: receiver name should be a reflection of its identity; don't use generic names such as "this" or "self" (revive)
+func (self *Node) SetLine(line int) {
+	self.line = line
+}
+ast/stmt.go:17:2: var-naming: struct field Lhs should be LHS (revive)
+	Lhs []Expr
+	^
+ast/stmt.go:18:2: var-naming: struct field Rhs should be RHS (revive)
+	Rhs []Expr
+	^
+ast/stmt.go:24:2: var-naming: struct field Lhs should be LHS (revive)
+	Lhs      Expr
+	^
+ast/expr.go:91:2: var-naming: struct field Lhs should be LHS (revive)
+	Lhs      Expr
+	^
+ast/expr.go:92:2: var-naming: struct field Rhs should be RHS (revive)
+	Rhs      Expr
+	^
+ast/stmt.go:26:2: var-naming: struct field Rhs should be RHS (revive)
+	Rhs      Expr
+	^
+ast/ast.go:5:10: interface method SetLine must have named param for type int (inamedparam)
+	SetLine(int)
+	        ^
+ast/ast.go:7:14: interface method SetLastLine must have named param for type int (inamedparam)
+	SetLastLine(int)
+	            ^
+pm/pm.go:513:6: Error return value is not checked (errcheck)
+		if p.(*seqPattern).MustTail {
+		   ^
+pm/pm.go:527:1: cognitive complexity 40 of func `recursiveVM` is high (> 30) (gocognit)
+func recursiveVM(src []byte, insts []inst, pc, sp int, ms ...*MatchData) (bool, int, *MatchData) {
+^
+pm/pm.go:377:1: cognitive complexity 34 of func `parsePattern` is high (> 30) (gocognit)
+func parsePattern(sc *scanner, toplevel bool) *seqPattern {
+^
+pm/pm.go:201:1: cyclomatic complexity 39 of func `(*singleClass).Matches` is high (> 30) (gocyclo)
+func (pn *singleClass) Matches(ch int) bool {
+^
+pm/pm.go:54:26: G115: integer overflow conversion int -> uint32 (gosec)
+	st.captures[s] = (uint32(pos) << 1) | 1
+	                        ^
+pm/pm.go:55:28: G115: integer overflow conversion int -> uint32 (gosec)
+	st.captures[s+1] = (uint32(pos) << 1) | 1
+	                          ^
+pm/pm.go:63:26: G115: integer overflow conversion int -> uint32 (gosec)
+	st.captures[s] = (uint32(pos) << 1)
+	                        ^
+pm/pm.go:189:29: unused-parameter: parameter 'ch' seems to be unused, consider removing or renaming it as _ (revive)
+func (pn *dotClass) Matches(ch int) bool { return true }
+                            ^
+pm/pm.go:9:7: var-naming: don't use ALL_CAPS in Go names; use CamelCase (revive)
+const _UNKNOWN = -2
+      ^
+pm/pm.go:128:9: indent-error-flow: if block ends with a return statement, so drop this else and outdent its block (revive)
+	} else {
+		return sc.State.Pos + 1
+	}
+pm/pm.go:331:1: calculated cyclomatic complexity for function parseClassSet is 11, max is 10 (cyclop)
+func parseClassSet(sc *scanner) class {
+^
+pm/pm.go:460:1: calculated cyclomatic complexity for function compilePattern is 16, max is 10 (cyclop)
+func compilePattern(p pattern, ps ...*iptr) []inst {
+^
+pm/pm.go:43:2: Duplicate words (xxxx) found (dupword)
+	// xxxx xxxx xxxx xxx0 : caputured positions
+	^
+pm/pm.go:44:2: Duplicate words (xxxx) found (dupword)
+	// xxxx xxxx xxxx xxx1 : position captured positions
+	^
+pm/pm.go:97:10: pm.scannerState is missing fields Pos, started (exhaustruct)
+		saved: scannerState{},
+		       ^
+pm/pm.go:378:10: pm.seqPattern is missing fields MustHead, MustTail, Patterns (exhaustruct)
+	pat := &seqPattern{}
+	        ^
+pm/pm.go:573:7: assignOp: replace `sp = sp + 1` with `sp++` (gocritic)
+		for sp = sp + 1; sp < len(src); sp++ {
+		    ^
+pm/pm.go:322:2: commentFormatting: put a space between `//` and comment text (gocritic)
+	//case '^' '$', '(', ')', ']', '*', '+', '-', '?':
+	^
+pm/pm.go:405:3: commentFormatting: put a space between `//` and comment text (gocritic)
+		//case ']':
+		^
+pm/pm.go:256:2: singleCaseSwitch: should rewrite switch statement to if statement (gocritic)
+	switch begin := pn.Begin.(type) {
+	^
+pm/pm.go:465:1: File is not properly formatted (gofmt)
+		ptr = &iptr{[]inst{inst{opSave, nil, 0, -1}}, 2}
+^
+pm/pm.go:8:1: File is not properly formatted (gofumpt)
+const EOS = -1
+^
+pm/pm.go:30:10: S1025: the argument is already a string, there's no need to use fmt.Sprintf (gosimple)
+		return fmt.Sprintf("%s", e.Message)
+		       ^
+pm/pm.go:593:3: for loop can be changed to use an integer range (Go 1.22+) (intrange)
+		for i := 0; i < len(capture); i++ {
+		^
+pm/pm.go:307:1: parseClass returns interface (milklua/pm.class) (ireturn)
+func parseClass(sc *scanner, allowset bool) class {
+^
+pm/pm.go:213:1: The line is 124 characters long, which exceeds the maximum of 120 characters. (lll)
+		ret = (0x21 <= ch && ch <= 0x2f) || (0x3a <= ch && ch <= 0x40) || (0x5b <= ch && ch <= 0x60) || (0x7b <= ch && ch <= 0x7e)
+^
+pm/pm.go:207:45: Magic number: 0x7F, in <operation> detected (mnd)
+		ret = (0x00 <= ch && ch <= 0x1F) || ch == 0x7F
+		                                          ^
+pm/pm.go:588:26: Magic number: 2, in <operation> detected (mnd)
+		idx := inst.Operand1 * 2
+		                       ^
+pm/pm.go:22:2: return with no blank line before (nlreturn)
+	return &Error{pos, fmt.Sprintf(message, args...)}
+	^
+pm/pm.go:64:2: return with no blank line before (nlreturn)
+	return v
+	^
+pm/pm.go:115:2: return with no blank line before (nlreturn)
+	return int(sc.src[sc.State.Pos])
+	^
+pm/pm.go:350:4: fallthrough with no blank line before (nlreturn)
+			fallthrough
+			^
+pm/pm.go:348:5: goto with no blank line before (nlreturn)
+				goto exit
+				^
+pm/pm.go:357:4: fallthrough with no blank line before (nlreturn)
+			fallthrough
+			^
+pm/pm.go:355:5: continue with no blank line before (nlreturn)
+				continue
+				^
+pm/pm.go:432:6: continue with no blank line before (nlreturn)
+					continue
+					^
+pm/pm.go:445:4: goto with no blank line before (nlreturn)
+			goto exit
+			^
+pm/pm.go:543:3: goto with no blank line before (nlreturn)
+		goto redo
+		^
+pm/pm.go:609:1: named return "matches" with type "[]*MatchData" found (nonamedreturns)
+func Find(p string, src []byte, offset, limit int) (matches []*MatchData, err error) {
+^
+pm/pm.go:28:10: fmt.Sprintf can be replaced with string concatenation (perfsprint)
+		return fmt.Sprintf("%s at EOS", e.Message)
+		       ^
+pm/pm.go:18:40: `newError` - `args` always receives `nil` (unparam)
+func newError(pos int, message string, args ...interface{}) *Error {
+                                       ^
+pm/pm.go:308:2: variable name 'ch' is too short for the scope of its usage (varnamelen)
+	ch := sc.Next()
+	^
+pm/pm.go:528:6: variable name 'm' is too short for the scope of its usage (varnamelen)
+	var m *MatchData
+	    ^
+pm/pm.go:623:3: variable name 'ms' is too short for the scope of its usage (varnamelen)
+		ok, nsp, ms := recursiveVM(src, insts, 0, sp)
+		^
+pm/pm.go:135:2: variable name 'ch' is too short for the scope of its usage (varnamelen)
+	ch := sc.Next()
+	^
+pm/pm.go:386:3: variable name 'ch' is too short for the scope of its usage (varnamelen)
+		ch := sc.Peek()
+		^
+pm/pm.go:255:31: parameter name 'ch' is too short for the scope of its usage (varnamelen)
+func (pn *rangeClass) Matches(ch int) bool {
+                              ^
+pm/pm.go:419:5: if statements should only be cuddled with assignments used in the if statement itself (wsl)
+				if sc.Peek() != ')' {
+				^
+pm/pm.go:463:2: only one cuddle assignment allowed before if statement (wsl)
+	if len(ps) == 0 {
+	^
+pm/pm.go:629:4: append only allowed to cuddle with appended value (wsl)
+			matches = append(matches, ms)
+			^
+pm/pm.go:230:2: if statements should only be cuddled with assignments (wsl)
+	if 'A' <= pn.Class && pn.Class <= 'Z' {
+	^
+pm/pm.go:622:2: only one cuddle assignment allowed before for statement (wsl)
+	for sp := offset; sp <= len(src); {
+	^
+pm/pm.go:354:5: assignments should only be cuddled with other assignments (wsl)
+				isrange = true
+				^
+pm/pm.go:462:2: assignments should only be cuddled with other assignments (wsl)
+	toplevel := false
+	^
+pm/pm.go:598:3: assignments should only be cuddled with other assignments (wsl)
+		pc++
+		^
+pm/pm.go:448:4: append only allowed to cuddle with appended value (wsl)
+			pat.Patterns = append(pat.Patterns, &singlePattern{&charClass{ch}})
+			^
+pm/pm.go:577:4: if statements should only be cuddled with assignments (wsl)
+			if count == 0 {
+			^
+pm/pm.go:416:5: append only allowed to cuddle with appended value (wsl)
+				pat.Patterns = append(pat.Patterns, &posCapPattern{})
+				^
+pm/pm.go:442:4: expressions should not be cuddled with blocks (wsl)
+			sc.Next()
+			^
+pm/pm.go:422:5: expressions should not be cuddled with blocks (wsl)
+				sc.Next()
+				^
+pm/pm.go:562:3: expressions should not be cuddled with blocks (wsl)
+		m.restoreCapture(inst.Operand1, s)
+		^
+pm/pm.go:361:3: if statements should only be cuddled with assignments (wsl)
+		if isrange {
+		^
+pm/pm.go:536:2: only one cuddle assignment allowed before switch statement (wsl)
+	switch inst.OpCode {
+	^
+pm/pm.go:203:2: switch statements should only be cuddled with variables switched (wsl)
+	switch pn.Class {
+	^
+pm/pm.go:478:3: switch statements should only be cuddled with variables switched (wsl)
+		switch pat.Type {
+		^
+pm/pm.go:559:3: if statements should only be cuddled with assignments used in the if statement itself (wsl)
+		if ok, nsp, _ := recursiveVM(src, insts, pc+1, sp, m); ok {
+		^
+pm/pm.go:335:3: only cuddled expressions if assigning variable or using from line above (wsl)
+		sc.Next()
+		^
+pm/pm.go:469:2: only one cuddle assignment allowed before type switch statement (wsl)
+	switch pat := p.(type) {
+	^
+pm/pm.go:625:3: only one cuddle assignment allowed before if statement (wsl)
+		if ok {
+		^
+pm/pm.go:338:2: for statement without condition should never be cuddled (wsl)
+	for {
+	^
+pm/pm.go:391:4: only one cuddle assignment allowed before switch statement (wsl)
+			switch sc.Peek() {
+			^
+pm/pm.go:385:2: for statement without condition should never be cuddled (wsl)
+	for {
+	^
+pm/pm.go:136:2: only one cuddle assignment allowed before if statement (wsl)
+	if !cureof {
+	^
+pm/pm.go:379:2: if statements should only be cuddled with assignments used in the if statement itself (wsl)
+	if toplevel {
+	^
+vm.go:72: 72-170 lines are duplicate of `vm.go:1610-1708` (dupl)
+	if b == 1 {
+		// this section is inlined by go-inline
+		// source function is 'func (rg *registry) FillNil(regm, n int) ' in '_state.go'
+		{
+			rg := L.reg
+			regm := regv
+			newSize := regm + n
+			// this section is inlined by go-inline
+			// source function is 'func (rg *registry) checkSize(requiredSize int) ' in '_state.go'
+			{
+				requiredSize := newSize
+				if requiredSize > cap(rg.array) {
+					rg.resize(requiredSize)
+				}
+			}
+			for i := 0; i < n; i++ {
+				rg.array[regm+i] = LNil
+			}
+			// values beyond top don't need to be valid LValues, so setting them to nil is fine
+			// setting them to nil rather than LNil lets us invoke the golang memclr opto
+			oldtop := rg.top
+			rg.top = regm + n
+			if rg.top < oldtop {
+				nilRange := rg.array[rg.top:oldtop]
+				for i := range nilRange {
+					nilRange[i] = nil
+				}
+			}
+		}
+	} else {
+		// this section is inlined by go-inline
+		// source function is 'func (rg *registry) CopyRange(regv, start, limit, n int) ' in '_state.go'
+		{
+			rg := L.reg
+			limit := -1
+			newSize := regv + n
+			// this section is inlined by go-inline
+			// source function is 'func (rg *registry) checkSize(requiredSize int) ' in '_state.go'
+			{
+				requiredSize := newSize
+				if requiredSize > cap(rg.array) {
+					rg.resize(requiredSize)
+				}
+			}
+			if limit == -1 || limit > rg.top {
+				limit = rg.top
+			}
+			for i := 0; i < n; i++ {
+				srcIdx := start + i
+				if srcIdx >= limit || srcIdx < 0 {
+					rg.array[regv+i] = LNil
+				} else {
+					rg.array[regv+i] = rg.array[srcIdx]
+				}
+			}
+
+			// values beyond top don't need to be valid LValues, so setting them to nil is fine
+			// setting them to nil rather than LNil lets us invoke the golang memclr opto
+			oldtop := rg.top
+			rg.top = regv + n
+			if rg.top < oldtop {
+				nilRange := rg.array[rg.top:oldtop]
+				for i := range nilRange {
+					nilRange[i] = nil
+				}
+			}
+		}
+		if b > 1 && n > (b-1) {
+			// this section is inlined by go-inline
+			// source function is 'func (rg *registry) FillNil(regm, n int) ' in '_state.go'
+			{
+				rg := L.reg
+				regm := regv + b - 1
+				n := n - (b - 1)
+				newSize := regm + n
+				// this section is inlined by go-inline
+				// source function is 'func (rg *registry) checkSize(requiredSize int) ' in '_state.go'
+				{
+					requiredSize := newSize
+					if requiredSize > cap(rg.array) {
+						rg.resize(requiredSize)
+					}
+				}
+				for i := 0; i < n; i++ {
+					rg.array[regm+i] = LNil
+				}
+				// values beyond top don't need to be valid LValues, so setting them to nil is fine
+				// setting them to nil rather than LNil lets us invoke the golang memclr opto
+				oldtop := rg.top
+				rg.top = regm + n
+				if rg.top < oldtop {
+					nilRange := rg.array[rg.top:oldtop]
+					for i := range nilRange {
+						nilRange[i] = nil
+					}
+				}
+			}
+		}
+	}
+vm.go:1610: 1610-1708 lines are duplicate of `vm.go:1720-1818` (dupl)
+					if b == 1 {
+						// this section is inlined by go-inline
+						// source function is 'func (rg *registry) FillNil(regm, n int) ' in '_state.go'
+						{
+							rg := L.reg
+							regm := regv
+							newSize := regm + n
+							// this section is inlined by go-inline
+							// source function is 'func (rg *registry) checkSize(requiredSize int) ' in '_state.go'
+							{
+								requiredSize := newSize
+								if requiredSize > cap(rg.array) {
+									rg.resize(requiredSize)
+								}
+							}
+							for i := 0; i < n; i++ {
+								rg.array[regm+i] = LNil
+							}
+							// values beyond top don't need to be valid LValues, so setting them to nil is fine
+							// setting them to nil rather than LNil lets us invoke the golang memclr opto
+							oldtop := rg.top
+							rg.top = regm + n
+							if rg.top < oldtop {
+								nilRange := rg.array[rg.top:oldtop]
+								for i := range nilRange {
+									nilRange[i] = nil
+								}
+							}
+						}
+					} else {
+						// this section is inlined by go-inline
+						// source function is 'func (rg *registry) CopyRange(regv, start, limit, n int) ' in '_state.go'
+						{
+							rg := L.reg
+							limit := -1
+							newSize := regv + n
+							// this section is inlined by go-inline
+							// source function is 'func (rg *registry) checkSize(requiredSize int) ' in '_state.go'
+							{
+								requiredSize := newSize
+								if requiredSize > cap(rg.array) {
+									rg.resize(requiredSize)
+								}
+							}
+							if limit == -1 || limit > rg.top {
+								limit = rg.top
+							}
+							for i := 0; i < n; i++ {
+								srcIdx := start + i
+								if srcIdx >= limit || srcIdx < 0 {
+									rg.array[regv+i] = LNil
+								} else {
+									rg.array[regv+i] = rg.array[srcIdx]
+								}
+							}
+
+							// values beyond top don't need to be valid LValues, so setting them to nil is fine
+							// setting them to nil rather than LNil lets us invoke the golang memclr opto
+							oldtop := rg.top
+							rg.top = regv + n
+							if rg.top < oldtop {
+								nilRange := rg.array[rg.top:oldtop]
+								for i := range nilRange {
+									nilRange[i] = nil
+								}
+							}
+						}
+						if b > 1 && n > (b-1) {
+							// this section is inlined by go-inline
+							// source function is 'func (rg *registry) FillNil(regm, n int) ' in '_state.go'
+							{
+								rg := L.reg
+								regm := regv + b - 1
+								n := n - (b - 1)
+								newSize := regm + n
+								// this section is inlined by go-inline
+								// source function is 'func (rg *registry) checkSize(requiredSize int) ' in '_state.go'
+								{
+									requiredSize := newSize
+									if requiredSize > cap(rg.array) {
+										rg.resize(requiredSize)
+									}
+								}
+								for i := 0; i < n; i++ {
+									rg.array[regm+i] = LNil
+								}
+								// values beyond top don't need to be valid LValues, so setting them to nil is fine
+								// setting them to nil rather than LNil lets us invoke the golang memclr opto
+								oldtop := rg.top
+								rg.top = regm + n
+								if rg.top < oldtop {
+									nilRange := rg.array[rg.top:oldtop]
+									for i := range nilRange {
+										nilRange[i] = nil
+									}
+								}
+							}
+						}
+					}
+vm.go:1720: 1720-1818 lines are duplicate of `vm.go:72-170` (dupl)
+				if b == 1 {
+					// this section is inlined by go-inline
+					// source function is 'func (rg *registry) FillNil(regm, n int) ' in '_state.go'
+					{
+						rg := L.reg
+						regm := regv
+						newSize := regm + n
+						// this section is inlined by go-inline
+						// source function is 'func (rg *registry) checkSize(requiredSize int) ' in '_state.go'
+						{
+							requiredSize := newSize
+							if requiredSize > cap(rg.array) {
+								rg.resize(requiredSize)
+							}
+						}
+						for i := 0; i < n; i++ {
+							rg.array[regm+i] = LNil
+						}
+						// values beyond top don't need to be valid LValues, so setting them to nil is fine
+						// setting them to nil rather than LNil lets us invoke the golang memclr opto
+						oldtop := rg.top
+						rg.top = regm + n
+						if rg.top < oldtop {
+							nilRange := rg.array[rg.top:oldtop]
+							for i := range nilRange {
+								nilRange[i] = nil
+							}
+						}
+					}
+				} else {
+					// this section is inlined by go-inline
+					// source function is 'func (rg *registry) CopyRange(regv, start, limit, n int) ' in '_state.go'
+					{
+						rg := L.reg
+						limit := -1
+						newSize := regv + n
+						// this section is inlined by go-inline
+						// source function is 'func (rg *registry) checkSize(requiredSize int) ' in '_state.go'
+						{
+							requiredSize := newSize
+							if requiredSize > cap(rg.array) {
+								rg.resize(requiredSize)
+							}
+						}
+						if limit == -1 || limit > rg.top {
+							limit = rg.top
+						}
+						for i := 0; i < n; i++ {
+							srcIdx := start + i
+							if srcIdx >= limit || srcIdx < 0 {
+								rg.array[regv+i] = LNil
+							} else {
+								rg.array[regv+i] = rg.array[srcIdx]
+							}
+						}
+
+						// values beyond top don't need to be valid LValues, so setting them to nil is fine
+						// setting them to nil rather than LNil lets us invoke the golang memclr opto
+						oldtop := rg.top
+						rg.top = regv + n
+						if rg.top < oldtop {
+							nilRange := rg.array[rg.top:oldtop]
+							for i := range nilRange {
+								nilRange[i] = nil
+							}
+						}
+					}
+					if b > 1 && n > (b-1) {
+						// this section is inlined by go-inline
+						// source function is 'func (rg *registry) FillNil(regm, n int) ' in '_state.go'
+						{
+							rg := L.reg
+							regm := regv + b - 1
+							n := n - (b - 1)
+							newSize := regm + n
+							// this section is inlined by go-inline
+							// source function is 'func (rg *registry) checkSize(requiredSize int) ' in '_state.go'
+							{
+								requiredSize := newSize
+								if requiredSize > cap(rg.array) {
+									rg.resize(requiredSize)
+								}
+							}
+							for i := 0; i < n; i++ {
+								rg.array[regm+i] = LNil
+							}
+							// values beyond top don't need to be valid LValues, so setting them to nil is fine
+							// setting them to nil rather than LNil lets us invoke the golang memclr opto
+							oldtop := rg.top
+							rg.top = regm + n
+							if rg.top < oldtop {
+								nilRange := rg.array[rg.top:oldtop]
+								for i := range nilRange {
+									nilRange[i] = nil
+								}
+							}
+						}
+					}
+				}
+state.go:1020: 1020-1112 lines are duplicate of `state.go:1132-1224` (dupl)
+	if cf.Fn.IsG {
+		ls.reg.SetTop(cf.LocalBase + cf.NArgs)
+	} else {
+		proto := cf.Fn.Proto
+		nargs := cf.NArgs
+		np := int(proto.NumParameters)
+		if nargs < np {
+			// default any missing arguments to nil
+			newSize := cf.LocalBase + np
+			// this section is inlined by go-inline
+			// source function is 'func (rg *registry) checkSize(requiredSize int) ' in '_state.go'
+			{
+				rg := ls.reg
+				requiredSize := newSize
+				if requiredSize > cap(rg.array) {
+					rg.resize(requiredSize)
+				}
+			}
+			for i := nargs; i < np; i++ {
+				ls.reg.array[cf.LocalBase+i] = LNil
+			}
+			nargs = np
+			ls.reg.top = newSize
+		}
+
+		if (proto.IsVarArg & VarArgIsVarArg) == 0 {
+			if nargs < int(proto.NumUsedRegisters) {
+				nargs = int(proto.NumUsedRegisters)
+			}
+			newSize := cf.LocalBase + nargs
+			// this section is inlined by go-inline
+			// source function is 'func (rg *registry) checkSize(requiredSize int) ' in '_state.go'
+			{
+				rg := ls.reg
+				requiredSize := newSize
+				if requiredSize > cap(rg.array) {
+					rg.resize(requiredSize)
+				}
+			}
+			for i := np; i < nargs; i++ {
+				ls.reg.array[cf.LocalBase+i] = LNil
+			}
+			ls.reg.top = cf.LocalBase + int(proto.NumUsedRegisters)
+		} else {
+			/* swap vararg positions:
+					   closure
+					   namedparam1 <- lbase
+					   namedparam2
+					   vararg1
+					   vararg2
+
+			           TO
+
+					   closure
+					   nil
+					   nil
+					   vararg1
+					   vararg2
+					   namedparam1 <- lbase
+					   namedparam2
+			*/
+			nvarargs := nargs - np
+			if nvarargs < 0 {
+				nvarargs = 0
+			}
+
+			ls.reg.SetTop(cf.LocalBase + nargs + np)
+			for i := 0; i < np; i++ {
+				//ls.reg.Set(cf.LocalBase+nargs+i, ls.reg.Get(cf.LocalBase+i))
+				ls.reg.array[cf.LocalBase+nargs+i] = ls.reg.array[cf.LocalBase+i]
+				//ls.reg.Set(cf.LocalBase+i, LNil)
+				ls.reg.array[cf.LocalBase+i] = LNil
+			}
+
+			if CompatVarArg {
+				ls.reg.SetTop(cf.LocalBase + nargs + np + 1)
+				if (proto.IsVarArg & VarArgNeedsArg) != 0 {
+					argtb := newLTable(nvarargs, 0)
+					for i := 0; i < nvarargs; i++ {
+						argtb.RawSetInt(i+1, ls.reg.Get(cf.LocalBase+np+i))
+					}
+					argtb.RawSetString("n", LNumber(nvarargs))
+					//ls.reg.Set(cf.LocalBase+nargs+np, argtb)
+					ls.reg.array[cf.LocalBase+nargs+np] = argtb
+				} else {
+					ls.reg.array[cf.LocalBase+nargs+np] = LNil
+				}
+			}
+			cf.LocalBase += nargs
+			maxreg := cf.LocalBase + int(proto.NumUsedRegisters)
+			ls.reg.SetTop(maxreg)
+		}
+	}
+state.go:1132: 1132-1224 lines are duplicate of `vm.go:1248-1340` (dupl)
+		if cf.Fn.IsG {
+			ls.reg.SetTop(cf.LocalBase + cf.NArgs)
+		} else {
+			proto := cf.Fn.Proto
+			nargs := cf.NArgs
+			np := int(proto.NumParameters)
+			if nargs < np {
+				// default any missing arguments to nil
+				newSize := cf.LocalBase + np
+				// this section is inlined by go-inline
+				// source function is 'func (rg *registry) checkSize(requiredSize int) ' in '_state.go'
+				{
+					rg := ls.reg
+					requiredSize := newSize
+					if requiredSize > cap(rg.array) {
+						rg.resize(requiredSize)
+					}
+				}
+				for i := nargs; i < np; i++ {
+					ls.reg.array[cf.LocalBase+i] = LNil
+				}
+				nargs = np
+				ls.reg.top = newSize
+			}
+
+			if (proto.IsVarArg & VarArgIsVarArg) == 0 {
+				if nargs < int(proto.NumUsedRegisters) {
+					nargs = int(proto.NumUsedRegisters)
+				}
+				newSize := cf.LocalBase + nargs
+				// this section is inlined by go-inline
+				// source function is 'func (rg *registry) checkSize(requiredSize int) ' in '_state.go'
+				{
+					rg := ls.reg
+					requiredSize := newSize
+					if requiredSize > cap(rg.array) {
+						rg.resize(requiredSize)
+					}
+				}
+				for i := np; i < nargs; i++ {
+					ls.reg.array[cf.LocalBase+i] = LNil
+				}
+				ls.reg.top = cf.LocalBase + int(proto.NumUsedRegisters)
+			} else {
+				/* swap vararg positions:
+						   closure
+						   namedparam1 <- lbase
+						   namedparam2
+						   vararg1
+						   vararg2
+
+				           TO
+
+						   closure
+						   nil
+						   nil
+						   vararg1
+						   vararg2
+						   namedparam1 <- lbase
+						   namedparam2
+				*/
+				nvarargs := nargs - np
+				if nvarargs < 0 {
+					nvarargs = 0
+				}
+
+				ls.reg.SetTop(cf.LocalBase + nargs + np)
+				for i := 0; i < np; i++ {
+					//ls.reg.Set(cf.LocalBase+nargs+i, ls.reg.Get(cf.LocalBase+i))
+					ls.reg.array[cf.LocalBase+nargs+i] = ls.reg.array[cf.LocalBase+i]
+					//ls.reg.Set(cf.LocalBase+i, LNil)
+					ls.reg.array[cf.LocalBase+i] = LNil
+				}
+
+				if CompatVarArg {
+					ls.reg.SetTop(cf.LocalBase + nargs + np + 1)
+					if (proto.IsVarArg & VarArgNeedsArg) != 0 {
+						argtb := newLTable(nvarargs, 0)
+						for i := 0; i < nvarargs; i++ {
+							argtb.RawSetInt(i+1, ls.reg.Get(cf.LocalBase+np+i))
+						}
+						argtb.RawSetString("n", LNumber(nvarargs))
+						//ls.reg.Set(cf.LocalBase+nargs+np, argtb)
+						ls.reg.array[cf.LocalBase+nargs+np] = argtb
+					} else {
+						ls.reg.array[cf.LocalBase+nargs+np] = LNil
+					}
+				}
+				cf.LocalBase += nargs
+				maxreg := cf.LocalBase + int(proto.NumUsedRegisters)
+				ls.reg.SetTop(maxreg)
+			}
+		}
+vm.go:1248: 1248-1340 lines are duplicate of `vm.go:1428-1520` (dupl)
+					if cf.Fn.IsG {
+						ls.reg.SetTop(cf.LocalBase + cf.NArgs)
+					} else {
+						proto := cf.Fn.Proto
+						nargs := cf.NArgs
+						np := int(proto.NumParameters)
+						if nargs < np {
+							// default any missing arguments to nil
+							newSize := cf.LocalBase + np
+							// this section is inlined by go-inline
+							// source function is 'func (rg *registry) checkSize(requiredSize int) ' in '_state.go'
+							{
+								rg := ls.reg
+								requiredSize := newSize
+								if requiredSize > cap(rg.array) {
+									rg.resize(requiredSize)
+								}
+							}
+							for i := nargs; i < np; i++ {
+								ls.reg.array[cf.LocalBase+i] = LNil
+							}
+							nargs = np
+							ls.reg.top = newSize
+						}
+
+						if (proto.IsVarArg & VarArgIsVarArg) == 0 {
+							if nargs < int(proto.NumUsedRegisters) {
+								nargs = int(proto.NumUsedRegisters)
+							}
+							newSize := cf.LocalBase + nargs
+							// this section is inlined by go-inline
+							// source function is 'func (rg *registry) checkSize(requiredSize int) ' in '_state.go'
+							{
+								rg := ls.reg
+								requiredSize := newSize
+								if requiredSize > cap(rg.array) {
+									rg.resize(requiredSize)
+								}
+							}
+							for i := np; i < nargs; i++ {
+								ls.reg.array[cf.LocalBase+i] = LNil
+							}
+							ls.reg.top = cf.LocalBase + int(proto.NumUsedRegisters)
+						} else {
+							/* swap vararg positions:
+									   closure
+									   namedparam1 <- lbase
+									   namedparam2
+									   vararg1
+									   vararg2
+
+							           TO
+
+									   closure
+									   nil
+									   nil
+									   vararg1
+									   vararg2
+									   namedparam1 <- lbase
+									   namedparam2
+							*/
+							nvarargs := nargs - np
+							if nvarargs < 0 {
+								nvarargs = 0
+							}
+
+							ls.reg.SetTop(cf.LocalBase + nargs + np)
+							for i := 0; i < np; i++ {
+								//ls.reg.Set(cf.LocalBase+nargs+i, ls.reg.Get(cf.LocalBase+i))
+								ls.reg.array[cf.LocalBase+nargs+i] = ls.reg.array[cf.LocalBase+i]
+								//ls.reg.Set(cf.LocalBase+i, LNil)
+								ls.reg.array[cf.LocalBase+i] = LNil
+							}
+
+							if CompatVarArg {
+								ls.reg.SetTop(cf.LocalBase + nargs + np + 1)
+								if (proto.IsVarArg & VarArgNeedsArg) != 0 {
+									argtb := newLTable(nvarargs, 0)
+									for i := 0; i < nvarargs; i++ {
+										argtb.RawSetInt(i+1, ls.reg.Get(cf.LocalBase+np+i))
+									}
+									argtb.RawSetString("n", LNumber(nvarargs))
+									//ls.reg.Set(cf.LocalBase+nargs+np, argtb)
+									ls.reg.array[cf.LocalBase+nargs+np] = argtb
+								} else {
+									ls.reg.array[cf.LocalBase+nargs+np] = LNil
+								}
+							}
+							cf.LocalBase += nargs
+							maxreg := cf.LocalBase + int(proto.NumUsedRegisters)
+							ls.reg.SetTop(maxreg)
+						}
+					}
+vm.go:1428: 1428-1520 lines are duplicate of `state.go:1020-1112` (dupl)
+					if cf.Fn.IsG {
+						ls.reg.SetTop(cf.LocalBase + cf.NArgs)
+					} else {
+						proto := cf.Fn.Proto
+						nargs := cf.NArgs
+						np := int(proto.NumParameters)
+						if nargs < np {
+							// default any missing arguments to nil
+							newSize := cf.LocalBase + np
+							// this section is inlined by go-inline
+							// source function is 'func (rg *registry) checkSize(requiredSize int) ' in '_state.go'
+							{
+								rg := ls.reg
+								requiredSize := newSize
+								if requiredSize > cap(rg.array) {
+									rg.resize(requiredSize)
+								}
+							}
+							for i := nargs; i < np; i++ {
+								ls.reg.array[cf.LocalBase+i] = LNil
+							}
+							nargs = np
+							ls.reg.top = newSize
+						}
+
+						if (proto.IsVarArg & VarArgIsVarArg) == 0 {
+							if nargs < int(proto.NumUsedRegisters) {
+								nargs = int(proto.NumUsedRegisters)
+							}
+							newSize := cf.LocalBase + nargs
+							// this section is inlined by go-inline
+							// source function is 'func (rg *registry) checkSize(requiredSize int) ' in '_state.go'
+							{
+								rg := ls.reg
+								requiredSize := newSize
+								if requiredSize > cap(rg.array) {
+									rg.resize(requiredSize)
+								}
+							}
+							for i := np; i < nargs; i++ {
+								ls.reg.array[cf.LocalBase+i] = LNil
+							}
+							ls.reg.top = cf.LocalBase + int(proto.NumUsedRegisters)
+						} else {
+							/* swap vararg positions:
+									   closure
+									   namedparam1 <- lbase
+									   namedparam2
+									   vararg1
+									   vararg2
+
+							           TO
+
+									   closure
+									   nil
+									   nil
+									   vararg1
+									   vararg2
+									   namedparam1 <- lbase
+									   namedparam2
+							*/
+							nvarargs := nargs - np
+							if nvarargs < 0 {
+								nvarargs = 0
+							}
+
+							ls.reg.SetTop(cf.LocalBase + nargs + np)
+							for i := 0; i < np; i++ {
+								//ls.reg.Set(cf.LocalBase+nargs+i, ls.reg.Get(cf.LocalBase+i))
+								ls.reg.array[cf.LocalBase+nargs+i] = ls.reg.array[cf.LocalBase+i]
+								//ls.reg.Set(cf.LocalBase+i, LNil)
+								ls.reg.array[cf.LocalBase+i] = LNil
+							}
+
+							if CompatVarArg {
+								ls.reg.SetTop(cf.LocalBase + nargs + np + 1)
+								if (proto.IsVarArg & VarArgNeedsArg) != 0 {
+									argtb := newLTable(nvarargs, 0)
+									for i := 0; i < nvarargs; i++ {
+										argtb.RawSetInt(i+1, ls.reg.Get(cf.LocalBase+np+i))
+									}
+									argtb.RawSetString("n", LNumber(nvarargs))
+									//ls.reg.Set(cf.LocalBase+nargs+np, argtb)
+									ls.reg.array[cf.LocalBase+nargs+np] = argtb
+								} else {
+									ls.reg.array[cf.LocalBase+nargs+np] = LNil
+								}
+							}
+							cf.LocalBase += nargs
+							maxreg := cf.LocalBase + int(proto.NumUsedRegisters)
+							ls.reg.SetTop(maxreg)
+						}
+					}
+httplib.go:137: 137-173 lines are duplicate of `httplib.go:176-212` (dupl)
+func httpPut(L *LState) int {
+	url := L.CheckString(1)
+	body := L.CheckString(2)
+	headers := L.OptTable(3, nil)
+
+	ctx, cancel := context.WithTimeout(context.Background(), requestTimeout)
+	defer cancel()
+
+	req, err := http.NewRequestWithContext(ctx, "PUT", url, strings.NewReader(body))
+	if err != nil {
+		L.RaiseError("create request failed: %v", err)
+		return 0
+	}
+
+	if headers != nil && isValidHeader(headers) {
+		req.Header = tableToHeader(L, headers)
+	}
+
+	if req.Header.Get("Content-Type") == "" {
+		req.Header.Set("Content-Type", "application/json")
+	}
+
+	resp, err := http.DefaultClient.Do(req)
+	if err != nil {
+		L.RaiseError("HTTP put error: %v", err)
+		return 0
+	}
+	defer resp.Body.Close()
+
+	data, err := io.ReadAll(resp.Body)
+	if err != nil {
+		L.RaiseError("HTTP read error: %v", err)
+		return 0
+	}
+	L.Push(LString(string(data)))
+	return 1
+}
+httplib.go:176: 176-212 lines are duplicate of `httplib.go:137-173` (dupl)
+func httpPatch(L *LState) int {
+	url := L.CheckString(1)
+	body := L.CheckString(2)
+	headers := L.OptTable(3, nil)
+
+	ctx, cancel := context.WithTimeout(context.Background(), requestTimeout)
+	defer cancel()
+
+	req, err := http.NewRequestWithContext(ctx, "PATCH", url, strings.NewReader(body))
+	if err != nil {
+		L.RaiseError("create request failed: %v", err)
+		return 0
+	}
+
+	if headers != nil && isValidHeader(headers) {
+		req.Header = tableToHeader(L, headers)
+	}
+
+	if req.Header.Get("Content-Type") == "" {
+		req.Header.Set("Content-Type", "application/json")
+	}
+
+	resp, err := http.DefaultClient.Do(req)
+	if err != nil {
+		L.RaiseError("HTTP patch error: %v", err)
+		return 0
+	}
+	defer resp.Body.Close()
+
+	data, err := io.ReadAll(resp.Body)
+	if err != nil {
+		L.RaiseError("HTTP read error: %v", err)
+		return 0
+	}
+	L.Push(LString(string(data)))
+	return 1
+}
+state.go:1130: 1130-1225 lines are duplicate of `vm.go:1246-1341` (dupl)
+	{
+		cf := newcf
+		if cf.Fn.IsG {
+			ls.reg.SetTop(cf.LocalBase + cf.NArgs)
+		} else {
+			proto := cf.Fn.Proto
+			nargs := cf.NArgs
+			np := int(proto.NumParameters)
+			if nargs < np {
+				// default any missing arguments to nil
+				newSize := cf.LocalBase + np
+				// this section is inlined by go-inline
+				// source function is 'func (rg *registry) checkSize(requiredSize int) ' in '_state.go'
+				{
+					rg := ls.reg
+					requiredSize := newSize
+					if requiredSize > cap(rg.array) {
+						rg.resize(requiredSize)
+					}
+				}
+				for i := nargs; i < np; i++ {
+					ls.reg.array[cf.LocalBase+i] = LNil
+				}
+				nargs = np
+				ls.reg.top = newSize
+			}
+
+			if (proto.IsVarArg & VarArgIsVarArg) == 0 {
+				if nargs < int(proto.NumUsedRegisters) {
+					nargs = int(proto.NumUsedRegisters)
+				}
+				newSize := cf.LocalBase + nargs
+				// this section is inlined by go-inline
+				// source function is 'func (rg *registry) checkSize(requiredSize int) ' in '_state.go'
+				{
+					rg := ls.reg
+					requiredSize := newSize
+					if requiredSize > cap(rg.array) {
+						rg.resize(requiredSize)
+					}
+				}
+				for i := np; i < nargs; i++ {
+					ls.reg.array[cf.LocalBase+i] = LNil
+				}
+				ls.reg.top = cf.LocalBase + int(proto.NumUsedRegisters)
+			} else {
+				/* swap vararg positions:
+						   closure
+						   namedparam1 <- lbase
+						   namedparam2
+						   vararg1
+						   vararg2
+
+				           TO
+
+						   closure
+						   nil
+						   nil
+						   vararg1
+						   vararg2
+						   namedparam1 <- lbase
+						   namedparam2
+				*/
+				nvarargs := nargs - np
+				if nvarargs < 0 {
+					nvarargs = 0
+				}
+
+				ls.reg.SetTop(cf.LocalBase + nargs + np)
+				for i := 0; i < np; i++ {
+					//ls.reg.Set(cf.LocalBase+nargs+i, ls.reg.Get(cf.LocalBase+i))
+					ls.reg.array[cf.LocalBase+nargs+i] = ls.reg.array[cf.LocalBase+i]
+					//ls.reg.Set(cf.LocalBase+i, LNil)
+					ls.reg.array[cf.LocalBase+i] = LNil
+				}
+
+				if CompatVarArg {
+					ls.reg.SetTop(cf.LocalBase + nargs + np + 1)
+					if (proto.IsVarArg & VarArgNeedsArg) != 0 {
+						argtb := newLTable(nvarargs, 0)
+						for i := 0; i < nvarargs; i++ {
+							argtb.RawSetInt(i+1, ls.reg.Get(cf.LocalBase+np+i))
+						}
+						argtb.RawSetString("n", LNumber(nvarargs))
+						//ls.reg.Set(cf.LocalBase+nargs+np, argtb)
+						ls.reg.array[cf.LocalBase+nargs+np] = argtb
+					} else {
+						ls.reg.array[cf.LocalBase+nargs+np] = LNil
+					}
+				}
+				cf.LocalBase += nargs
+				maxreg := cf.LocalBase + int(proto.NumUsedRegisters)
+				ls.reg.SetTop(maxreg)
+			}
+		}
+	}
+vm.go:1246: 1246-1341 lines are duplicate of `vm.go:1426-1521` (dupl)
+				{
+					cf := newcf
+					if cf.Fn.IsG {
+						ls.reg.SetTop(cf.LocalBase + cf.NArgs)
+					} else {
+						proto := cf.Fn.Proto
+						nargs := cf.NArgs
+						np := int(proto.NumParameters)
+						if nargs < np {
+							// default any missing arguments to nil
+							newSize := cf.LocalBase + np
+							// this section is inlined by go-inline
+							// source function is 'func (rg *registry) checkSize(requiredSize int) ' in '_state.go'
+							{
+								rg := ls.reg
+								requiredSize := newSize
+								if requiredSize > cap(rg.array) {
+									rg.resize(requiredSize)
+								}
+							}
+							for i := nargs; i < np; i++ {
+								ls.reg.array[cf.LocalBase+i] = LNil
+							}
+							nargs = np
+							ls.reg.top = newSize
+						}
+
+						if (proto.IsVarArg & VarArgIsVarArg) == 0 {
+							if nargs < int(proto.NumUsedRegisters) {
+								nargs = int(proto.NumUsedRegisters)
+							}
+							newSize := cf.LocalBase + nargs
+							// this section is inlined by go-inline
+							// source function is 'func (rg *registry) checkSize(requiredSize int) ' in '_state.go'
+							{
+								rg := ls.reg
+								requiredSize := newSize
+								if requiredSize > cap(rg.array) {
+									rg.resize(requiredSize)
+								}
+							}
+							for i := np; i < nargs; i++ {
+								ls.reg.array[cf.LocalBase+i] = LNil
+							}
+							ls.reg.top = cf.LocalBase + int(proto.NumUsedRegisters)
+						} else {
+							/* swap vararg positions:
+									   closure
+									   namedparam1 <- lbase
+									   namedparam2
+									   vararg1
+									   vararg2
+
+							           TO
+
+									   closure
+									   nil
+									   nil
+									   vararg1
+									   vararg2
+									   namedparam1 <- lbase
+									   namedparam2
+							*/
+							nvarargs := nargs - np
+							if nvarargs < 0 {
+								nvarargs = 0
+							}
+
+							ls.reg.SetTop(cf.LocalBase + nargs + np)
+							for i := 0; i < np; i++ {
+								//ls.reg.Set(cf.LocalBase+nargs+i, ls.reg.Get(cf.LocalBase+i))
+								ls.reg.array[cf.LocalBase+nargs+i] = ls.reg.array[cf.LocalBase+i]
+								//ls.reg.Set(cf.LocalBase+i, LNil)
+								ls.reg.array[cf.LocalBase+i] = LNil
+							}
+
+							if CompatVarArg {
+								ls.reg.SetTop(cf.LocalBase + nargs + np + 1)
+								if (proto.IsVarArg & VarArgNeedsArg) != 0 {
+									argtb := newLTable(nvarargs, 0)
+									for i := 0; i < nvarargs; i++ {
+										argtb.RawSetInt(i+1, ls.reg.Get(cf.LocalBase+np+i))
+									}
+									argtb.RawSetString("n", LNumber(nvarargs))
+									//ls.reg.Set(cf.LocalBase+nargs+np, argtb)
+									ls.reg.array[cf.LocalBase+nargs+np] = argtb
+								} else {
+									ls.reg.array[cf.LocalBase+nargs+np] = LNil
+								}
+							}
+							cf.LocalBase += nargs
+							maxreg := cf.LocalBase + int(proto.NumUsedRegisters)
+							ls.reg.SetTop(maxreg)
+						}
+					}
+				}
+vm.go:1426: 1426-1521 lines are duplicate of `state.go:1130-1225` (dupl)
+				{
+					ls := L
+					if cf.Fn.IsG {
+						ls.reg.SetTop(cf.LocalBase + cf.NArgs)
+					} else {
+						proto := cf.Fn.Proto
+						nargs := cf.NArgs
+						np := int(proto.NumParameters)
+						if nargs < np {
+							// default any missing arguments to nil
+							newSize := cf.LocalBase + np
+							// this section is inlined by go-inline
+							// source function is 'func (rg *registry) checkSize(requiredSize int) ' in '_state.go'
+							{
+								rg := ls.reg
+								requiredSize := newSize
+								if requiredSize > cap(rg.array) {
+									rg.resize(requiredSize)
+								}
+							}
+							for i := nargs; i < np; i++ {
+								ls.reg.array[cf.LocalBase+i] = LNil
+							}
+							nargs = np
+							ls.reg.top = newSize
+						}
+
+						if (proto.IsVarArg & VarArgIsVarArg) == 0 {
+							if nargs < int(proto.NumUsedRegisters) {
+								nargs = int(proto.NumUsedRegisters)
+							}
+							newSize := cf.LocalBase + nargs
+							// this section is inlined by go-inline
+							// source function is 'func (rg *registry) checkSize(requiredSize int) ' in '_state.go'
+							{
+								rg := ls.reg
+								requiredSize := newSize
+								if requiredSize > cap(rg.array) {
+									rg.resize(requiredSize)
+								}
+							}
+							for i := np; i < nargs; i++ {
+								ls.reg.array[cf.LocalBase+i] = LNil
+							}
+							ls.reg.top = cf.LocalBase + int(proto.NumUsedRegisters)
+						} else {
+							/* swap vararg positions:
+									   closure
+									   namedparam1 <- lbase
+									   namedparam2
+									   vararg1
+									   vararg2
+
+							           TO
+
+									   closure
+									   nil
+									   nil
+									   vararg1
+									   vararg2
+									   namedparam1 <- lbase
+									   namedparam2
+							*/
+							nvarargs := nargs - np
+							if nvarargs < 0 {
+								nvarargs = 0
+							}
+
+							ls.reg.SetTop(cf.LocalBase + nargs + np)
+							for i := 0; i < np; i++ {
+								//ls.reg.Set(cf.LocalBase+nargs+i, ls.reg.Get(cf.LocalBase+i))
+								ls.reg.array[cf.LocalBase+nargs+i] = ls.reg.array[cf.LocalBase+i]
+								//ls.reg.Set(cf.LocalBase+i, LNil)
+								ls.reg.array[cf.LocalBase+i] = LNil
+							}
+
+							if CompatVarArg {
+								ls.reg.SetTop(cf.LocalBase + nargs + np + 1)
+								if (proto.IsVarArg & VarArgNeedsArg) != 0 {
+									argtb := newLTable(nvarargs, 0)
+									for i := 0; i < nvarargs; i++ {
+										argtb.RawSetInt(i+1, ls.reg.Get(cf.LocalBase+np+i))
+									}
+									argtb.RawSetString("n", LNumber(nvarargs))
+									//ls.reg.Set(cf.LocalBase+nargs+np, argtb)
+									ls.reg.array[cf.LocalBase+nargs+np] = argtb
+								} else {
+									ls.reg.array[cf.LocalBase+nargs+np] = LNil
+								}
+							}
+							cf.LocalBase += nargs
+							maxreg := cf.LocalBase + int(proto.NumUsedRegisters)
+							ls.reg.SetTop(maxreg)
+						}
+					}
+				}
+auxlib.go:285:13: Error return value is not checked (errcheck)
+			curobj = nextobj.(*LTable)
+			         ^
+auxlib.go:296:21: Error return value is not checked (errcheck)
+	tb := ls.FindTable(ls.Get(RegistryIndex).(*LTable), "_LOADED", 1)
+	                   ^
+iolib.go:265:24: Error return value of `file.AbandonReadBuffer` is not checked (errcheck)
+	file.AbandonReadBuffer()
+	                      ^
+iolib.go:270:24: Error return value of `file.AbandonReadBuffer` is not checked (errcheck)
+	file.AbandonReadBuffer()
+	                      ^
+iolib.go:287:24: Error return value of `file.AbandonReadBuffer` is not checked (errcheck)
+	file.AbandonReadBuffer()
+	                      ^
+iolib.go:362:27: Error return value of `file.reader.UnreadByte` is not checked (errcheck)
+				file.reader.UnreadByte()
+				                      ^
+wslib.go:96:22: Error return value of `conn.SetReadDeadline` is not checked (errcheck)
+	conn.SetReadDeadline(time.Now().Add(wsDialTimeout))
+	                    ^
+wslib.go:98:23: Error return value of `conn.SetReadDeadline` is not checked (errcheck)
+		conn.SetReadDeadline(time.Now().Add(wsDialTimeout))
+		                    ^
+vm.go:298:1: cognitive complexity 682 of func `init` is high (> 30) (gocognit)
+func init() {
+^
+compile.go:2056:1: cognitive complexity 76 of func `constFoldinCompile` is high (> 30) (gocognit)
+func constFoldinCompile(exp ast.Expr) ast.Expr {
+^
+iolib.go:341:1: cognitive complexity 68 of func `fileReadAux` is high (> 30) (gocognit)
+func fileReadAux(L *LState, file *lFile, idx int) int {
+^
+compile.go:2189:1: cognitive complexity 44 of func `strengthReduction` is high (> 30) (gocognit)
+func strengthReduction(expr ast.Expr) ast.Expr {
+^
+compile.go:1954:1: cognitive complexity 42 of func `patchCode` is high (> 30) (gocognit)
+func patchCode(context *funcContext) { // {{{
+^
+compile.go:1734:1: cognitive complexity 40 of func `compileLogicalOpExprAux` is high (> 30) (gocognit)
+func compileLogicalOpExprAux(context *funcContext, reg int, expr ast.Expr, ec *expcontext, thenlabel, elselabel int, hasnextcond bool, lb *lblabels) { // {{{
+^
+state.go:2023:1: cognitive complexity 38 of func `(*LState).PCall` is high (> 30) (gocognit)
+func (ls *LState) PCall(nargs, nret int, errfunc *LFunction) (err error) {
+^
+table.go:351:1: cognitive complexity 36 of func `(*LTable).Next` is high (> 30) (gocognit)
+func (tb *LTable) Next(key LValue) (LValue, LValue) {
+^
+compile.go:1508:1: cognitive complexity 33 of func `compileTableExpr` is high (> 30) (gocognit)
+func compileTableExpr(context *funcContext, reg int, ex *ast.TableExpr, ec *expcontext) { // {{{
+^
+vm.go:71:1: cognitive complexity 33 of func `copyReturnValues` is high (> 30) (gocognit)
+func copyReturnValues(L *LState, regv, start, n, b int) { // +inline-start
+^
+compile.go:1010:8: string `and` has 5 occurrences, make it a constant (goconst)
+		case "and":
+		     ^
+opcode.go:332:1: cyclomatic complexity 52 of func `opToString` is high (> 30) (gocyclo)
+func opToString(inst uint32) string {
+^
+compile.go:1273:1: cyclomatic complexity 34 of func `compileExpr` is high (> 30) (gocyclo)
+func compileExpr(context *funcContext, reg int, expr ast.Expr, ec *expcontext) int { // {{{
+^
+compile.go:1471:37: G115: integer overflow conversion int -> uint8 (gosec)
+	context.Proto.NumParameters = uint8(len(funcexpr.ParList.Names))
+	                                   ^
+compile.go:1497:35: G115: integer overflow conversion int -> uint8 (gosec)
+	context.Proto.NumUpvalues = uint8(len(context.Proto.DbgUpvalues))
+	                                 ^
+compile.go:2029:40: G115: integer overflow conversion int -> uint8 (gosec)
+	context.Proto.NumUsedRegisters = uint8(maxreg)
+	                                      ^
+state.go:287:24: G115: integer overflow conversion int -> uint16 (gosec)
+		if cs.segIdx < segIdx(len(cs.segments)-1) {
+		                     ^
+state.go:309:25: G115: integer overflow conversion int -> uint16 (gosec)
+	desiredSegIdx := segIdx(sp / FramesPerSegment)
+	                       ^
+state.go:336:18: G115: integer overflow conversion int -> uint16 (gosec)
+	segIdx := segIdx(sp / FramesPerSegment)
+	                ^
+state.go:2257:18: G115: integer overflow conversion int -> uint64 (gosec)
+		limit := uint64(mx * 1024 * 1024) //MB
+		               ^
+jsonlib.go:7:6: var-naming: func OpenJson should be OpenJSON (revive)
+func OpenJson(L *LState) int {
+     ^
+jsonlib.go:13:5: var-naming: var JsonLibFuncDoc should be JSONLibFuncDoc (revive)
+var JsonLibFuncDoc = map[string]libFuncDoc{
+    ^
+table.go:54:11: var-declaration: should omit type LValue from declaration of var prev; it will be inferred from the right-hand side (revive)
+	var prev LValue = LNil
+	         ^
+linit.go:29:2: var-naming: const JsonLibName should be JSONLibName (revive)
+	JsonLibName = "jsonlib"
+	^
+linit.go:33:2: var-naming: const XmlLibName should be XMLLibName (revive)
+	XmlLibName = "xmllib"
+	^
+linit.go:37:2: var-naming: const HttpLibName should be HTTPLibName (revive)
+	HttpLibName = "httplib"
+	^
+xmllib.go:7:6: var-naming: func OpenXml should be OpenXML (revive)
+func OpenXml(L *LState) int {
+     ^
+utils.go:206:15: var-declaration: should omit type bool from declaration of var isprefix; it will be inferred from the right-hand side (revive)
+	var isprefix bool = true
+	             ^
+timelib.go:126:2: redefines-builtin-id: redefinition of the built-in function min (revive)
+	min := getIntField(L, tbl, "min", 0)
+	^
+wslib.go:97:27: unused-parameter: parameter 'appData' seems to be unused, consider removing or renaming it as _ (revive)
+	conn.SetPongHandler(func(appData string) error {
+	                         ^
+table.go:99:2: increment-decrement: should replace i -= 1 with i-- (revive)
+	i -= 1
+	^
+xmllib.go:13:5: var-naming: var XmlLibFuncDoc should be XMLLibFuncDoc (revive)
+var XmlLibFuncDoc = map[string]libFuncDoc{
+    ^
+utils.go:180:1: error-return: error should be the last type when returning multiple items (revive)
+func readBufioSize(reader *bufio.Reader, size int64) ([]byte, error, bool) {
+	result := []byte{}
+	read := int64(0)
+	var err error
+	var n int
+	for read != size {
+		buf := make([]byte, size-read)
+		n, err = reader.Read(buf)
+		if err != nil {
+			break
+		}
+		read += int64(n)
+		result = append(result, buf[:n]...)
+	}
+	e := err
+	if e != nil && e == io.EOF {
+		e = nil
+	}
+
+	return result, e, len(result) == 0 && err == io.EOF
+}
+utils.go:202:1: error-return: error should be the last type when returning multiple items (revive)
+func readBufioLine(reader *bufio.Reader) ([]byte, error, bool) {
+	result := []byte{}
+	var buf []byte
+	var err error
+	var isprefix bool = true
+	for isprefix {
+		buf, isprefix, err = reader.ReadLine()
+		if err != nil {
+			break
+		}
+		result = append(result, buf...)
+	}
+	e := err
+	if e != nil && e == io.EOF {
+		e = nil
+	}
+
+	return result, e, len(result) == 0 && err == io.EOF
+}
+httplib.go:18:6: var-naming: func OpenHttp should be OpenHTTP (revive)
+func OpenHttp(L *LState) int {
+     ^
+httplib.go:25:5: var-naming: var HttpLibFuncDoc should be HTTPLibFuncDoc (revive)
+var HttpLibFuncDoc = map[string]libFuncDoc{
+    ^
+utils.go:16:9: indent-error-flow: if block ends with a return statement, so drop this else and outdent its block (revive)
+	} else {
+		return b
+	}
+utils.go:24:9: indent-error-flow: if block ends with a return statement, so drop this else and outdent its block (revive)
+	} else {
+		return b
+	}
+utils.go:149:10: indent-error-flow: if block ends with a return statement, so drop this else and outdent its block (move short variable declaration to its own line if necessary) (revive)
+		} else {
+			value = LNumber(v2)
+		}
+tablelib.go:80:19: unused-parameter: parameter 'k' seems to be unused, consider removing or renaming it as _ (revive)
+	tbl.ForEach(func(k, v LValue) {
+	                 ^
+coroutinelib.go:52:14: unused-parameter: parameter 'L' seems to be unused, consider removing or renaming it as _ (revive)
+func coYield(L *LState) int {
+             ^
+auxlib.go:405:9: indent-error-flow: if block ends with a return statement, so drop this else and outdent its block (move short variable declaration to its own line if necessary) (revive)
+	} else {
+		ls.Push(fn)
+		return ls.PCall(0, MultRet, nil)
+	}
+opcode.go:291:20: var-declaration: should drop = 0 from declaration of var inst; it is the zero value (revive)
+	var inst uint32 = 0
+	                  ^
+opcode.go:300:20: var-declaration: should drop = 0 from declaration of var inst; it is the zero value (revive)
+	var inst uint32 = 0
+	                  ^
+auxlib.go:414:9: indent-error-flow: if block ends with a return statement, so drop this else and outdent its block (move short variable declaration to its own line if necessary) (revive)
+	} else {
+		ls.Push(fn)
+		return ls.PCall(0, MultRet, nil)
+	}
+opcode.go:308:20: var-declaration: should drop = 0 from declaration of var inst; it is the zero value (revive)
+	var inst uint32 = 0
+	                  ^
+compile.go:765:23: var-declaration: should drop = nil from declaration of var expr; it is the zero value (revive)
+		var expr ast.Expr = nil
+		                    ^
+state.go:959:16: var-declaration: should omit type LValue from declaration of var metatable; it will be inferred from the right-hand side (revive)
+	var metatable LValue = LNil
+	              ^
+mathlib.go:175:2: redefines-builtin-id: redefinition of the built-in function max (revive)
+	max := L.CheckNumber(1)
+	^
+state.go:1612:29: var-declaration: should drop = nil from declaration of var f; it is the zero value (revive)
+	var f context.CancelFunc = nil
+	                           ^
+mathlib.go:180:4: redefines-builtin-id: redefinition of the built-in function max (revive)
+			max = v
+			^
+randomlib.go:65:2: redefines-builtin-id: redefinition of the built-in function min (revive)
+	min := L.OptNumber(1, 0)
+	^
+mathlib.go:191:2: redefines-builtin-id: redefinition of the built-in function min (revive)
+	min := L.CheckNumber(1)
+	^
+randomlib.go:66:2: redefines-builtin-id: redefinition of the built-in function max (revive)
+	max := L.OptNumber(2, 1)
+	^
+opcode.go:95:2: var-naming: don't use ALL_CAPS in Go names; use CamelCase (revive)
+	OP_MOVE     int = iota /*   A B       R(A) := R(B)                                      */
+	^
+opcode.go:96:2: var-naming: don't use ALL_CAPS in Go names; use CamelCase (revive)
+	OP_MOVEN               /*   A B       R(A) := R(B); followed by R(C) MOVE ops           */
+	^
+dataconvert.go:71:29: unused-parameter: parameter 'v' seems to be unused, consider removing or renaming it as _ (revive)
+	tbl.ForEach(func(k LValue, v LValue) {
+	                           ^
+dataconvert.go:149:23: unused-parameter: parameter 'k' seems to be unused, consider removing or renaming it as _ (revive)
+	headers.ForEach(func(k LValue, v LValue) {
+	                     ^
+table.go:287:14: unnecessary conversion (unconvert)
+	index := int(key) - 1
+	            ^
+table.go:319:32: unnecessary conversion (unconvert)
+	if v, vok := tb.strdict[string(key)]; vok {
+	                              ^
+tablelib.go:218:16: unnecessary conversion (unconvert)
+	tbl.Insert(int(L.CheckInt(2)), L.CheckAny(3))
+	              ^
+alloc.go:16:5: var `_fv` is unused (unused)
+var _fv float64
+    ^
+alloc.go:17:5: var `_uv` is unused (unused)
+var _uv uintptr
+    ^
+opcode.go:80:7: const `opSizeCode` is unused (unused)
+const opSizeCode = 6
+      ^
+opcode.go:85:7: const `opSizesBx` is unused (unused)
+const opSizesBx = 18
+      ^
+opcode.go:88:7: const `opMaxArgsB` is unused (unused)
+const opMaxArgsB = (1 << opSizeB) - 1
+      ^
+oslib.go:9:5: var `startedAt` is unused (unused)
+var startedAt time.Time
+    ^
+state.go:379:21: func `(*registry).checkSize` is unused (unused)
+func (rg *registry) checkSize(requiredSize int) { // +inline-start
+                    ^
+state.go:692:19: func `(*LState).printCallStack` is unused (unused)
+func (ls *LState) printCallStack() {
+                  ^
+value.go:176:2: field `gccount` is unused (unused)
+	gccount    int32
+	^
+wslib.go:89:29: response body must be closed (bodyclose)
+	conn, _, err := dialer.Dial(url, hdr)
+	                           ^
+value.go:196:2: found a struct that contains a context.Context field (containedctx)
+	ctx          context.Context
+	^
+baselib.go:458:1: calculated cyclomatic complexity for function baseToNumber is 13, max is 10 (cyclop)
+func baseToNumber(L *LState) int {
+^
+baselib.go:570:1: calculated cyclomatic complexity for function loRequire is 11, max is 10 (cyclop)
+func loRequire(L *LState) int {
+^
+channellib.go:54:1: calculated cyclomatic complexity for function channelSelect is 21, max is 10 (cyclop)
+func channelSelect(L *LState) int {
+^
+compile.go:682:1: calculated cyclomatic complexity for function compileStmt is 18, max is 10 (cyclop)
+func compileStmt(context *funcContext, stmt ast.Stmt, isLastStmt bool) { // {{{
+^
+compile.go:757:1: calculated cyclomatic complexity for function compileAssignStmtRight is 12, max is 10 (cyclop)
+func compileAssignStmtRight(context *funcContext, stmt *ast.AssignStmt, reg int, acs []*assigncontext) (int, []*assigncontext) { // {{{
+^
+compile.go:985:1: calculated cyclomatic complexity for function compileBranchCondition is 11, max is 10 (cyclop)
+func compileBranchCondition(context *funcContext, reg int, expr ast.Expr, thenlabel, elselabel int, hasnextcond bool) { // {{{
+^
+compile.go:1428:1: calculated cyclomatic complexity for function constFold is 14, max is 10 (cyclop)
+func constFold(exp ast.Expr) ast.Expr { // {{{
+^
+compile.go:1863:1: calculated cyclomatic complexity for function compileFuncCallExpr is 13, max is 10 (cyclop)
+func compileFuncCallExpr(context *funcContext, reg int, expr *ast.FuncCallExpr, ec *expcontext) int { // {{{
+^
+dataconvert.go:9:1: calculated cyclomatic complexity for function goToLValue is 11, max is 10 (cyclop)
+func goToLValue(L *LState, v interface{}) LValue {
+^
+iolib.go:277:1: calculated cyclomatic complexity for function fileCloseAux is 11, max is 10 (cyclop)
+func fileCloseAux(L *LState, file *lFile) int {
+^
+state.go:1019:1: calculated cyclomatic complexity for function initCallFrame is 14, max is 10 (cyclop)
+func (ls *LState) initCallFrame(cf *callFrame) { // +inline-start
+^
+state.go:1115:1: calculated cyclomatic complexity for function pushCallFrame is 17, max is 10 (cyclop)
+func (ls *LState) pushCallFrame(cf callFrame, fn LValue, meta bool) { // +inline-start
+^
+state.go:1461:1: calculated cyclomatic complexity for function Replace is 15, max is 10 (cyclop)
+func (ls *LState) Replace(idx int, value LValue) {
+^
+state.go:1506:1: calculated cyclomatic complexity for function Get is 12, max is 10 (cyclop)
+func (ls *LState) Get(idx int) LValue {
+^
+state.go:1740:1: calculated cyclomatic complexity for function GetInfo is 21, max is 10 (cyclop)
+func (ls *LState) GetInfo(what string, dbg *Debug, fn LValue) (LValue, error) {
+^
+tablelib.go:171:1: calculated cyclomatic complexity for function deepEqual is 11, max is 10 (cyclop)
+func deepEqual(v1, v2 LValue) bool {
+^
+vm.go:197:1: calculated cyclomatic complexity for function callGFunction is 15, max is 10 (cyclop)
+func callGFunction(L *LState, tailcall bool) bool {
+^
+vm.go:2469:1: calculated cyclomatic complexity for function objectArith is 14, max is 10 (cyclop)
+func objectArith(L *LState, opcode int, lhs, rhs LValue) LValue {
+^
+vm.go:2574:1: calculated cyclomatic complexity for function equals is 12, max is 10 (cyclop)
+func equals(L *LState, lhs, rhs LValue, raw bool) bool {
+^
+compile.go:10:2: import 'milklua/ast' is not allowed from list 'Main' (depguard)
+	"milklua/ast"
+	^
+randomlib.go:7:2: import 'github.com/MilkLua/milkrandom/pcg32' is not allowed from list 'Main' (depguard)
+	mrpcg32 "github.com/MilkLua/milkrandom/pcg32"
+	^
+randomlib.go:8:2: import 'github.com/MilkLua/milkrandom/pcg64' is not allowed from list 'Main' (depguard)
+	mrpcg64 "github.com/MilkLua/milkrandom/pcg64"
+	^
+randomlib.go:9:2: import 'github.com/MilkLua/milkrandom/splitmix64' is not allowed from list 'Main' (depguard)
+	mrsplitmix64 "github.com/MilkLua/milkrandom/splitmix64"
+	^
+randomlib.go:10:2: import 'github.com/MilkLua/milkrandom/xoshiro256starstar' is not allowed from list 'Main' (depguard)
+	mrxoshiro256starstar "github.com/MilkLua/milkrandom/xoshiro256starstar"
+	^
+state.go:15:2: import 'milklua/parse' is not allowed from list 'Main' (depguard)
+	"milklua/parse"
+	^
+stringlib.go:8:2: import 'milklua/parse' is not allowed from list 'Main' (depguard)
+	"milklua/parse"
+	^
+stringlib.go:9:2: import 'milklua/pm' is not allowed from list 'Main' (depguard)
+	"milklua/pm"
+	^
+tomllib.go:4:2: import 'github.com/pelletier/go-toml' is not allowed from list 'Main' (depguard)
+	"github.com/pelletier/go-toml"
+	^
+wslib.go:7:2: import 'github.com/gorilla/websocket' is not allowed from list 'Main' (depguard)
+	"github.com/gorilla/websocket"
+	^
+xmllib.go:4:2: import 'github.com/clbanning/mxj' is not allowed from list 'Main' (depguard)
+	"github.com/clbanning/mxj"
+	^
+state.go:1064:4: Duplicate words (nil) found (dupword)
+			/* swap vararg positions:
+			^
+state.go:1176:5: Duplicate words (nil) found (dupword)
+				/* swap vararg positions:
+				^
+vm.go:1292:8: Duplicate words (nil) found (dupword)
+							/* swap vararg positions:
+							^
+auxlib.go:374:19: comparing with != will fail on wrapped errors. Use errors.Is to check for a specific error (errorlint)
+	if err != nil && err != io.EOF {
+	                 ^
+auxlib.go:386:5: comparing with != will fail on wrapped errors. Use errors.Is to check for a specific error (errorlint)
+	if err != io.EOF {
+	   ^
+baselib.go:298:18: type assertion on error will fail on wrapped errors. Use errors.As to check for specific errors (errorlint)
+		if aerr, ok := err.(*ApiError); ok {
+		               ^
+baselib.go:512:18: type assertion on error will fail on wrapped errors. Use errors.As to check for specific errors (errorlint)
+		if aerr, ok := err.(*ApiError); ok {
+		               ^
+iolib.go:307:16: type assertion on error will fail on wrapped errors. Use errors.As to check for specific errors (errorlint)
+		if e2, ok := err.(*exec.ExitError); ok {
+		             ^
+iolib.go:357:8: comparing with == will fail on wrapped errors. Use errors.Is to check for a specific error (errorlint)
+				if err == io.EOF {
+				   ^
+iolib.go:387:9: comparing with == will fail on wrapped errors. Use errors.Is to check for a specific error (errorlint)
+					if err == io.EOF {
+					   ^
+iolib.go:398:9: comparing with == will fail on wrapped errors. Use errors.Is to check for a specific error (errorlint)
+					if err == io.EOF {
+					   ^
+compile.go:731:4: missing cases in switch of type lua.expContextType: lua.ecTable, lua.ecVararg, lua.ecMethod, lua.ecNone (exhaustive)
+			switch identtype {
+			^
+compile.go:825:3: missing cases in switch of type lua.expContextType: lua.ecVararg, lua.ecMethod, lua.ecNone (exhaustive)
+		switch acs[i].ec.ctype {
+		^
+compile.go:1307:3: missing cases in switch of type lua.expContextType: lua.ecTable, lua.ecVararg, lua.ecMethod, lua.ecNone (exhaustive)
+		switch getIdentRefType(context, context, ex) {
+		^
+tablelib.go:178:2: missing cases in switch of type lua.LValueType: lua.LTFunction, lua.LTUserData, lua.LTThread, lua.LTChannel (exhaustive)
+	switch v1.Type() {
+	^
+vm.go:1133:5: missing cases in switch of type lua.LValueType: lua.LTNil, lua.LTBool, lua.LTNumber, lua.LTFunction, lua.LTUserData, lua.LTThread, lua.LTTable, lua.LTChannel (exhaustive)
+				switch lhs.Type() {
+				^
+vm.go:2564:2: missing cases in switch of type lua.LValueType: lua.LTNil, lua.LTBool, lua.LTNumber, lua.LTFunction, lua.LTUserData, lua.LTThread, lua.LTTable, lua.LTChannel (exhaustive)
+	switch lhs.Type() {
+	^
+vm.go:2581:2: missing cases in switch of type lua.LValueType: lua.LTFunction, lua.LTThread, lua.LTChannel (exhaustive)
+	switch lt {
+	^
+alloc.go:38:9: lua.allocator is missing fields scratchValue, scratchValueP (exhaustruct)
+	al := &allocator{
+	       ^
+baselib.go:568:22: lua.LUserData is missing fields Value, Env, Metatable (exhaustruct)
+var loopdetection = &LUserData{}
+                     ^
+compile.go:434:9: lua.funcContext is missing field Blocks (exhaustruct)
+	fc := &funcContext{
+	       ^
+compile.go:574:51: lua.DbgLocalInfo is missing field EndPc (exhaustruct)
+	fc.Proto.DbgLocals = append(fc.Proto.DbgLocals, &DbgLocalInfo{Name: name, StartPc: fc.Code.LastPC() + 1})
+	                                                 ^
+compile.go:767:12: ast.NilExpr is missing field ConstExprBase (exhaustruct)
+			expr = &ast.NilExpr{}
+			        ^
+compile.go:857:10: ast.ArithmeticOpExpr is missing field ExprBase (exhaustruct)
+	rhs := &ast.ArithmeticOpExpr{
+	        ^
+compile.go:862:13: ast.AssignStmt is missing field StmtBase (exhaustruct)
+	assign := &ast.AssignStmt{
+	           ^
+compile.go:873:9: lua.expcontext is missing fields ctype, reg, varargopt (exhaustruct)
+	ec := &expcontext{}
+	       ^
+compile.go:1096:13: ast.AssignStmt is missing field StmtBase (exhaustruct)
+		astmt := &ast.AssignStmt{Lhs: []ast.Expr{stmt.Name.Func}, Rhs: []ast.Expr{stmt.Func}}
+		          ^
+compile.go:1106:9: lua.expcontext is missing fields ctype, reg, varargopt (exhaustruct)
+	ec := &expcontext{}
+	       ^
+compile.go:1122:16: ast.NumberExpr is missing field ConstExprBase (exhaustruct)
+		stmt.Step = &ast.NumberExpr{Value: "1"}
+		             ^
+compile.go:1147:9: lua.expcontext is missing fields ctype, reg, varargopt (exhaustruct)
+	ec := &expcontext{}
+	       ^
+compile.go:1163:16: ast.NumberExpr is missing field ConstExprBase (exhaustruct)
+		stmt.Step = &ast.NumberExpr{Value: "1"}
+		             ^
+compile.go:1436:13: lua.constLValueExpr is missing field ExprBase (exhaustruct)
+				return &constLValueExpr{Value: lvalue + rvalue}
+				        ^
+compile.go:1438:13: lua.constLValueExpr is missing field ExprBase (exhaustruct)
+				return &constLValueExpr{Value: lvalue - rvalue}
+				        ^
+compile.go:1440:13: lua.constLValueExpr is missing field ExprBase (exhaustruct)
+				return &constLValueExpr{Value: lvalue * rvalue}
+				        ^
+compile.go:2044:15: ast.FunctionExpr is missing field ExprBase (exhaustruct)
+	funcexpr := &ast.FunctionExpr{ParList: parlist, Stmts: chunk}
+	             ^
+compile.go:2100:12: ast.TrueExpr is missing field ConstExprBase (exhaustruct)
+			return &ast.TrueExpr{}
+			        ^
+compile.go:2102:12: ast.FalseExpr is missing field ConstExprBase (exhaustruct)
+			return &ast.FalseExpr{}
+			        ^
+compile.go:2112:13: ast.StringExpr is missing field ConstExprBase (exhaustruct)
+				return &ast.StringExpr{Value: lstr.Value + rstr.Value}
+				        ^
+compile.go:2130:13: ast.FalseExpr is missing field ConstExprBase (exhaustruct)
+				return &ast.FalseExpr{}
+				        ^
+compile.go:2132:13: ast.TrueExpr is missing field ConstExprBase (exhaustruct)
+				return &ast.TrueExpr{}
+				        ^
+compile.go:2200:14: ast.BitwiseOpExpr is missing field ExprBase (exhaustruct)
+					return &ast.BitwiseOpExpr{
+					        ^
+compile.go:2203:18: ast.NumberExpr is missing field ConstExprBase (exhaustruct)
+						Rhs:      &ast.NumberExpr{Value: strconv.Itoa(shift)},
+						           ^
+compile.go:2223:14: ast.ArithmeticOpExpr is missing field ExprBase (exhaustruct)
+						lhs = &ast.ArithmeticOpExpr{
+						       ^
+compile.go:2239:14: ast.BitwiseOpExpr is missing field ExprBase (exhaustruct)
+					return &ast.BitwiseOpExpr{
+					        ^
+coroutinelib.go:37:23: lua.callFrame is missing field Idx (exhaustruct)
+	newthread.stack.Push(callFrame{
+	                     ^
+debuglib.go:60:10: lua.Debug is missing fields frame, Name, What, Source, CurrentLine, NUpvalues, LineDefined, LastLineDefined (exhaustruct)
+		dbg = &Debug{}
+		       ^
+state.go:235:11: lua.callFrameStackSegment is missing field array (exhaustruct)
+		return &callFrameStackSegment{}
+		        ^
+state.go:248:9: lua.autoGrowingCallFrameStack is missing field segSp (exhaustruct)
+	cs := &autoGrowingCallFrameStack{
+	       ^
+state.go:640:10: lua.Global is missing fields CurrentThread, gccount (exhaustruct)
+	return &Global{
+	        ^
+state.go:666:9: lua.LState is missing fields Env, reg, stack, ctxCancelFn (exhaustruct)
+	ls := &LState{
+	       ^
+state.go:946:9: lua.Upvalue is missing fields next, value (exhaustruct)
+	uv := &Upvalue{reg: ls.reg, index: idx, closed: false}
+	       ^
+state.go:1236:19: lua.callFrame is missing field Idx (exhaustruct)
+	ls.pushCallFrame(callFrame{
+	                 ^
+state.go:1391:17: lua.Options is missing fields RegistryMaxSize, RegistryGrowStep, SkipOpenLibs, IncludeGoStackTrace, MinimizeStackMemory (exhaustruct)
+	defaultOpts := Options{
+	               ^
+state.go:1626:10: lua.LUserData is missing field Value (exhaustruct)
+	return &LUserData{
+	        ^
+state.go:1639:21: lua.Upvalue is missing fields next, reg, index, value, closed (exhaustruct)
+		cl.Upvalues[i] = &Upvalue{}
+		                  ^
+state.go:1807:11: lua.Debug is missing fields Name, What, Source, CurrentLine, NUpvalues, LineDefined, LastLineDefined (exhaustruct)
+		return &Debug{frame: frame}, true
+		        ^
+state.go:1809:11: lua.Debug is missing fields Name, What, Source, CurrentLine, NUpvalues, LineDefined, LastLineDefined (exhaustruct)
+		return &Debug{frame: ls.stack.At(0)}, true
+		        ^
+state.go:1811:10: lua.Debug is missing fields frame, Name, What, Source, CurrentLine, NUpvalues, LineDefined, LastLineDefined (exhaustruct)
+	return &Debug{}, false
+	        ^
+state.go:2171:17: lua.callFrame is missing field Idx (exhaustruct)
+		th.stack.Push(callFrame{
+		              ^
+table.go:38:9: lua.LTable is missing fields Metatable, array, dict, strdict, keys, k2i (exhaustruct)
+	tb := &LTable{}
+	       ^
+wslib.go:86:12: websocket.Dialer is missing fields NetDial, NetDialContext, NetDialTLSContext, Proxy, TLSClientConfig, ReadBufferSize, WriteBufferSize, WriteBufferPool, Subprotocols, EnableCompression, Jar (exhaustruct)
+	dialer := websocket.Dialer{
+	          ^
+baselib.go:313:3: use of `fmt.Print` forbidden by pattern `^(fmt\.Print(|f|ln)|print|println)$` (forbidigo)
+		fmt.Print(L.ToStringMeta(L.Get(i)).String())
+		^
+baselib.go:315:4: use of `fmt.Print` forbidden by pattern `^(fmt\.Print(|f|ln)|print|println)$` (forbidigo)
+			fmt.Print(" ")
+			^
+baselib.go:318:2: use of `fmt.Println` forbidden by pattern `^(fmt\.Print(|f|ln)|print|println)$` (forbidigo)
+	fmt.Println("")
+	^
+baselib.go:325:3: use of `fmt.Print` forbidden by pattern `^(fmt\.Print(|f|ln)|print|println)$` (forbidigo)
+		fmt.Print(L.ToStringMeta(L.Get(i)).String())
+		^
+state.go:693:2: use of `println` forbidden by pattern `^(fmt\.Print(|f|ln)|print|println)$` (forbidigo)
+	println("-------------------------")
+	^
+state.go:695:3: use of `print` forbidden by pattern `^(fmt\.Print(|f|ln)|print|println)$` (forbidigo)
+		print(i)
+		^
+state.go:696:3: use of `print` forbidden by pattern `^(fmt\.Print(|f|ln)|print|println)$` (forbidigo)
+		print(" ")
+		^
+state.go:702:4: use of `println` forbidden by pattern `^(fmt\.Print(|f|ln)|print|println)$` (forbidigo)
+			println("IsG:", true, "Frame:", frame, "Fn:", frame.Fn)
+			^
+state.go:704:4: use of `println` forbidden by pattern `^(fmt\.Print(|f|ln)|print|println)$` (forbidigo)
+			println("IsG:", false, "Frame:", frame, "Fn:", frame.Fn, "pc:", frame.Pc)
+			^
+state.go:2262:5: use of `fmt.Println` forbidden by pattern `^(fmt\.Print(|f|ln)|print|println)$` (forbidigo)
+				fmt.Println("out of memory")
+				^
+alloc.go:19:5: preloads is a global variable (gochecknoglobals)
+var preloads [int(preloadLimit)]LValue
+    ^
+baselib.go:25:5: BaseLibFuncDoc is a global variable (gochecknoglobals)
+var BaseLibFuncDoc = map[string]libFuncDoc{
+    ^
+baselib.go:59:5: baseFuncs is a global variable (gochecknoglobals)
+var baseFuncs = map[string]LGFunction{
+    ^
+channellib.go:33:5: ChnLibFuncDoc is a global variable (gochecknoglobals)
+var ChnLibFuncDoc = map[string]libFuncDoc{
+    ^
+channellib.go:43:5: channelFuncs is a global variable (gochecknoglobals)
+var channelFuncs = map[string]LGFunction{
+    ^
+channellib.go:147:5: channelMethods is a global variable (gochecknoglobals)
+var channelMethods = map[string]LGFunction{
+    ^
+compile.go:29:5: typeKindToName is a global variable (gochecknoglobals)
+var typeKindToName = map[string]int{
+    ^
+compile.go:76:5: _ecnone0 is a global variable (gochecknoglobals)
+var _ecnone0 = &expcontext{ecNone, regNotDefined, 0}
+    ^
+compile.go:77:5: _ecnonem1 is a global variable (gochecknoglobals)
+var _ecnonem1 = &expcontext{ecNone, regNotDefined, -1}
+    ^
+compile.go:78:5: _ecnonem2 is a global variable (gochecknoglobals)
+var _ecnonem2 = &expcontext{ecNone, regNotDefined, -2}
+    ^
+compile.go:79:5: ecfuncdef is a global variable (gochecknoglobals)
+var ecfuncdef = &expcontext{ecMethod, regNotDefined, 0}
+    ^
+config.go:7:5: CompatVarArg is a global variable (gochecknoglobals)
+var CompatVarArg = true
+    ^
+config.go:8:5: FieldsPerFlush is a global variable (gochecknoglobals)
+var FieldsPerFlush = 50
+    ^
+config.go:9:5: RegistrySize is a global variable (gochecknoglobals)
+var RegistrySize = 256 * 20
+    ^
+config.go:10:5: RegistryGrowStep is a global variable (gochecknoglobals)
+var RegistryGrowStep = 32
+    ^
+config.go:11:5: CallStackSize is a global variable (gochecknoglobals)
+var CallStackSize = 256
+    ^
+config.go:12:5: MaxTableGetLoop is a global variable (gochecknoglobals)
+var MaxTableGetLoop = 100
+    ^
+config.go:13:5: MaxArrayIndex is a global variable (gochecknoglobals)
+var MaxArrayIndex = 67108864
+    ^
+config.go:14:5: MaxLoopUnrollCount is a global variable (gochecknoglobals)
+var MaxLoopUnrollCount = 8
+    ^
+config.go:22:5: LuaPath is a global variable (gochecknoglobals)
+var LuaPath = "MILK_PATH"
+    ^
+config.go:23:5: MilkLDir is a global variable (gochecknoglobals)
+var MilkLDir string
+    ^
+config.go:24:5: MilkPathDefault is a global variable (gochecknoglobals)
+var MilkPathDefault string
+    ^
+config.go:25:5: MilkOS is a global variable (gochecknoglobals)
+var MilkOS string
+    ^
+config.go:26:5: MilkDirSep is a global variable (gochecknoglobals)
+var MilkDirSep string
+    ^
+config.go:27:5: MilkPathSep is a global variable (gochecknoglobals)
+var MilkPathSep = ";"
+    ^
+config.go:28:5: MilkPathMark is a global variable (gochecknoglobals)
+var MilkPathMark = "?"
+    ^
+config.go:29:5: MilkExecDir is a global variable (gochecknoglobals)
+var MilkExecDir = "!"
+    ^
+config.go:30:5: MilkIgMark is a global variable (gochecknoglobals)
+var MilkIgMark = "-"
+    ^
+coroutinelib.go:10:5: CoroutLibFuncDoc is a global variable (gochecknoglobals)
+var CoroutLibFuncDoc = map[string]libFuncDoc{
+    ^
+coroutinelib.go:24:5: coFuncs is a global variable (gochecknoglobals)
+var coFuncs = map[string]LGFunction{
+    ^
+debuglib.go:14:5: DbgLibFuncDoc is a global variable (gochecknoglobals)
+var DbgLibFuncDoc = map[string]libFuncDoc{
+    ^
+debuglib.go:32:5: debugFuncs is a global variable (gochecknoglobals)
+var debugFuncs = map[string]LGFunction{
+    ^
+httplib.go:14:2: requestTimeout is a global variable (gochecknoglobals)
+	requestTimeout = 30 * time.Second
+	^
+httplib.go:42:5: httpModuleFuncs is a global variable (gochecknoglobals)
+var httpModuleFuncs = map[string]LGFunction{
+    ^
+iolib.go:13:5: ioFuncs is a global variable (gochecknoglobals)
+var ioFuncs = map[string]LGFunction{
+    ^
+iolib.go:27:5: IoLibFuncDoc is a global variable (gochecknoglobals)
+var IoLibFuncDoc = map[string]libFuncDoc{
+    ^
+iolib.go:188:5: stdFiles is a global variable (gochecknoglobals)
+var stdFiles = []struct {
+    ^
+iolib.go:222:5: fileMethods is a global variable (gochecknoglobals)
+var fileMethods = map[string]LGFunction{
+    ^
+iolib.go:434:5: fileSeekOptions is a global variable (gochecknoglobals)
+var fileSeekOptions = []string{"set", "cur", "end"}
+    ^
+iolib.go:519:5: filebufOptions is a global variable (gochecknoglobals)
+var filebufOptions = []string{"no", "full"}
+    ^
+iolib.go:637:5: ioOpenOpions is a global variable (gochecknoglobals)
+var ioOpenOpions = []string{"r", "rb", "w", "wb", "a", "ab", "r+", "rb+", "w+", "wb+", "a+", "ab+"}
+    ^
+iolib.go:676:5: ioPopenOptions is a global variable (gochecknoglobals)
+var ioPopenOptions = []string{"r", "w"}
+    ^
+jsonlib.go:23:5: jsonFuncs is a global variable (gochecknoglobals)
+var jsonFuncs = map[string]LGFunction{
+    ^
+linit.go:52:5: luaLibs is a global variable (gochecknoglobals)
+var luaLibs = []luaLib{
+    ^
+loadlib.go:12:5: loLoaders is a global variable (gochecknoglobals)
+var loLoaders = []LGFunction{loLoaderPreload, loLoaderLua}
+    ^
+loadlib.go:74:5: loFuncs is a global variable (gochecknoglobals)
+var loFuncs = map[string]LGFunction{
+    ^
+loadlib.go:79:5: LoLibFuncDoc is a global variable (gochecknoglobals)
+var LoLibFuncDoc = map[string]libFuncDoc{
+    ^
+mathlib.go:19:5: MatLibFuncDoc is a global variable (gochecknoglobals)
+var MatLibFuncDoc = map[string]libFuncDoc{
+    ^
+mathlib.go:54:5: mathFuncs is a global variable (gochecknoglobals)
+var mathFuncs = map[string]LGFunction{
+    ^
+opcode.go:192:5: opProps is a global variable (gochecknoglobals)
+var opProps = []opProp{
+    ^
+alloc.go:21:1: don't use `init` function (gochecknoinits)
+func init() {
+^
+config.go:32:1: don't use `init` function (gochecknoinits)
+func init() {
+^
+oslib.go:11:1: don't use `init` function (gochecknoinits)
+func init() {
+^
+auxlib.go:278:3: ifElseChain: rewrite if-else to switch statement (gocritic)
+		if nextobj == LNil {
+		^
+baselib.go:14:15: captLocal: `L' should not be capitalized (gocritic)
+func OpenBase(L *LState) int {
+              ^
+baselib.go:90:17: captLocal: `L' should not be capitalized (gocritic)
+func baseAssert(L *LState) int {
+                ^
+baselib.go:98:17: captLocal: `L' should not be capitalized (gocritic)
+func baseDoFile(L *LState) int {
+                ^
+baselib.go:207:3: ifElseChain: rewrite if-else to switch statement (gocritic)
+		if ret == LNil {
+		^
+baselib.go:474:4: ifElseChain: rewrite if-else to switch statement (gocritic)
+			if noBase && strings.HasPrefix(strings.ToLower(str), "0x") {
+			^
+channellib.go:22:2: commentFormatting: put a space between `//` and comment text (gocritic)
+	//_, ok := L.G.builtinMts[int(LTChannel)]
+	^
+compile.go:234:2: assignOp: replace `*reg = *reg + inc` with `*reg += inc` (gocritic)
+	*reg = *reg + inc
+	^
+compile.go:248:2: assignOp: replace `*reg = *reg + inc` with `*reg += inc` (gocritic)
+	*reg = *reg + inc
+	^
+compile.go:1409:3: assignOp: replace `*reg = *reg + reginc` with `*reg += reginc` (gocritic)
+		*reg = *reg + reginc
+		^
+compile.go:240:3: singleCaseSwitch: should rewrite switch statement to if statement (gocritic)
+		switch opGetOpCode(lastinst) {
+		^
+compile.go:1945:3: singleCaseSwitch: should rewrite switch statement to if statement (gocritic)
+		switch kex := ex.Key.(type) {
+		^
+loadlib.go:31:9: wrapperFunc: use strings.ReplaceAll method in `strings.Replace(name, ".", string(os.PathSeparator), -1)` (gocritic)
+	name = strings.Replace(name, ".", string(os.PathSeparator), -1)
+	       ^
+loadlib.go:25:10: wrapperFunc: use strings.ReplaceAll method in `strings.Replace(path, "!", dir, -1)` (gocritic)
+		path = strings.Replace(path, "!", dir, -1)
+		       ^
+loadlib.go:19:9: wrapperFunc: use strings.ReplaceAll method in `strings.Replace(path, ";;", ";"+defpath+";", -1)` (gocritic)
+	path = strings.Replace(path, ";;", ";"+defpath+";", -1)
+	       ^
+loadlib.go:39:14: wrapperFunc: use strings.ReplaceAll method in `strings.Replace(pattern, "?", name, -1)` (gocritic)
+		luapath := strings.Replace(pattern, "?", name, -1)
+		           ^
+stringlib.go:251:9: appendAssign: append result not assigned to the same slice (gocritic)
+		buf = append(b1, replace.String...)
+		      ^
+tablelib.go:69:2: dupBranchBody: both branches in if statement have same body (gocritic)
+	if n > tbl.Len() {
+	^
+compile.go:75:1: Comment should end in a period (godot)
+/* utilities {{{ */
+^
+compile.go:2055:1: Comment should end in a period (godot)
+// const folding {{{
+^
+dataconvert.go:8:1: Comment should end in a period (godot)
+// 递归转换Go数据结构到LValue
+^
+compile.go:986:3: compile.go:986: Line contains TODO/BUG/FIXME: "TODO folding constants?" (godox)
+	// TODO folding constants?
+	 ^
+compile.go:1735:3: compile.go:1735: Line contains TODO/BUG/FIXME: "TODO folding constants?" (godox)
+	// TODO folding constants?
+	 ^
+coroutinelib.go:4:3: coroutinelib.go:4: Line contains TODO/BUG/FIXME: "TODO: Tie module name to contents of lin..." (godox)
+	// TODO: Tie module name to contents of linit.go?
+	 ^
+iolib.go:539:24: iolib.go:539: Line contains TODO/BUG/FIXME: "TODO line buffer not supported" (godox)
+	case "full", "line": // TODO line buffer not supported
+	                      ^
+state.go:557:4: state.go:557: Line contains TODO/BUG/FIXME: "FIXME consider using copy() here if Inse..." (godox)
+		// FIXME consider using copy() here if Insert() is called enough
+		 ^
+table.go:212:4: table.go:212: Line contains TODO/BUG/FIXME: "TODO tb.keys and tb.k2i should also be r..." (godox)
+		// TODO tb.keys and tb.k2i should also be removed
+		 ^
+table.go:239:4: table.go:239: Line contains TODO/BUG/FIXME: "TODO tb.keys and tb.k2i should also be r..." (godox)
+		// TODO tb.keys and tb.k2i should also be removed
+		 ^
+compile.go:5:1: File is not properly formatted (gofumpt)
+	"math"
+^
+compile.go:125:1: printf-like formatting function 'raiseCompileError' should be named 'raiseCompileErrorf' (goprintffuncname)
+func raiseCompileError(context *funcContext, line int, format string, args ...interface{}) {
+^
+state.go:718:1: printf-like formatting function 'raiseError' should be named 'raiseErrorf' (goprintffuncname)
+func (ls *LState) raiseError(level int, format string, args ...interface{}) {
+^
+state.go:1723:1: printf-like formatting function 'RaiseError' should be named 'RaiseErrorf' (goprintffuncname)
+func (ls *LState) RaiseError(format string, args ...interface{}) {
+^
+baselib.go:467:6: S1003: should use strings.Contains(str, ".") instead (gosimple)
+		if strings.Index(str, ".") > -1 {
+		   ^
+table.go:369:9: S1009: should omit nil check; len() for nil maps is defined as zero (gosimple)
+				if (tb.dict == nil || len(tb.dict) == 0) && (tb.strdict == nil || len(tb.strdict) == 0) {
+				    ^
+compile.go:332:37: S1019: should use make([]varNamePoolValue, len(vp.names)) instead (gosimple)
+	result := make([]varNamePoolValue, len(vp.names), len(vp.names))
+	                                   ^
+channellib.go:21:2: S1021: should merge variable declaration with assignment on next line (gosimple)
+	var mod LValue
+	^
+stringlib.go:15:2: S1021: should merge variable declaration with assignment on next line (gosimple)
+	var mod *LTable
+	^
+timelib.go:138:71: usage of time.Local (gosmopolitan)
+	t := time.Date(year, time.Month(month), day, hour, min, sec, 0, time.Local)
+	                                                                     ^
+compile.go:941:5: ineffectual assignment to reg (ineffassign)
+				reg += compileExpr(context, reg, ex, ecnone(0))
+				^
+compile.go:943:5: ineffectual assignment to reg (ineffassign)
+				reg += compileExpr(context, reg, ex, ecnone(-2))
+				^
+compile.go:1625:2: ineffectual assignment to reg (ineffassign)
+	reg += compileExpr(context, reg, expr.Rhs, ecnone(0))
+	^
+compile.go:1871:2: ineffectual assignment to name (ineffassign)
+	name := "(anonymous)"
+	^
+alloc.go:22:2: for loop can be changed to use an integer range (Go 1.22+) (intrange)
+	for i := 0; i < int(preloadLimit); i++ {
+	^
+channellib.go:58:2: for loop can be changed to use an integer range (Go 1.22+) (intrange)
+	for i := 0; i < top; i++ {
+	^
+alloc.go:57:1: LNumber2I returns interface (milklua.LValue) (ireturn)
+func (al *allocator) LNumber2I(v LNumber) LValue {
+^
+auxlib.go:13:1: CheckAny returns interface (milklua.LValue) (ireturn)
+func (ls *LState) CheckAny(n int) LValue {
+^
+auxlib.go:270:1: FindTable returns interface (milklua.LValue) (ireturn)
+func (ls *LState) FindTable(obj *LTable, n string, size int) LValue {
+^
+auxlib.go:295:1: RegisterModule returns interface (milklua.LValue) (ireturn)
+func (ls *LState) RegisterModule(name string, funcs map[string]LGFunction) LValue {
+^
+auxlib.go:335:1: GetMetaField returns interface (milklua.LValue) (ireturn)
+func (ls *LState) GetMetaField(obj LValue, event string) LValue {
+^
+auxlib.go:339:1: GetTypeMetatable returns interface (milklua.LValue) (ireturn)
+func (ls *LState) GetTypeMetatable(typ string) LValue {
+^
+auxlib.go:343:1: CallMeta returns interface (milklua.LValue) (ireturn)
+func (ls *LState) CallMeta(obj LValue, event string) LValue {
+^
+auxlib.go:426:1: ToStringMeta returns interface (milklua.LValue) (ireturn)
+func (ls *LState) ToStringMeta(lv LValue) LValue {
+^
+function.go:55:1: Value returns interface (milklua.LValue) (ireturn)
+func (uv *Upvalue) Value() LValue {
+^
+state.go:162:1: newFixedCallFrameStack returns interface (milklua.callFrameStack) (ireturn)
+func newFixedCallFrameStack(size int) callFrameStack {
+^
+state.go:247:1: newAutoGrowingCallFrameStack returns interface (milklua.callFrameStack) (ireturn)
+func newAutoGrowingCallFrameStack(maxSize int) callFrameStack {
+^
+state.go:448:1: Pop returns interface (milklua.LValue) (ireturn)
+func (rg *registry) Pop() LValue {
+^
+state.go:455:1: Get returns interface (milklua.LValue) (ireturn)
+func (rg *registry) Get(reg int) LValue {
+^
+state.go:894:1: rkValue returns interface (milklua.LValue) (ireturn)
+func (ls *LState) rkValue(idx int) LValue {
+^
+state.go:958:1: metatable returns interface (milklua.LValue) (ireturn)
+func (ls *LState) metatable(lvalue LValue, rawget bool) LValue {
+^
+state.go:984:1: metaOp1 returns interface (milklua.LValue) (ireturn)
+func (ls *LState) metaOp1(lvalue LValue, event string) LValue {
+^
+state.go:993:1: metaOp2 returns interface (milklua.LValue) (ireturn)
+func (ls *LState) metaOp2(value1, value2 LValue, event string) LValue {
+^
+state.go:1259:1: getField returns interface (milklua.LValue) (ireturn)
+func (ls *LState) getField(obj LValue, key LValue) LValue {
+^
+state.go:1290:1: getFieldString returns interface (milklua.LValue) (ireturn)
+func (ls *LState) getFieldString(obj LValue, key string) LValue {
+^
+state.go:1814:1: GetLocal returns interface (milklua.LValue) (ireturn)
+func (ls *LState) GetLocal(dbg *Debug, no int) (string, LValue) {
+^
+state.go:1831:1: GetUpvalue returns interface (milklua.LValue) (ireturn)
+func (ls *LState) GetUpvalue(fn *LFunction, no int) (string, LValue) {
+^
+state.go:1860:1: GetFEnv returns interface (milklua.LValue) (ireturn)
+func (ls *LState) GetFEnv(obj LValue) LValue {
+^
+state.go:1893:1: RawGet returns interface (milklua.LValue) (ireturn)
+func (ls *LState) RawGet(tb *LTable, key LValue) LValue {
+^
+state.go:1897:1: RawGetInt returns interface (milklua.LValue) (ireturn)
+func (ls *LState) RawGetInt(tb *LTable, key int) LValue {
+^
+state.go:1901:1: GetField returns interface (milklua.LValue) (ireturn)
+func (ls *LState) GetField(obj LValue, skey string) LValue {
+^
+state.go:1905:1: GetTable returns interface (milklua.LValue) (ireturn)
+func (ls *LState) GetTable(obj LValue, key LValue) LValue {
+^
+state.go:1934:1: GetGlobal returns interface (milklua.LValue) (ireturn)
+func (ls *LState) GetGlobal(name string) LValue {
+^
+state.go:1942:1: Next returns interface (milklua.LValue) (ireturn)
+func (ls *LState) Next(tb *LTable, key LValue) (LValue, LValue) {
+^
+state.go:2130:1: GetMetatable returns interface (milklua.LValue) (ireturn)
+func (ls *LState) GetMetatable(obj LValue) LValue {
+^
+table.go:119:1: Remove returns interface (milklua.LValue) (ireturn)
+func (tb *LTable) Remove(pos int) LValue {
+^
+table.go:251:1: RawGet returns interface (milklua.LValue) (ireturn)
+func (tb *LTable) RawGet(key LValue) LValue {
+^
+table.go:283:1: RawGetInt returns interface (milklua.LValue) (ireturn)
+func (tb *LTable) RawGetInt(key int) LValue {
+^
+table.go:295:1: RawGetH returns interface (milklua.LValue) (ireturn)
+func (tb *LTable) RawGetH(key LValue) LValue {
+^
+table.go:315:1: RawGetString returns interface (milklua.LValue) (ireturn)
+func (tb *LTable) RawGetString(key string) LValue {
+^
+compile.go:489:1: The line is 122 characters long, which exceeds the maximum of 120 characters. (lll)
+		raiseCompileError(fc, to.Line+1, "<goto %s> at line %d jumps into the scope of local '%s'", to.Name, from.Line, varName)
+^
+compile.go:1405:1: The line is 138 characters long, which exceeds the maximum of 120 characters. (lll)
+func compileExprWithPropagation(context *funcContext, expr ast.Expr, reg *int, save *int, propergator func(int, *int, *int, int)) { // {{{
+^
+compile.go:1812:1: The line is 126 characters long, which exceeds the maximum of 120 characters. (lll)
+	if ident, ok := expr.(*ast.IdentExpr); ok && (isLastAnd || isLastOr) && getIdentRefType(context, context, ident) == ecLocal {
+^
+opcode.go:438:1: The line is 137 characters long, which exceeds the maximum of 120 characters. (lll)
+		buf += fmt.Sprintf("; R(%v)+=R(%v+2); if R(%v) <?= R(%v+1) then { pc+=%v; R(%v+3)=R(%v) }", arga, arga, arga, arga, argsbx, arga, arga)
+^
+opcode.go:442:1: The line is 179 characters long, which exceeds the maximum of 120 characters. (lll)
+		buf += fmt.Sprintf("; R(%v+3) ... R(%v+3+%v) := R(%v)(R(%v+1) R(%v+2)); if R(%v+3) ~= nil then { pc++; R(%v+2)=R(%v+3); }", arga, arga, argc, arga, arga, arga, arga, arga, arga)
+^
+state.go:399:1: The line is 145 characters long, which exceeds the maximum of 120 characters. (lll)
+	copy(newSlice, rg.array[:rg.top]) // should we copy the area beyond top? there shouldn't be any valid values there so it shouldn't be necessary.
+^
+baselib.go:92:34: Magic number: 2, in <argument> detected (mnd)
+		L.RaiseError("%s", L.OptString(2, "assertion failed!"))
+		                               ^
+baselib.go:113:20: Magic number: 2, in <argument> detected (mnd)
+	level := L.OptInt(2, 1)
+	                  ^
+baselib.go:164:18: Magic number: 2, in <argument> detected (mnd)
+	i := L.CheckInt(2)
+	                ^
+channellib.go:76:23: Magic number: 3, in <argument> detected (mnd)
+			v := tbl.RawGetInt(3)
+			                   ^
+channellib.go:131:25: Magic number: 3, in <argument> detected (mnd)
+			L.Push(tbl.RawGetInt(3))
+			                     ^
+compile.go:324:40: Magic number: 16, in <argument> detected (mnd)
+	return &varNamePool{make([]string, 0, 16), offset}
+	                                      ^
+compile.go:436:49: Magic number: 1024, in <argument> detected (mnd)
+		Code:            &codeStore{make([]uint32, 0, 1024), make([]int, 0, 1024), 0},
+		                                              ^
+compile.go:594:40: Magic number: 32, in <argument> detected (mnd)
+	result := make([]varNamePoolValue, 0, 32)
+	                                      ^
+compile.go:1200:73: Magic number: 3, in <argument> detected (mnd)
+	compileRegAssignment(context, stmt.Names, stmt.Exprs, context.RegTop()-3, 3, sline(stmt))
+	                                                                       ^
+function.go:99:41: Magic number: 128, in <argument> detected (mnd)
+		Code:               make([]uint32, 0, 128),
+		                                      ^
+function.go:100:41: Magic number: 32, in <argument> detected (mnd)
+		Constants:          make([]LValue, 0, 32),
+		                                      ^
+function.go:101:49: Magic number: 16, in <argument> detected (mnd)
+		FunctionPrototypes: make([]*FunctionProto, 0, 16),
+		                                              ^
+function.go:103:38: Magic number: 128, in <argument> detected (mnd)
+		DbgSourcePositions: make([]int, 0, 128),
+		                                   ^
+function.go:104:48: Magic number: 16, in <argument> detected (mnd)
+		DbgLocals:          make([]*DbgLocalInfo, 0, 16),
+		                                             ^
+function.go:105:42: Magic number: 128, in <argument> detected (mnd)
+		DbgCalls:           make([]DbgCall, 0, 128),
+		                                       ^
+function.go:108:38: Magic number: 32, in <argument> detected (mnd)
+		stringConstants: make([]string, 0, 32),
+		                                   ^
+mathlib.go:163:18: Magic number: 10, in <argument> detected (mnd)
+	base := LNumber(10)
+	                ^
+opcode.go:243:21: Magic number: 26, in <argument> detected (mnd)
+	return int(inst >> 26)
+	                   ^
+opcode.go:251:19: Magic number: 18, in <argument> detected (mnd)
+	return int(inst>>18) & 0xff
+	                 ^
+opcode.go:259:20: Magic number: 0x1ff, in <argument> detected (mnd)
+	return int(inst & 0x1ff)
+	                  ^
+opcode.go:267:19: Magic number: 9, in <argument> detected (mnd)
+	return int(inst>>9) & 0x1ff
+	                 ^
+opcode.go:275:20: Magic number: 0x3ffff, in <argument> detected (mnd)
+	return int(inst & 0x3ffff)
+	                  ^
+state.go:643:28: Magic number: 64, in <argument> detected (mnd)
+		Global:     newLTable(0, 64),
+		                         ^
+state.go:645:35: Magic number: 10, in <argument> detected (mnd)
+		tempFiles:  make([]*os.File, 0, 10),
+		                                ^
+state.go:798:31: Magic number: 20, in <argument> detected (mnd)
+		newbuf := make([]string, 0, 20)
+		                            ^
+state.go:2042:23: Magic number: 4096, in <argument> detected (mnd)
+		buf := make([]byte, 4096)
+		                    ^
+state.go:2265:15: Magic number: 10, in <argument> detected (mnd)
+			time.Sleep(10 * time.Millisecond)
+			           ^
+stringlib.go:138:26: Magic number: 4, in <argument> detected (mnd)
+		plain = LVAsBool(L.Get(4))
+		                       ^
+stringlib.go:190:20: Magic number: 4, in <argument> detected (mnd)
+	limit := L.OptInt(4, -1)
+	                  ^
+tablelib.go:108:16: Magic number: 4, in <argument> detected (mnd)
+	j := L.OptInt(4, tbl.Len())
+	              ^
+timelib.go:127:38: Magic number: 12, in <argument> detected (mnd)
+	hour := getIntField(L, tbl, "hour", 12)
+	                                    ^
+vm.go:28:26: Magic number: 26, in <argument> detected (mnd)
+		if jumpTable[int(inst>>26)](L, inst, baseframe) == 1 {
+		                       ^
+vm.go:57:27: Magic number: 26, in <argument> detected (mnd)
+			if jumpTable[int(inst>>26)](L, inst, baseframe) == 1 {
+			                       ^
+vm.go:2082:21: Magic number: 0x3ffff, in <argument> detected (mnd)
+				cf.Pc += int(pc&0x3ffff) - opMaxArgSbx
+				                ^
+baselib.go:252:19: Magic number: 2, in <condition> detected (mnd)
+	if L.GetTop() >= 2 {
+	                 ^
+compile.go:1563:11: Magic number: 511, in <condition> detected (mnd)
+			if c > 511 {
+			       ^
+iolib.go:448:19: Magic number: 2, in <condition> detected (mnd)
+	} else if top == 2 {
+	                 ^
+mathlib.go:164:19: Magic number: 2, in <condition> detected (mnd)
+	if L.GetTop() == 2 {
+	                 ^
+state.go:797:16: Magic number: 20, in <condition> detected (mnd)
+	if len(buf) > 20 {
+	              ^
+state.go:1410:24: Magic number: 128, in <condition> detected (mnd)
+	if opt.RegistrySize < 128 {
+	                      ^
+stringlib.go:137:19: Magic number: 4, in <condition> detected (mnd)
+	if L.GetTop() == 4 {
+	                 ^
+tablelib.go:109:19: Magic number: 3, in <condition> detected (mnd)
+	if L.GetTop() == 3 {
+	                 ^
+utils.go:229:9: Magic number: 8, in <condition> detected (mnd)
+	if x < 8 {
+	       ^
+compile.go:1883:21: Magic number: 2, in <operation> detected (mnd)
+		reg2 := funcreg + 2
+		                  ^
+compile.go:1974:50: Magic number: 2, in <operation> detected (mnd)
+			if reg := opGetArgA(inst) + opGetArgC(inst) - 2; reg > maxreg {
+			                                              ^
+utils.go:232:21: Magic number: 3, in <operation> detected (mnd)
+	return ((e + 1) << 3) | (x - 8)
+	                   ^
+vm.go:1864:22: Magic number: 3, in <operation> detected (mnd)
+								regi := RA + 3
+								             ^
+vm.go:1973:18: Magic number: 3, in <operation> detected (mnd)
+				topi := RA + 3 + 2
+				             ^
+baselib.go:135:1: `if ok` has complex nested blocks (complexity: 5) (nestif)
+	if number, ok := value.(LNumber); ok {
+^
+compile.go:1548:1: `if (arraycount != 0 && (flush == 0 || islast)) || lastvararg` has complex nested blocks (complexity: 5) (nestif)
+		if (arraycount != 0 && (flush == 0 || islast)) || lastvararg {
+^
+compile.go:2210:1: `if e.Operator == "^"` has complex nested blocks (complexity: 7) (nestif)
+		if e.Operator == "^" {
+^
+dataconvert.go:72:1: `if ok` has complex nested blocks (complexity: 5) (nestif)
+		if n, ok := k.(LNumber); ok {
+^
+state.go:2055:1: `if r != nil` has complex nested blocks (complexity: 16) (nestif)
+		if r := recover(); r != nil {
+^
+table.go:358:1: `if init || key != LNumber(0)` has complex nested blocks (complexity: 14) (nestif)
+	if init || key != LNumber(0) {
+^
+utils.go:74:1: `if fs.Pos == fs.Length` has complex nested blocks (complexity: 9) (nestif)
+	if fs.Pos == fs.Length {
+^
+utils.go:110:1: `if !sc.ChangeFlag` has complex nested blocks (complexity: 5) (nestif)
+		if !sc.ChangeFlag {
+^
+vm.go:270:1: `if rcv != nil` has complex nested blocks (complexity: 7) (nestif)
+		if rcv := recover(); rcv != nil {
+^
+vm.go:428:1: `if B != 0` has complex nested blocks (complexity: 5) (nestif)
+			if B != 0 {
+^
+vm.go:579:1: `if ok` has complex nested blocks (complexity: 10) (nestif)
+			if lstr, ok := obj.(LString); ok {
+^
+vm.go:807:1: `if ok` has complex nested blocks (complexity: 19) (nestif)
+			if nm, ok := unaryv.(LNumber); ok {
+^
+vm.go:892:1: `if LVIsFalse(reg.Get(lbase + B))` has complex nested blocks (complexity: 5) (nestif)
+			if LVIsFalse(reg.Get(lbase + B)) {
+^
+vm.go:1392:1: `if callable.IsG` has complex nested blocks (complexity: 36) (nestif)
+			if callable.IsG {
+^
+vm.go:1603:1: `if L.Parent != nil && L.stack.Sp() == 1` has complex nested blocks (complexity: 23) (nestif)
+			if L.Parent != nil && L.stack.Sp() == 1 {
+^
+vm.go:1832:1: `if ok1` has complex nested blocks (complexity: 32) (nestif)
+			if init, ok1 := reg.Get(RA).(LNumber); ok1 {
+^
+vm.go:1930:1: `if ok1` has complex nested blocks (complexity: 7) (nestif)
+			if init, ok1 := reg.Get(RA).(LNumber); ok1 {
+^
+vm.go:2293:1: `if typeCheckOK` has complex nested blocks (complexity: 5) (nestif)
+			if typeCheckOK {
+^
+vm.go:2357:1: `if ok1 && ok2` has complex nested blocks (complexity: 5) (nestif)
+	if ok1 && ok2 {
+^
+compile.go:653:5: break with no blank line before (nlreturn)
+				break
+				^
+compile.go:674:5: break with no blank line before (nlreturn)
+				break
+				^
+compile.go:782:4: continue with no blank line before (nlreturn)
+			continue
+			^
+compile.go:1998:6: break with no blank line before (nlreturn)
+					break
+					^
+compile.go:2032:1: named return "proto" with type "*FunctionProto" found (nonamedreturns)
+func Compile(chunk []ast.Stmt, name string) (proto *FunctionProto, err error) { // {{{
+^
+dataconvert.go:117:10: fmt.Sprintf can be replaced with faster strconv.FormatBool (perfsprint)
+		return fmt.Sprintf("%v", bool(v))
+		       ^
+iolib.go:142:10: fmt.Sprintf can be replaced with string concatenation (perfsprint)
+		return fmt.Sprintf("file %s", file.fp.Name())
+		       ^
+iolib.go:144:10: fmt.Sprintf can be replaced with string concatenation (perfsprint)
+		return fmt.Sprintf("process %s", file.pp.Path)
+		       ^
+stringlib.go:233:10: fmt.Sprint can be replaced with faster strconv.Itoa (perfsprint)
+		return fmt.Sprint(m.Capture(idx))
+		       ^
+utils.go:117:23: fmt.Sprint can be replaced with faster strconv.Itoa (perfsprint)
+						sc.AppendString(fmt.Sprint(int(t.Weekday())))
+						                ^
+value.go:116:10: fmt.Sprint can be replaced with faster strconv.FormatInt (perfsprint)
+		return fmt.Sprint(int64(nm))
+		       ^
+alloc.go:31:11: SA1019: reflect.SliceHeader has been deprecated since Go 1.21 and an alternative has been available since Go 1.17: Use unsafe.Slice or unsafe.SliceData instead. (staticcheck)
+	fheader *reflect.SliceHeader
+	         ^
+alloc.go:43:17: SA1019: reflect.SliceHeader has been deprecated since Go 1.21 and an alternative has been available since Go 1.17: Use unsafe.Slice or unsafe.SliceData instead. (staticcheck)
+	al.fheader = (*reflect.SliceHeader)(unsafe.Pointer(&al.fptrs))
+	               ^
+alloc.go:66:18: SA1019: reflect.SliceHeader has been deprecated since Go 1.21 and an alternative has been available since Go 1.17: Use unsafe.Slice or unsafe.SliceData instead. (staticcheck)
+		al.fheader = (*reflect.SliceHeader)(unsafe.Pointer(&al.fptrs))
+		               ^
+auxlib.go:365:3: SA5001: should check error returned from os.Open() before deferring file.Close() (staticcheck)
+		defer file.Close()
+		^
+vm.go:1369:7: SA5011(related information): this check suggests that the pointer can be nil (staticcheck)
+			if callable == nil {
+			   ^
+httplib.go:62:46: "GET" can be replaced by http.MethodGet (usestdlibvars)
+	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
+	                                            ^
+httplib.go:101:46: "POST" can be replaced by http.MethodPost (usestdlibvars)
+	req, err := http.NewRequestWithContext(ctx, "POST", url, strings.NewReader(body))
+	                                            ^
+httplib.go:145:46: "PUT" can be replaced by http.MethodPut (usestdlibvars)
+	req, err := http.NewRequestWithContext(ctx, "PUT", url, strings.NewReader(body))
+	                                            ^
+httplib.go:184:46: "PATCH" can be replaced by http.MethodPatch (usestdlibvars)
+	req, err := http.NewRequestWithContext(ctx, "PATCH", url, strings.NewReader(body))
+	                                            ^
+httplib.go:222:46: "DELETE" can be replaced by http.MethodDelete (usestdlibvars)
+	req, err := http.NewRequestWithContext(ctx, "DELETE", url, nil)
+	                                            ^
+httplib.go:256:46: "HEAD" can be replaced by http.MethodHead (usestdlibvars)
+	req, err := http.NewRequestWithContext(ctx, "HEAD", url, nil)
+	                                            ^
+httplib.go:286:46: "OPTIONS" can be replaced by http.MethodOptions (usestdlibvars)
+	req, err := http.NewRequestWithContext(ctx, "OPTIONS", url, nil)
+	                                            ^
+opcode.go:333:2: variable name 'op' is too short for the scope of its usage (varnamelen)
+	op := opGetOpCode(inst)
+	^
+vm.go:1863:9: variable name 'rg' is too short for the scope of its usage (varnamelen)
+								rg := reg
+								^
+vm.go:2362:4: variable name 'rg' is too short for the scope of its usage (varnamelen)
+			rg := reg
+			^
+compile.go:730:4: variable name 'ec' is too short for the scope of its usage (varnamelen)
+			ec := &expcontext{identtype, regNotDefined, 0}
+			^
+vm.go:222:3: variable name 'rg' is too short for the scope of its usage (varnamelen)
+		rg := L.reg
+		^
+state.go:1637:2: variable name 'cl' is too short for the scope of its usage (varnamelen)
+	cl := newLFunctionG(fn, ls.currentEnv(), len(upvalues))
+	^
+vm.go:1100:4: variable name 'cf' is too short for the scope of its usage (varnamelen)
+			cf := L.currentFrame
+			^
+vm.go:2410:2: variable name 'RA' is too short for the scope of its usage (varnamelen)
+	RA := lbase + A
+	^
+vm.go:271:8: variable name 'lv' is too short for the scope of its usage (varnamelen)
+			var lv LValue
+			    ^
+compile.go:995:9: variable name 'ex' is too short for the scope of its usage (varnamelen)
+	switch ex := expr.(type) {
+	       ^
+compile.go:525:6: variable name 'i' is too short for the scope of its usage (varnamelen)
+	for i := fc.Block.firstGotoIndex; i <= fc.gotosCount; i++ {
+	    ^
+compile.go:1622:2: variable name 'a' is too short for the scope of its usage (varnamelen)
+	a := savereg(ec, reg)
+	^
+compile.go:683:9: variable name 'st' is too short for the scope of its usage (varnamelen)
+	switch st := stmt.(type) {
+	       ^
+stringlib.go:245:3: variable name 'b1' is too short for the scope of its usage (varnamelen)
+		b1 := append([]byte(""), buf[0:offset+replace.Indicies[0]]...)
+		^
+compile.go:1538:4: variable name 'c' is too short for the scope of its usage (varnamelen)
+			c := reg
+			^
+compile.go:1636:9: variable name 'ex' is too short for the scope of its usage (varnamelen)
+	switch ex := expr.(type) {
+	       ^
+vm.go:1247:6: variable name 'cf' is too short for the scope of its usage (varnamelen)
+					cf := newcf
+					^
+vm.go:1360:4: variable name 'lv' is too short for the scope of its usage (varnamelen)
+			lv := reg.Get(RA)
+			^
+vm.go:1828:4: variable name 'cf' is too short for the scope of its usage (varnamelen)
+			cf := L.currentFrame
+			^
+tablelib.go:193:3: variable name 'eq' is too short for the scope of its usage (varnamelen)
+		eq := true
+		^
+vm.go:1609:6: variable name 'b' is too short for the scope of its usage (varnamelen)
+					b := B
+					^
+vm.go:1427:6: variable name 'ls' is too short for the scope of its usage (varnamelen)
+					ls := L
+					^
+compile.go:1588:2: variable name 'b' is too short for the scope of its usage (varnamelen)
+	b := reg
+	^
+state.go:2300:2: variable name 'cs' is too short for the scope of its usage (varnamelen)
+	cs := ls.stack
+	^
+vm.go:1216:4: variable name 'lv' is too short for the scope of its usage (varnamelen)
+			lv := reg.Get(RA)
+			^
+vm.go:1055:4: variable name 'v' is too short for the scope of its usage (varnamelen)
+			v := stringConcat(L, RC-RB+1, RC)
+			^
+dataconvert.go:128:6: variable name 'v' is too short for the scope of its usage (varnamelen)
+	for k, v := range goHeaders {
+	    ^
+stringlib.go:264:7: variable name 'c' is too short for the scope of its usage (varnamelen)
+		for c, eos := scanner.Next(); !eos; c, eos = scanner.Next() {
+		    ^
+vm.go:975:7: variable name 'v' is too short for the scope of its usage (varnamelen)
+						v, _ := ret.(LNumber)
+						^
+stringlib.go:425:2: variable name 'md' is too short for the scope of its usage (varnamelen)
+	md := mds[0]
+	^
+compile.go:1672:2: variable name 'b' is too short for the scope of its usage (varnamelen)
+	b := reg
+	^
+vm.go:1375:5: variable name 'ls' is too short for the scope of its usage (varnamelen)
+				ls := L
+				^
+state.go:1873:2: variable name 'tb' is too short for the scope of its usage (varnamelen)
+	tb, ok := env.(*LTable)
+	^
+vm.go:1529:6: variable name 'n' is too short for the scope of its usage (varnamelen)
+					n := reg.Top() - RA - 1
+					^
+vm.go:395:4: variable name 'RA' is too short for the scope of its usage (varnamelen)
+			RA := lbase + A
+			^
+state.go:782:3: variable name 'i' is too short for the scope of its usage (varnamelen)
+		i := 0
+		^
+compile.go:764:3: variable name 'ec' is too short for the scope of its usage (varnamelen)
+		ec := ac.ec
+		^
+stringlib.go:246:3: variable name 'b2' is too short for the scope of its usage (varnamelen)
+		b2 := []byte("")
+		^
+compile.go:763:3: variable name 'ac' is too short for the scope of its usage (varnamelen)
+		ac := acs[namesassigned]
+		^
+state.go:1025:3: variable name 'np' is too short for the scope of its usage (varnamelen)
+		np := int(proto.NumParameters)
+		^
+vm.go:1577:5: variable name 'ls' is too short for the scope of its usage (varnamelen)
+				ls := L
+				^
+vm.go:2142:4: variable name 'RA' is too short for the scope of its usage (varnamelen)
+			RA := lbase + A
+			^
+compile.go:1840:2: variable name 'a' is too short for the scope of its usage (varnamelen)
+	a := savereg(ec, reg)
+	^
+compile.go:741:4: variable name 'ac' is too short for the scope of its usage (varnamelen)
+			ac := &assigncontext{&expcontext{ecTable, regNotDefined, 0}, 0, 0, false, false}
+			^
+vm.go:2563:2: assigned to ret, but reassigned without using the value (wastedassign)
+	ret := false
+	^
+compile.go:876:83: unnecessary leading newline (whitespace)
+		if isVarArgReturnExpr(exprs[namesassigned]) && (lenexprs-namesassigned-1) <= 0 {
+		                                                                                ^
+compile.go:983:1: unnecessary trailing newline (whitespace)
+} // }}}
+^
+compile.go:1072:1: unnecessary trailing newline (whitespace)
+} // }}}
+^
+compile.go:1142:1: unnecessary trailing newline (whitespace)
+} // }}}
+^
+iolib.go:372:19: unnecessary leading newline (whitespace)
+			if err != nil {
+			               ^
+iolib.go:90:16: error returned from external package is unwrapped: sig: func os.OpenFile(name string, flag int, perm os.FileMode) (*os.File, error) (wrapcheck)
+			return nil, err
+			            ^
+iolib.go:121:15: error returned from external package is unwrapped: sig: func (*os/exec.Cmd).StdoutPipe() (io.ReadCloser, error) (wrapcheck)
+		return nil, err
+		            ^
+iolib.go:125:15: error returned from external package is unwrapped: sig: func (*os/exec.Cmd).Start() error (wrapcheck)
+		return nil, err
+		            ^
+iolib.go:153:11: error returned from external package is unwrapped: sig: func (*os.File).Seek(offset int64, whence int) (ret int64, err error) (wrapcheck)
+			return err
+			       ^
+auxlib.go:124:2: only one cuddle assignment allowed before range statement (wsl)
+	for _, typ := range typs {
+	^
+auxlib.go:360:2: declarations should never be cuddled (wsl)
+	var err error
+	^
+auxlib.go:273:2: only one cuddle assignment allowed before range statement (wsl)
+	for _, name := range names {
+	^
+baselib.go:227:2: declarations should never be cuddled (wsl)
+	var chunkname string
+	^
+baselib.go:586:2: declarations should never be cuddled (wsl)
+	var modasfunc LValue
+	^
+baselib.go:596:3: only one cuddle assignment allowed before type switch statement (wsl)
+		switch retv := ret.(type) {
+		^
+baselib.go:587:2: for statement without condition should never be cuddled (wsl)
+	for i := 1; ; i++ {
+	^
+channellib.go:69:3: only one cuddle assignment allowed before switch statement (wsl)
+		switch string(dir) {
+		^
+channellib.go:121:3: switch statements should only be cuddled with variables switched (wsl)
+		switch cases[pos].Dir {
+		^
+compile.go:1614:2: only one cuddle assignment allowed before for statement (wsl)
+	for current := expr.Rhs; current != nil; {
+	^
+compile.go:668:2: only one cuddle assignment allowed before range statement (wsl)
+	for i, stmt := range chunk {
+	^
+compile.go:1174:2: only cuddled expressions if assigning variable or using from line above (wsl)
+	compileChunk(context, stmt.Stmts, false)
+	^
+compile.go:1091:3: expressions should not be cuddled with declarations or returns (wsl)
+		compileExprWithKMVPropagation(context, stmt.Name.Receiver, &reg, &treg)
+		^
+compile.go:944:5: only cuddled expressions if assigning variable or using from line above (wsl)
+				code.SetOpCode(code.LastPC(), OP_TAILCALL)
+				^
+compile.go:649:3: for statements should only be cuddled with assignments used in the iteration (wsl)
+		for j := i + 1; j < len(chunk); j++ {
+		^
+compile.go:920:2: ranges should only be cuddled with assignments used in the iteration (wsl)
+	for _, name := range stmt.Names {
+	^
+compile.go:1992:4: only one cuddle assignment allowed before for statement (wsl)
+			for jmp := inst; opGetOpCode(jmp) == OP_JMP && count < 5; jmp = context.Code.At(pc + distance + 1) {
+			^
+compile.go:1459:10: block should not start with a whitespace (wsl)
+	default:
+	        ^
+compile.go:670:3: for statements should only be cuddled with assignments used in the iteration (wsl)
+		for j := i + 1; j < len(chunk); j++ {
+		^
+debuglib.go:58:2: only one cuddle assignment allowed before type switch statement (wsl)
+	switch lv := arg1.(type) {
+	^
+httplib.go:121:2: only one cuddle assignment allowed before defer statement (wsl)
+	defer func() {
+	^
+httplib.go:77:2: only one cuddle assignment allowed before defer statement (wsl)
+	defer func() {
+	^
+opcode.go:292:2: expressions should not be cuddled with declarations or returns (wsl)
+	opSetOpCode(&inst, op)
+	^
+cmd/glua/glua.go:52:24: Error return value of `pprof.StartCPUProfile` is not checked (errcheck)
+		pprof.StartCPUProfile(f)
+		                     ^
+cmd/glua/glua.go:19:1: cognitive complexity 40 of func `mainAux` is high (> 30) (gocognit)
+func mainAux() int {
+^
+cmd/glua/glua.go:6:2: import 'milklua/parse' is not allowed from list 'Main' (depguard)
+	"milklua/parse"
+	^
+cmd/glua/glua.go:10:2: import 'milklua' is not allowed from list 'Main' (depguard)
+	lua "milklua"
+	^
+cmd/glua/glua.go:12:2: import 'github.com/chzyer/readline' is not allowed from list 'Main' (depguard)
+	"github.com/chzyer/readline"
+	^
+cmd/glua/glua.go:33:3: use of `fmt.Println` forbidden by pattern `^(fmt\.Print(|f|ln)|print|println)$` (forbidigo)
+		fmt.Println(`Usage: glua [options] [script [args]].
+		^
+cmd/glua/glua.go:81:1: `if nargs > 0` has complex nested blocks (complexity: 13) (nestif)
+	if nargs := flag.NArg(); nargs > 0 {
+^
+cmd/glua/glua.go:167:14: error returned from external package is unwrapped: sig: func (*github.com/chzyer/readline.Instance).Readline() (string, error) (wrapcheck)
+		return "", err
+		           ^
+cmd/glua/glua.go:182:16: error returned from external package is unwrapped: sig: func (*github.com/chzyer/readline.Instance).Readline() (string, error) (wrapcheck)
+				return "", err
+				           ^
+parse/lexer.go:89:21: Error return value of `sc.reader.ReadRune` is not checked (errcheck)
+		sc.reader.ReadRune()
+		                  ^
+parse/lexer.go:111:23: Error return value of `sc.reader.UnreadRune` is not checked (errcheck)
+		sc.reader.UnreadRune()
+		                    ^
+parse/lexer.go:208:16: Error return value of `sc.scanDecimal` is not checked (errcheck)
+	sc.scanDecimal(ch, buf)
+	              ^
+parse/lexer.go:210:17: Error return value of `sc.scanDecimal` is not checked (errcheck)
+		sc.scanDecimal(sc.Next(), buf)
+		              ^
+parse/lexer.go:217:17: Error return value of `sc.scanDecimal` is not checked (errcheck)
+		sc.scanDecimal(sc.Next(), buf)
+		              ^
+parse/lexer_test.go:160:16: Error return value of `scanner.Scan` is not checked (errcheck)
+			scanner.Scan(lexer)
+			            ^
+parse/lexer_test.go:169:17: Error return value of `scanner.Scan` is not checked (errcheck)
+				scanner.Scan(lexer)
+				            ^
+parse/lexer.go:357:1: cognitive complexity 84 of func `(*Scanner).Scan` is high (> 30) (gocognit)
+func (sc *Scanner) Scan(lexer *Lexer) (ast.Token, error) {
+^
+parse/lexer.go:165:1: cognitive complexity 34 of func `(*Scanner).scanNumber` is high (> 30) (gocognit)
+func (sc *Scanner) scanNumber(ch rune, buf *bytes.Buffer) error {
+^
+parse/lexer.go:17:7: const `whitespace1` is unused (unused)
+const whitespace1 = 1<<'\t' | 1<<' '
+      ^
+parse/lexer.go:18:7: const `whitespace2` is unused (unused)
+const whitespace2 = 1<<'\t' | 1<<'\n' | 1<<'\r' | 1<<' '
+      ^
+parse/lexer.go:275:20: func `(*Scanner).scanEscape` is unused (unused)
+func (sc *Scanner) scanEscape(ch rune, buf *bytes.Buffer) error {
+                   ^
+parse/lexer.go:322:20: func `(*Scanner).countSep` is unused (unused)
+func (sc *Scanner) countSep(ch rune) (int, rune) {
+                   ^
+parse/lexer.go:124:1: calculated cyclomatic complexity for function skipComments is 11, max is 10 (cyclop)
+func (sc *Scanner) skipComments(ch rune) error {
+^
+parse/lexer.go:657:1: calculated cyclomatic complexity for function dump is 16, max is 10 (cyclop)
+func dump(node interface{}, level int, s string) string {
+^
+parse/lexer.go:13:2: import 'milklua/ast' is not allowed from list 'Main' (depguard)
+	"milklua/ast"
+	^
+parse/lexer.go:649:2: missing cases in switch of type reflect.Kind: reflect.Invalid, reflect.Bool, reflect.Int, reflect.Int8, reflect.Int16, reflect.Int32, reflect.Int64, reflect.Uint, reflect.Uint8, reflect.Uint16, reflect.Uint32, reflect.Uint64, reflect.Uintptr, reflect.Float32, reflect.Float64, reflect.Complex64, reflect.Complex128, reflect.Array, reflect.Chan, reflect.Func, reflect.Map, reflect.String, reflect.UnsafePointer (exhaustive)
+	switch rv.Kind() {
+	^
+parse/lexer.go:665:2: missing cases in switch of type reflect.Kind: reflect.Invalid, reflect.Bool, reflect.Int, reflect.Int8, reflect.Int16, reflect.Int32, reflect.Int64, reflect.Uint, reflect.Uint8, reflect.Uint16, reflect.Uint32, reflect.Uint64, reflect.Uintptr, reflect.Float32, reflect.Float64, reflect.Complex64, reflect.Complex128, reflect.Array, reflect.Chan, reflect.Func, reflect.Interface, reflect.Map, reflect.String, reflect.Struct, reflect.UnsafePointer (exhaustive)
+	switch rt.Kind() {
+	^
+parse/lexer.go:360:9: ast.Token is missing fields Type, Name, Str, Pos (exhaustruct)
+	tok := ast.Token{}
+	       ^
+parse/lexer.go:632:56: ast.Token is missing fields Type, Name, Pos (exhaustruct)
+	lexer := &Lexer{NewScanner(reader, name), nil, false, ast.Token{Str: ""}, TNil}
+	                                                      ^
+parse/lexer.go:718:11: ast.BuiltinType is missing field ExprBase (exhaustruct)
+		return &ast.BuiltinType{
+		        ^
+parse/lexer.go:722:11: ast.BuiltinType is missing field ExprBase (exhaustruct)
+		return &ast.BuiltinType{
+		        ^
+parse/lexer.go:726:11: ast.BuiltinType is missing field ExprBase (exhaustruct)
+		return &ast.BuiltinType{
+		        ^
+parse/lexer_test.go:10:6: Function 'TestScanner_ExtendedBasic' is too long (165 > 60) (funlen)
+func TestScanner_ExtendedBasic(t *testing.T) {
+     ^
+parse/lexer.go:324:19: assignOp: replace `count = count + 1` with `count++` (gocritic)
+	for ; ch == '='; count = count + 1 {
+	                 ^
+parse/lexer.go:678:7: S1003: should use strings.Contains(tt.Field(i).Name, "Base") instead (gosimple)
+			if strings.Index(tt.Field(i).Name, "Base") > -1 {
+			   ^
+parse/lexer_test.go:94:1: The line is 131 characters long, which exceeds the maximum of 120 characters. (lll)
+		{TLocal, "local"}, {TIdent, "表1"}, {TAssign, "="}, {TLBrace, "{"}, {TNumber, "1"}, {TComma, ","}, {TNumber, "2"}, {TRBrace, "}"},
+^
+parse/lexer_test.go:97:1: The line is 155 characters long, which exceeds the maximum of 120 characters. (lll)
+		{TReturn, "return"}, {TIdent, "self"}, {TRBrace, "}"}, {TLocal, "local"}, {TIdent, "实例1"}, {TAssign, "="}, {TIdent, "表1"}, {TColon, ":"}, {TIdent, "新建"},
+^
+parse/lexer_test.go:99:1: The line is 158 characters long, which exceeds the maximum of 120 characters. (lll)
+		{TFor, "for"}, {TIdent, "k"}, {TComma, ","}, {TIdent, "v"}, {TIn, "in"}, {TIdent, "pairs"}, {TLParen, "("}, {TIdent, "实例1"}, {TRParen, ")"}, {TLBrace, "{"},
+^
+parse/lexer_test.go:100:1: The line is 213 characters long, which exceeds the maximum of 120 characters. (lll)
+		{TIdent, "print"}, {TLParen, "("}, {TIdent, "v"}, {TRParen, ")"}, {TRBrace, "}"}, {TLocal, "local"}, {TIdent, "表2"}, {TAssign, "="}, {TLBrace, "{"}, {TNumber, "1"}, {TComma, ","}, {TNumber, "2"}, {TRBrace, "}"},
+^
+parse/lexer_test.go:101:1: The line is 131 characters long, which exceeds the maximum of 120 characters. (lll)
+		{TLocal, "local"}, {TIdent, "表3"}, {TAssign, "="}, {TLBrace, "{"}, {TNumber, "1"}, {TComma, ","}, {TNumber, "2"}, {TRBrace, "}"},
+^
+parse/lexer_test.go:102:1: The line is 131 characters long, which exceeds the maximum of 120 characters. (lll)
+		{TLocal, "local"}, {TIdent, "表4"}, {TAssign, "="}, {TLBrace, "{"}, {TNumber, "1"}, {TComma, ","}, {TNumber, "2"}, {TRBrace, "}"},
+^
+parse/lexer_test.go:106:1: The line is 151 characters long, which exceeds the maximum of 120 characters. (lll)
+		{TIdent, "print"}, {TLParen, "("}, {TIdent, "表5"}, {TRParen, ")"}, {TIdent, "print"}, {TLParen, "("}, {TIdent, "表6"}, {TRParen, ")"}, {TRBrace, "}"},
+^
+parse/lexer_test.go:110:1: The line is 155 characters long, which exceeds the maximum of 120 characters. (lll)
+		{TReturn, "return"}, {TIdent, "self"}, {TRBrace, "}"}, {TLocal, "local"}, {TIdent, "实例1"}, {TAssign, "="}, {TIdent, "表1"}, {TColon, ":"}, {TIdent, "新建"},
+^
+parse/lexer_test.go:112:1: The line is 158 characters long, which exceeds the maximum of 120 characters. (lll)
+		{TFor, "for"}, {TIdent, "k"}, {TComma, ","}, {TIdent, "v"}, {TIn, "in"}, {TIdent, "pairs"}, {TLParen, "("}, {TIdent, "实例1"}, {TRParen, ")"}, {TLBrace, "{"},
+^
+parse/lexer_test.go:113:1: The line is 213 characters long, which exceeds the maximum of 120 characters. (lll)
+		{TIdent, "print"}, {TLParen, "("}, {TIdent, "v"}, {TRParen, ")"}, {TRBrace, "}"}, {TLocal, "local"}, {TIdent, "表2"}, {TAssign, "="}, {TLBrace, "{"}, {TNumber, "1"}, {TComma, ","}, {TNumber, "2"}, {TRBrace, "}"},
+^
+parse/lexer_test.go:119:1: The line is 151 characters long, which exceeds the maximum of 120 characters. (lll)
+		{TIdent, "print"}, {TLParen, "("}, {TIdent, "表5"}, {TRParen, ")"}, {TIdent, "print"}, {TLParen, "("}, {TIdent, "表6"}, {TRParen, ")"}, {TRBrace, "}"},
+^
+parse/lexer_test.go:123:1: The line is 155 characters long, which exceeds the maximum of 120 characters. (lll)
+		{TReturn, "return"}, {TIdent, "self"}, {TRBrace, "}"}, {TLocal, "local"}, {TIdent, "实例1"}, {TAssign, "="}, {TIdent, "表1"}, {TColon, ":"}, {TIdent, "新建"},
+^
+parse/lexer_test.go:125:1: The line is 158 characters long, which exceeds the maximum of 120 characters. (lll)
+		{TFor, "for"}, {TIdent, "k"}, {TComma, ","}, {TIdent, "v"}, {TIn, "in"}, {TIdent, "pairs"}, {TLParen, "("}, {TIdent, "实例1"}, {TRParen, ")"}, {TLBrace, "{"},
+^
+parse/lexer_test.go:126:1: The line is 213 characters long, which exceeds the maximum of 120 characters. (lll)
+		{TIdent, "print"}, {TLParen, "("}, {TIdent, "v"}, {TRParen, ")"}, {TRBrace, "}"}, {TLocal, "local"}, {TIdent, "表2"}, {TAssign, "="}, {TLBrace, "{"}, {TNumber, "1"}, {TComma, ","}, {TNumber, "2"}, {TRBrace, "}"},
+^
+parse/lexer_test.go:132:1: The line is 151 characters long, which exceeds the maximum of 120 characters. (lll)
+		{TIdent, "print"}, {TLParen, "("}, {TIdent, "表5"}, {TRParen, ")"}, {TIdent, "print"}, {TLParen, "("}, {TIdent, "表6"}, {TRParen, ")"}, {TRBrace, "}"},
+^
+parse/lexer.go:166:1: `if ch == '0'` has complex nested blocks (complexity: 10) (nestif)
+	if ch == '0' { // 0x, 0b, 0o
+^
+parse/lexer.go:631:1: named return "chunk" with type "[]ast.Stmt" found (nonamedreturns)
+func Parse(reader io.Reader, name string) (chunk []ast.Stmt, err error) {
+^
+parse/lexer_test.go:182:1: Function TestScanner_Comments missing the call to method parallel (paralleltest)
+func TestScanner_Comments(t *testing.T) {
+^
+parse/lexer_test.go:223:1: Function TestScanner_UnicodeIdentifiers missing the call to method parallel (paralleltest)
+func TestScanner_UnicodeIdentifiers(t *testing.T) {
+^
+parse/lexer.go:276:2: SA4009(related information): assignment to ch (staticcheck)
+	ch = sc.Next()
+	^
+parse/lexer.go:149:58: (*Scanner).scanIdent - result 0 (error) is always nil (unparam)
+func (sc *Scanner) scanIdent(ch rune, buf *bytes.Buffer) error {
+                                                         ^
+parse/lexer.go:157:60: (*Scanner).scanDecimal - result 0 (error) is always nil (unparam)
+func (sc *Scanner) scanDecimal(ch rune, buf *bytes.Buffer) error {
+                                                           ^
+parse/lexer.go:633:2: assigned to chunk, but reassigned without using the value (wastedassign)
+	chunk = nil
+	^
